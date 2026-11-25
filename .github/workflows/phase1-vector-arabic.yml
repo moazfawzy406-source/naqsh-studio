@@ -38,11 +38,12 @@ jobs:
           ./target/release/vectorcraft.exe --control 7979 > shots/app.log 2>&1 &
           sleep 25
           python - <<'PY'
-          import socket, json, time, base64
+          import socket, json, time, base64, re
+          tok=re.search(r"control token: (\S+)", open("shots/app.log").read()).group(1)
           def call(m, p=None, i=[0]):
               i[0]+=1
               s=socket.create_connection(("127.0.0.1",7979),timeout=90)
-              s.sendall((json.dumps({"id":i[0],"method":m,"params":p or {}})+"\n").encode())
+              s.sendall((json.dumps({"id":i[0],"token":tok,"method":m,"params":p or {}})+"\n").encode())
               buf=b""
               while not buf.endswith(b"\n"):
                   d=s.recv(65536)
