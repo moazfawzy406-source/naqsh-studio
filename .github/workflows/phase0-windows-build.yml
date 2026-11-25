@@ -1,0 +1,44 @@
+name: phase0-windows-build
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/phase0-windows-build.yml', 'upstream/**']
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [vectorcraft, designcraft, deckcraft, photocraft]
+    defaults:
+      run:
+        working-directory: upstream/${{ matrix.app }}
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+          rustc --version
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            upstream/${{ matrix.app }}/target
+          key: ${{ matrix.app }}-${{ hashFiles(format('upstream/{0}/Cargo.lock', matrix.app)) }}
+      - name: Build desktop app (release)
+        env:
+          CRAFT_I18N_DIR: ${{ github.workspace }}/upstream/craft-i18n
+        run: cargo build --release -p ${{ matrix.app }}
+      - name: Arabic text tests (vectorcraft only)
+        if: matrix.app == 'vectorcraft'
+        run: cargo test --release -p vectorcraft-text --lib
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-windows-x64
+          path: upstream/${{ matrix.app }}/target/release/${{ matrix.app }}.exe
+          if-no-files-found: warn

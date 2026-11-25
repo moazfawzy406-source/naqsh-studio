@@ -1,0 +1,15 @@
+*~
+plan/
+/target
+/dist
+/corpus
+/log
+/outputs/
+.DS_Store
+/.claude/
+/target-*/
+/craft-fonts/
+/.nightly-tools
+/.nightly-input
+/craft-i18n
+__pycache__/
