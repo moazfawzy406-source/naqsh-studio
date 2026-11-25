@@ -1,0 +1,70 @@
+name: phase1-vector-arabic
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/phase1-vector-arabic.yml', 'upstream/vectorcraft/**', 'upstream/craft-i18n/**']
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: upstream/vectorcraft
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            upstream/vectorcraft/target
+          key: vectorcraft-${{ hashFiles('upstream/vectorcraft/Cargo.lock') }}
+      - name: Build (release)
+        env:
+          CRAFT_I18N_DIR: ${{ github.workspace }}/upstream/craft-i18n
+        run: cargo build --release -p vectorcraft
+      - name: Arabic UI screenshot (real window, control channel)
+        continue-on-error: true
+        env:
+          VECTORCRAFT_CONFIG_DIR: ${{ runner.temp }}/vcfg
+        run: |
+          mkdir -p shots
+          ./target/release/vectorcraft.exe --control 7979 > shots/app.log 2>&1 &
+          sleep 25
+          python - <<'PY'
+          import socket, json, time, base64
+          def call(m, p=None, i=[0]):
+              i[0]+=1
+              s=socket.create_connection(("127.0.0.1",7979),timeout=90)
+              s.sendall((json.dumps({"id":i[0],"method":m,"params":p or {}})+"\n").encode())
+              buf=b""
+              while not buf.endswith(b"\n"):
+                  d=s.recv(65536)
+                  if not d: break
+                  buf+=d
+              s.close()
+              return json.loads(buf)
+          log=open("shots/steps.log","w")
+          for name,m,p in [("lang","app.language",{"lang":"ar"}),("wait",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
+              if m is None: time.sleep(5); continue
+              try: r=call(m,p)
+              except Exception as e: r={"exception":str(e)}
+              log.write(name+": "+json.dumps(r)[:3000]+"\n")
+          PY
+          cat shots/steps.log || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vectorcraft-arabic-shots
+          path: upstream/vectorcraft/shots
+          if-no-files-found: warn
+      - uses: actions/upload-artifact@v4
+        with:
+          name: naqsh-vector-windows-x64
+          path: upstream/vectorcraft/target/release/vectorcraft.exe

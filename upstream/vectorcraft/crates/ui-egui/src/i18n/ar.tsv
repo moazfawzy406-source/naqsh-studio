@@ -1,0 +1,2437 @@
+# العربية (ar) catalog for VectorCraft. Same format as zh-hant.tsv:  context <TAB> source <TAB> translation
+# (empty context = a plain UI string; `@id` = a command id; `@plural` = "one|other" forms).
+#
+# Clean-room: written from the plain meaning of the English labels in ordinary computing vocabulary.
+# No other application's Arabic localisation, string table or product UI was consulted or copied.
+# Part of the first Arabic pass: menus, tools and panels. Rows reused from craft-i18n's ar catalogs
+# (MIT OR Apache-2.0) match on identical English text. A missing entry shows in English.
+@id	language.name	العربية
+	Radial Blur…	ضبابية شعاعية…
+	Smart Blur…	ضبابية ذكية…
+	Sharpen	توضيح الحواف (Sharpen)
+	Unsharp Mask…	قناع الحدة…
+	Method	الطريقة
+	Quality	الجودة
+	Radius	نصف القطر
+	Spin	دوران
+	Draft	مسودة
+	Good	جيد
+	Best	الأفضل
+	Mode	النمط
+	Edge Only	الحافة فقط
+	Overlay Edge	تراكب الحافة
+	+ Add Scale	+ إضافة مقياس
+	1 Color Job…	مهمة بلون واحد…
+	2 Color Job…	مهمة بلونين…
+	3 Color Job…	مهمة بثلاثة ألوان…
+	3D and Materials	ثلاثي الأبعاد والخامات
+	Plane	مستوٍ
+	Extrude	بثق
+	Revolve	دوران
+	Inflate	نفخ
+	Select objects, then pick an object type to give them a 3D effect.	حدّد كائنات ثم اختر نوع الكائن لإعطائها تأثيرًا ثلاثي الأبعاد.
+	3D Ribbon	شريط ثلاثي الأبعاد
+	About VectorCraft	حول VectorCraft
+	Actions	الإجراءات
+	Actual Size	الحجم الفعلي
+	Add	إضافة
+	Add Anchor Point Tool	أداة إضافة نقطة ارتكاز
+	Add Anchor Points	إضافة نقاط ارتكاز
+	Add New	إضافة جديد
+	Add New Effect	إضافة تأثير جديد
+	Add New Fill	إضافة تعبئة جديدة
+	Add New Stroke	إضافة حد جديد
+	Add Selected Artwork (Alt: as one asset)	إضافة العمل الفني المحدد (Alt: كأصل واحد)
+	Add Selected Artwork as Multiple Assets	إضافة العمل الفني المحدد كأصول متعددة
+	Add Selected Artwork as One Asset	إضافة العمل الفني المحدد كأصل واحد
+	Add to Graphic Styles	إضافة إلى الأنماط الرسومية
+	Add to Profiles…	إضافة إلى الملفات الشخصية…
+	Add to Swatches	إضافة إلى عينات الألوان
+	Adjust Color Balance…	ضبط توازن الألوان…
+	Advanced	متقدم
+	Align	محاذاة
+	Align center	توسيط
+	Align left	محاذاة لليسار
+	Align Objects:	محاذاة الكائنات:
+	Align On:	المحاذاة على:
+	Align right	محاذاة لليمين
+	Align to Artboard	محاذاة إلى لوحة العمل
+	Align to Glyph Bounds	محاذاة إلى حدود الحرف
+	Align to Key Object	محاذاة إلى الكائن الرئيسي
+	Align to Key Anchor	محاذاة إلى نقطة الارتكاز الرئيسية
+	Align to Page	محاذاة إلى الصفحة
+	Align to Path	محاذاة إلى المسار
+	Align to Selection	محاذاة إلى التحديد
+	Align To:	المحاذاة إلى:
+	Alignment:	المحاذاة:
+	All	الكل
+	All Artwork Above	كل العمل الفني الأعلى
+	All Caps	جميع الأحرف كبيرة
+	All Categories	كل الفئات
+	All on Active Artboard	الكل على لوحة العمل النشطة
+	All on Same Layers	الكل على نفس الطبقات
+	All Text Objects	كل كائنات النص
+	Alt	Alt
+	Alt:	بديل:
+	Amount	المقدار
+	Amount:	المقدار:
+	Anchor Point	نقطة ارتكاز
+	Angle	الزاوية
+	Angle:	الزاوية:
+	Anti-alias	إزالة التسنن
+	Anti-Alias	إزالة التسنن
+	Crisp	واضح
+	Strong	قوية
+	Appearance	المظهر
+	Appearance Attribute	خاصية المظهر
+	Apply	تطبيق
+	Apply Character Style	تطبيق نمط أحرف
+	Apply Last Effect	تطبيق آخر تأثير
+	Apply SVG Filter…	تطبيق مرشح SVG…
+	Arc	قوس
+	Area Text Objects	كائنات نص المنطقة
+	Area Type Options	خيارات نص المنطقة
+	Area Type Options…	خيارات نص المنطقة…
+	Arrange	ترتيب
+	Arrange: Bring to Front	ترتيب: إحضار إلى الأمام
+	Art	فن
+	Artboard Options	خيارات لوحة العمل
+	Artboard Options…	خيارات لوحة العمل…
+	Artboard Tool	أداة لوح التصميم
+	Artboards	ألواح التصميم
+	ArtCraft Website	موقع ArtCraft
+	ArtCraft website	موقع ArtCraft
+	As Multiple Assets	كأصول متعددة
+	As Single Asset	كأصل واحد
+	Aspect Ratio	نسبة العرض إلى الارتفاع
+	Asset Export	تصدير الأصول
+	Assets	الأصول
+	Assign	تعيين
+	Assign Profile…	تعيين ملف تعريف…
+	Assign:	تعيين:
+	Attach to Active Plane	إلحاق بالمستوى النشط
+	Attributes	الخصائص
+	Author:	المؤلف:
+	Auto	تلقائي
+	Auto Color	لون تلقائي
+	Automatic	تلقائي
+	Auto Spell Check	تدقيق إملائي تلقائي
+	Automatically	تلقائياً
+	Average	متوسط
+	Average…	المتوسط…
+	Axis:	المحور:
+	Hide Video Rulers	إخفاء مساطر الفيديو
+	Background Contents	محتويات الخلفية
+	Backspace	Backspace
+	Baseline	خط الأساس
+	Basic Latin	اللاتينية الأساسية
+	Begin Recording	بدء التسجيل
+	Include in playback	تضمين في التشغيل
+	Include Action Steps	تضمين خطوات الإجراء
+	Bend:	الانحناء:
+	Bitmap	صورة نقطية
+	Black	أسود
+	Black and White	أبيض وأسود
+	Black and White Logo	شعار بالأبيض والأسود
+	Blend	مزج
+	Blend Front to Back	مزج من الأمام إلى الخلف
+	Blend Horizontally	مزج أفقي
+	Blend Options	خيارات المزج
+	Blend Options…	خيارات المزج…
+	Blend Vertically	مزج رأسي
+	Blending Mode	وضع المزج
+	Blue	أزرق
+	Blur	تمويه
+	Bottom	أسفل
+	Bottom in Front	الأسفل في المقدمة
+	Bottom-Justified Tab	علامة جدولة محاذاة سفلية
+	Bottom:	الأسفل:
+	Break Link to Graphic Style	فصل الارتباط بالنمط الرسومي
+	Break Link to Symbol	فصل الارتباط بالرمز
+	Brick by Column	طوب حسب العمود
+	Brick by Row	طوب حسب الصف
+	Brick Offset:	إزاحة الطوب:
+	Brightness	السطوع
+	Brightness/Contrast…	السطوع/التباين…
+	Bring Forward	إحضار للأمام
+	Bring to Front	إحضار إلى المقدمة
+	Bristle	شعيرات
+	Bristle Brush Strokes	ضربات فرشاة الشعيرات
+	Browser	المتصفح
+	Brush Libraries	مكتبات الفُرش
+	Brush Options…	خيارات الفرشاة…
+	Options of Selected Object…	خيارات الكائن المحدد…
+	Brush Strokes	ضربات الفرشاة
+	Brushes	الفرش
+	Bullet	تعداد نقطي
+	Bullets	تعداد نقطي
+	Bullets and Numbering	التعداد النقطي والرقمي
+	Apply Bullets	تطبيق النقاط
+	Numbered List	قائمة رقمية
+	Apply Numbers	تطبيق الأرقام
+	Bullets and Numbering…	التعداد النقطي والرقمي…
+	Numbers	أرقام
+	Level:	المستوى:
+	Convert to Text	تحويل إلى نص
+	Filled Dot	نقطة ممتلئة
+	Dash	شرطة
+	Hollow Circle	دائرة مفرغة
+	Filled Square	مربع ممتلئ
+	Calligraphic	خطي
+	Cancel	إلغاء
+	Cascade	تتالي
+	Center	وسط
+	Center-Justified Tab	علامة جدولة محاذاة وسطية
+	Centimeters	سنتيمتر
+	Change	تغيير
+	Change All	تغيير الكل
+	Change Case	تغيير حالة الأحرف
+	Change Screen Mode (F)	تغيير وضع الشاشة (F)
+	Change to Global Rulers	التحويل إلى المساطر العامة
+	Change to Artboard Rulers	التحويل إلى مساطر لوحة العمل
+	Changed since the last Refresh.	تغيّر منذ آخر تحديث.
+	Channel	القناة
+	Character	الحرف
+	Character Alignment	محاذاة الحرف
+	Cyrillic	سيريلي
+	Greek	اليونانية
+	Turkish	التركية
+	Character Style	نمط الحرف
+	Character Style Options	خيارات نمط الحرف
+	Character Styles	أنماط الحروف
+	Check Script…	فحص السكربت…
+	Checked	محدد
+	Check Spelling…	تدقيق إملائي…
+	Choose…	اختيار…
+	Circle	دائرة
+	Gray	رمادي
+	Clean Up…	تنظيف…
+	Clear	مسح
+	Above Text	فوق النص
+	Position Panel Above Text	وضع اللوحة فوق النص
+	Clear Appearance	مسح المظهر
+	Clear Guides	مسح خطوط التوجيه
+	Clear Recent Files	مسح الملفات الأخيرة
+	Click the art with the Gradient tool to add or select points.	انقر على العمل الفني بأداة التدرج لإضافة نقاط أو تحديدها.
+	Click the ramp or a type button to apply a gradient.	انقر على الشريط أو زر النوع لتطبيق تدرج.
+	Click to add a tab stop, drag to move it, drag it off the ruler to delete it	انقر لإضافة علامة جدولة، واسحبها لنقلها، واسحبها خارج المسطرة لحذفها
+	Click to choose a swatch, Shift-click to mix a colour	انقر لاختيار عينة، وانقر مع Shift لمزج لون
+	Clip	مقطع
+	Clip to Artboard	اقتطاع إلى لوحة العمل
+	Clipping Mask	قناع القص
+	Clipping Masks	أقنعة القص
+	Close	إغلاق
+	Close All	إغلاق الكل
+	Close Library	إغلاق المكتبة
+	Cmd	Cmd
+	CMYK	CMYK
+	CMYK Color	ألوان CMYK
+	Collapse Panels to Icons	طي اللوحات إلى أيقونات
+	Collate	ترتيب النسخ
+	Collect for Export	تجميع للتصدير
+	Color	اللون
+	Color (, or Shift+,)	اللون (, أو Shift+,)
+	Color Adjustments	تعديلات اللون
+	Color blindness – Deuteranopia-type	عمى الألوان – نوع الديوتيرانوبيا
+	Color blindness – Protanopia-type	عمى الألوان – نوع البروتانوبيا
+	Color blindness – Tritanopia-type	عمى الألوان – نوع التريتانوبيا
+	Show Color Vision Preview	إظهار معاينة رؤية الألوان
+	Protanopia	البروتانوبيا
+	Deuteranopia	الديوتيرانوبيا
+	Tritanopia	التريتانوبيا
+	Achromatopsia	عمى الألوان الكلي
+	Color Burn	تغميق اللون
+	Color Dodge	تفتيح اللون
+	Color Guide	دليل الألوان
+	Color Guide Options…	خيارات دليل الألوان…
+	Color Library…	مكتبة الألوان…
+	Color Management	إدارة الألوان
+	Color Mode	وضع الألوان
+	Color Mode:	وضع اللون:
+	Color wheel	عجلة الألوان
+	Color Picker…	منتقي الألوان…
+	Color Settings	إعدادات الألوان
+	Color Settings…	إعدادات الألوان…
+	Color Space	فضاء اللون
+	Color Table	جدول الألوان
+	Color Theme	سمة اللون
+	Color Themes	سمات الألوان
+	Color Wheel	عجلة الألوان
+	Saturation and brightness	التشبع والسطوع
+	Wheel View	عرض العجلة
+	Box View	عرض المربع
+	Show Out-of-Gamut Colors	إظهار الألوان خارج النطاق
+	Box Channel	قناة المربع
+	Color box	مربع الألوان
+	Color Wheel Options	خيارات عجلة الألوان
+	Show Document Colors	إظهار ألوان المستند
+	Document Colors	ألوان المستند
+	Selection Colors	ألوان التحديد
+	Show Harmony	إظهار التناسق
+	Harmony Rule	قاعدة التناسق
+	Harmony color	لون التناسق
+	Color:	اللون:
+	Colorize	تلوين
+	Colors	الألوان
+	Colors:	الألوان:
+	Columns	الأعمدة
+	Columns:	الأعمدة:
+	Column…	عمود…
+	Combine Slices	دمج الشرائح
+	Coming soon — tracked in the parity plan	قريبًا — ضمن خطة التكافؤ
+	Command Dialog	مربع حوار الأمر
+	Compound Path	مسار مركّب
+	Compression	الضغط
+	Consolidate All Windows	توحيد كل النوافذ
+	Contextual Alternates	بدائل سياقية
+	Contextual Task Bar	شريط المهام السياقي
+	Pin Bar Position	تثبيت موضع الشريط
+	Reset Bar Position	إعادة ضبط موضع الشريط
+	Bar Actions	إجراءات الشريط
+	Reset Bar Actions	إعادة ضبط إجراءات الشريط
+	Contrast	التباين
+	Control	التحكم
+	Convert	تحويل
+	Convert To Area Type	تحويل إلى نص منطقة
+	Convert to Artboards	تحويل إلى لوحات عمل
+	Convert to CMYK	تحويل إلى CMYK
+	Convert to Grayscale	تحويل إلى تدرج رمادي
+	Convert to Indexed Color…	تحويل إلى ألوان مفهرسة…
+	Convert To Point Type	تحويل إلى نص نقطة
+	Convert to RGB	تحويل إلى RGB
+	Convert to Shape	تحويل إلى شكل
+	Convert to sRGB	تحويل إلى sRGB
+	Copies:	النسخ:
+	Copy	نسخ
+	Copy All Styles	نسخ كل الأنماط
+	Copy Info	نسخ المعلومات
+	Copy Selected Style	نسخ النمط المحدد
+	Copyright	حقوق النشر
+	Copyright Symbol	رمز حقوق النشر
+	Corners	الزوايا
+	Chamfer	شطف
+	Corners…	الزوايا…
+	Flip	قلب
+	Radius:	نصف القطر:
+	Round	دائري
+	Create	إنشاء
+	Create Clipping Mask	إنشاء قناع اقتطاع
+	Create from Guides	إنشاء من الأدلة
+	Create from Selection	إنشاء من التحديد
+	Create Gradient Mesh…	إنشاء شبكة تدرج…
+	Flat	مسطح
+	To Center	إلى المركز
+	Create Object Mosaic…	إنشاء فسيفساء من الكائن…
+	Create Outlines	إنشاء مخططات
+	Clear Selection	مسح التحديد
+	Create Trim Marks	إنشاء علامات القص
+	Created	تاريخ الإنشاء
+	Crop	قص
+	Crop Image	قص الصورة
+	Remove Background	إزالة الخلفية
+	Background	خلفية
+	Contiguous	متجاور
+	Color Mask	قناع اللون
+	Mask	قناع
+	Crop Marks	علامات الاقتصاص
+	CSS Properties	خصائص CSS
+	Ctrl	Ctrl
+	Curvature	الانحناء
+	Curves…	المنحنيات…
+	Custom	مخصص
+	Customize…	تخصيص…
+	Cut	قص
+	Cut Path at Selected Anchor Points	قطع المسار عند نقاط الارتكاز المحددة
+	Cyan	سماوي
+	Dark	داكن
+	Darken	تغميق
+	dash	شرطة
+	Dashed	متقطع
+	Data…	البيانات…
+	Dates	التواريخ
+	Decimal-Justified Tab	علامة جدولة محاذاة عشرية
+	Decorative	زخرفي
+	Default	افتراضي
+	Default Figure	الرقم الافتراضي
+	Define Grid…	تعريف الشبكة…
+	Define Perspective Grid…	تعريف شبكة المنظور…
+	Delete	حذف
+	Delete All	حذف الكل
+	Delete Anchor Point Tool	أداة حذف نقطة ارتكاز
+	Delete Artboard	حذف لوحة العمل
+	Delete Artboards	حذف لوحات العمل
+	Delete Brush	حذف الفرشاة
+	Delete Empty Artboards	حذف لوحات العمل الفارغة
+	Delete Graphic Style	حذف النمط الرسومي
+	Delete Layer	حذف الطبقة
+	Delete Point	حذف النقطة
+	Delete Profile	حذف الملف الشخصي
+	Delete Selected Item	حذف العنصر المحدد
+	Delete Selection	حذف التحديد
+	Delete Stop	حذف نقطة التوقف
+	Delete Swatch	حذف العينة
+	Delete Symbol	حذف الرمز
+	No unused symbols	لا رموز غير مستخدمة
+	Yes	نعم
+	No	لا
+	Delete the graphic style “{name}”?	حذف النمط الرسومي «{name}»؟
+	Delete Action Sets	حذف مجموعات الإجراءات
+	Duplicate Action or Action Set	تكرار إجراء أو مجموعة إجراءات
+	Delete theme	حذف السمة
+	Delete these {n} graphic styles?	حذف هذه الأنماط الرسومية ({n})؟
+	Delete this {n} graphic style?	حذف هذا النمط الرسومي ({n})؟
+	Delete Workspace	حذف مساحة العمل
+	Description	الوصف
+	Description:	الوصف:
+	Deselect	إلغاء التحديد
+	Design…	التصميم…
+	Diamond	معيّن
+	Difference	الفرق
+	Dim Copies to:	تعتيم النسخ إلى:
+	Dimensions	الأبعاد
+	Direct Selection Tool	أداة التحديد المباشر
+	Direction Handles	مقابض الاتجاه
+	Disable Opacity Mask	تعطيل قناع الشفافية
+	Discard	تجاهل
+	Preserve	الاحتفاظ
+	High Resolution	دقة عالية
+	Medium Resolution	دقة متوسطة
+	Low Resolution	دقة منخفضة
+	Discord	Discord
+	Discretionary Hyphen	واصلة اختيارية
+	Discretionary Ligatures	حروف مركبة اختيارية
+	Distort & Transform	تشويه وتحويل
+	Distortion	التشويه
+	Distribute	توزيع
+	Distribute Objects:	توزيع الكائنات:
+	Distribute Spacing	توزيع المسافات
+	Distribute Spacing:	توزيع المسافات:
+	Divide	قسمة
+	Divide Objects Below	تقسيم الكائنات الموجودة أسفل
+	Divide Slices…	تقسيم الشرائح…
+	Document	المستند
+	Document Color Mode	وضع ألوان المستند
+	Document Info	معلومات المستند
+	Document Raster Effects Settings Dialog	مربع حوار إعدادات التأثيرات النقطية للمستند
+	Document Raster Effects Settings…	إعدادات التأثيرات النقطية للمستند…
+	Document Setup…	إعداد المستند…
+	Don't Save	عدم الحفظ
+	Don't Show Center	عدم إظهار المركز
+	Done	تم
+	Dots	نقاط
+	Double Left Quotation Marks	علامتا اقتباس مزدوجتان يسرى
+	Double Right Quotation Marks	علامتا اقتباس مزدوجتان يمنى
+	Double-click	نقر مزدوج
+	Double-click to edit the characters' paint	انقر مرتين لتحرير ألوان الأحرف
+	Click to edit	انقر للتحرير
+	Double-click to edit	انقر مرتين للتحرير
+	Select a character with the Type tool to see its alternates.	حدّد حرفًا بأداة النص لرؤية بدائله.
+	The selected character's font is not available.	خط الحرف المحدد غير متوفر.
+	No alternates for the selected character.	لا بدائل للحرف المحدد.
+	Double-click to replace	انقر مرتين للاستبدال
+	Click to replace	انقر للاستبدال
+	Select one character with the Type tool first.	حدّد حرفًا واحدًا بأداة النص أولًا.
+	at the start of a word	في بداية الكلمة
+	in the middle of a word	في وسط الكلمة
+	at the end of a word	في نهاية الكلمة
+	standing alone	منفردًا
+	No OpenType feature draws this glyph here, so it replaces the character's glyph and may not join its neighbors.	لا توجد ميزة OpenType ترسم هذا الحرف هنا، لذا فهو يستبدل شكل الحرف وقد لا يتصل بجيرانه.
+	Double-click to insert	انقر مرتين للإدراج
+	Double-click to rename	انقر نقراً مزدوجاً لإعادة التسمية
+	Double-click to target the contents	انقر مرتين لاستهداف المحتويات
+	Download	تنزيل
+	Drag art here, or select it and click +. Hold Alt for one asset of several objects.	اسحب العمل الفني إلى هنا، أو حدّده وانقر +. اضغط Alt لجعل عدة كائنات أصلًا واحدًا.
+	Draw	رسم
+	Draw Behind	الرسم في الخلف
+	Draw Inside	الرسم في الداخل
+	Draw Normal	رسم عادي
+	Draw:	ارسم:
+	Drop Shadow	ظل مسقط
+	Drop Shadow…	ظل مسقط…
+	Duplicate	تكرار
+	Duplicate Artboards	تكرار لوحات العمل
+	Duplicate Brush	تكرار الفرشاة
+	Duplicate Effect	تكرار التأثير
+	Duplicate Graphic Style	تكرار النمط الرسومي
+	Duplicate Layer	تكرار الطبقة
+	Duplicate Selected Item	تكرار العنصر المحدد
+	Duplicate Slice	تكرار الشريحة
+	Duplicate Swatch	تكرار العينة
+	Duplicate Symbol	تكرار الرمز
+	Dutch	الهولندية
+	DXF Options Dialog	مربع حوار خيارات DXF
+	HP-GL Options Dialog	مربع حوار خيارات HP-GL
+	Earth Tones	ألوان ترابية
+	Edit	تحرير
+	Edit Clipping Path	تحرير مسار القص
+	Edit Colors	تحرير الألوان
+	Edit Contents	تحرير المحتويات
+	Edit Custom Dictionary…	تحرير القاموس المخصص…
+	Edit Envelope	تحرير الغلاف
+	Edit Gradient	تحرير التدرج
+	Edit or Apply Color Group	تحرير مجموعة الألوان أو تطبيقها
+	Edit or Apply Colors	تحرير الألوان أو تطبيقها
+	Edit Original	تحرير الأصل
+	Edit Pattern	تحرير النمط
+	Edit Selection…	تحرير التحديد…
+	Edit Symbol	تحرير الرمز
+	Edit Text	تحرير النص
+	Edit the point	تحرير النقطة
+	Edit the stop	تحرير نقطة التوقف
+	Edit theme	تحرير السمة
+	Edit Toolbar	تحرير شريط الأدوات
+	Edit Views…	تحرير العروض…
+	Edit…	تحرير…
+	Effect	تأثير
+	Effect Options	خيارات التأثير
+	Effective PPI	دقة PPI الفعلية
+	Effects	التأثيرات
+	Effect…	تأثير…
+	Ellipse	شكل بيضاوي
+	Ellipse Tool	أداة الشكل البيضاوي
+	Ellipsis	علامة الحذف
+	Em Box Bottom/Left	صندوق Em: أسفل/يسار
+	Em Box Center	صندوق Em: وسط
+	Em Box Top/Right	صندوق Em: أعلى/يمين
+	Em Dash	شرطة Em
+	Em Space	مسافة Em
+	Embed	تضمين
+	Embed Image	تضمين الصورة
+	Embedded	مضمّن
+	Embedded Image	صورة مضمّنة
+	En Dash	شرطة En
+	En Space	مسافة En
+	Enable Opacity Mask	تفعيل قناع الشفافية
+	Switch Selection and Drawing Modes	التبديل بين وضعي التحديد والرسم
+	Select Last Selection Tool	اختيار آخر أداة تحديد
+	End arrowhead	رأس السهم في النهاية
+	English	إنجليزي
+	Enter	إدخال
+	Entire Font	الخط بالكامل
+	Envelope Distort	تشويه بالغلاف
+	Envelope Options…	خيارات الغلاف…
+	EPS Options Dialog	مربع حوار خيارات EPS
+	Eraser	ممحاة
+	Eraser Tool	أداة الممحاة
+	Error	خطأ
+	Middle Eastern & South Asian Every-line Composer	منسّق كل سطر للشرق الأوسط وجنوب آسيا
+	Standard Every-line Composer	منسّق كل سطر القياسي
+	Exclude	استبعاد
+	Exclusion	استبعاد (Exclusion)
+	Exit Isolation Mode	الخروج من وضع العزل
+	Expand	توسيع
+	Expand Appearance	توسيع المظهر
+	Expand Brush Strokes	توسيع ضربات الفرشاة
+	Expand Compound Shape	توسيع الشكل المركّب
+	Expand Layers Panel Rows	توسيع صفوف لوحة الطبقات
+	Expand Shape	توسيع الشكل
+	Expand:	توسيع:
+	Expand…	توسيع…
+	Export	تصدير
+	Export All…	تصدير الكل…
+	Export Preset:	إعداد التصدير المسبق:
+	Insert	إدراج
+	Start at:	البدء عند:
+	Export Presets	تصدير الإعدادات المسبقة
+	Export As PNG…	تصدير بصيغة PNG…
+	Export As SVG…	تصدير بصيغة SVG…
+	Export 3D Object	تصدير كائن ثلاثي الأبعاد
+	Export As…	تصدير باسم…
+	Export CSS…	تصدير CSS…
+	Export for Screens	تصدير للشاشات
+	Export for Screens…	تصدير للشاشات…
+	Export Keyboard Shortcuts…	تصدير اختصارات لوحة المفاتيح…
+	Export Keyboard Shortcuts as Text…	تصدير اختصارات لوحة المفاتيح كنص…
+	Export PDF	تصدير PDF
+	Export Selected CSS…	تصدير CSS المحدد…
+	Export Selection…	تصدير التحديد…
+	Export Settings	إعدادات التصدير
+	Export the selected assets (else all of them)	تصدير الأصول المحددة (وإلا فكلها)
+	Export {count} Selected	تصدير {count} محدد
+	Exported {path}	تم التصدير إلى {path}
+	Export…	تصدير…
+	Extrude & Bevel…	بثق وشطب…
+	3D (Classic)	ثلاثي الأبعاد (كلاسيكي)
+	Extrude & Bevel (Classic)…	بثق وشطب (كلاسيكي)…
+	Revolve (Classic)…	دوران (كلاسيكي)…
+	Rotate (Classic)…	تدوير (كلاسيكي)…
+	Wireframe	إطار سلكي
+	Render Settings	إعدادات التصيير
+	Eyedropper	القطارة
+	Sample Color from Screen	التقاط لون من الشاشة
+	Eyedropper Tool	أداة القطارة
+	Eyedropper: click the art to sample the stop's colour	القطّارة: انقر على العمل الفني لالتقاط لون نقطة التوقف
+	Feather…	تلاشي الحواف…
+	Figure Space	مسافة الرقم
+	Figure:	الرقم:
+	File	ملف
+	File Handling	معالجة الملفات
+	File Info Dialog	مربع حوار معلومات الملف
+	File Info…	معلومات الملف…
+	Files	الملفات
+	Fill	تعبئة
+	Fill & Stroke	التعبئة والحد
+	Fill Color	لون التعبئة
+	Fill Rule	قاعدة التعبئة
+	Fill with Placeholder Text	تعبئة بنص تجريبي
+	Fill:	التعبئة:
+	Find	بحث
+	Find and Replace…	بحث واستبدال…
+	Find and Replace	بحث واستبدال
+	Find:	بحث:
+	Replace All	Replace All
+	Find Font…	بحث عن خط…
+	Retype	إعادة كتابة
+	Find Matching Fonts	البحث عن خطوط مطابقة
+	Find more font matches	البحث عن خطوط مطابقة أكثر
+	Type your text to preview	اكتب نصك للمعاينة
+	Select outlined text, then Find Matching Fonts.	حدّد نصًا محوّلًا إلى مخطط ثم اختر البحث عن خطوط مطابقة.
+	No font matches the selected shapes.	لا يوجد خط يطابق الأشكال المحددة.
+	Reset Retype Panel	إعادة ضبط لوحة إعادة الكتابة
+	List Matching Fonts	سرد الخطوط المطابقة
+	Retype Preview	معاينة إعادة الكتابة
+	Find Next	البحث عن التالي
+	First-line Left Indent	إزاحة يسار السطر الأول
+	Fit All in Window	احتواء الكل في النافذة
+	Fit Artboard in Window	احتواء لوحة العمل في النافذة
+	Fit Headline	ملاءمة العنوان
+	Decrease Font Size	تصغير حجم الخط
+	Increase Font Size	تكبير حجم الخط
+	Highlight Font Name	تمييز اسم الخط
+	Highlight Font Size	تمييز حجم الخط
+	Other…	أخرى…
+	Highlight Kerning	تمييز تقارب الحروف
+	Highlight Tracking	تمييز تباعد الحروف
+	Spacing	التباعد
+	Fit in View	ملاءمة في العرض
+	Fit on Screen	ملاءمة للشاشة
+	Fit to Artwork Bounds	ملاءمة حدود العمل الفني
+	Fit to Selected Art	ملاءمة العمل الفني المحدد
+	Halo	هالة
+	Diameter:	القطر:
+	Fuzziness:	التضبيب:
+	Direction:	الاتجاه:
+	Flat Logo	شعار مسطّح
+	Flatten Transparency…	تسطيح الشفافية…
+	Flattener Preview	معاينة التسطيح
+	Flip Across	قلب عرضيًا
+	Flip Along	قلب طوليًا
+	Flip Horizontal	قلب أفقي
+	Flip Vertical	قلب عمودي
+	Float in Window	تعويم في نافذة
+	Float All in Windows	تعويم الكل في نوافذ
+	Folder	مجلد
+	Font	الخط
+	Font Family	عائلة الخط
+	Font Family & Style	عائلة الخط والنمط
+	Font Family, Style & Size	عائلة الخط والنمط والحجم
+	Show Similar Fonts	إظهار الخطوط المشابهة
+	Font Preview Size	حجم معاينة الخط
+	Font Size	حجم الخط
+	Font:	الخط:
+	Fonts	الخطوط
+	Forced Line Break	فاصل سطر إجباري
+	Format	الصيغة
+	Format Options	خيارات التنسيق
+	Format Settings	إعدادات التنسيق
+	Format:	التنسيق:
+	Fractional Widths	عروض كسرية
+	Fractions	كسور
+	Free	حر
+	Freeform Gradient	تدرج حر
+	Frequency	التردد
+	Full Document	المستند الكامل
+	Full Screen Mode	وضع ملء الشاشة
+	Full Screen Mode with Menu Bar	وضع ملء الشاشة مع شريط القوائم
+	Gamma	غاما (Gamma)
+	Gamut Check	فحص النطاق اللوني
+	Gamut Warning	تحذير النطاق اللوني
+	Gap Options…	خيارات الفجوات…
+	Show Live Paint Gaps	إظهار فجوات التلوين المباشر
+	Hide Live Paint Gaps	إخفاء فجوات التلوين المباشر
+	Highlight	تمييز
+	Gaussian Blur…	ضبابية غاوسية…
+	General	عام
+	Generate CSS: the whole document's CSS while nothing is selected	إنشاء CSS: يُنشأ CSS للمستند كله عند عدم تحديد شيء
+	Global	شامل
+	Global Process Color	لون معالجة عام
+	Global Process Color, CMYK	لون معالجة عام، CMYK
+	glyph {id}	حرف {id}
+	Glyphs	الرموز
+	Go to Artboard	الانتقال إلى لوحة العمل
+	First Artboard	أول لوحة عمل
+	Previous Artboard	لوحة العمل السابقة
+	Next Artboard	لوحة العمل التالية
+	Last Artboard	آخر لوحة عمل
+	Status Bar Show	إظهار شريط الحالة
+	Current Tool	الأداة الحالية
+	Date and Time	التاريخ والوقت
+	Go To Link	الانتقال إلى الرابط
+	Gradient	تدرج لوني
+	Gradient (. or Shift+.)	التدرج (. أو Shift+.)
+	Gradient across stroke	تدرج عبر الحد
+	Gradient along stroke	تدرج على طول الحد
+	Gradient swatches	عينات التدرج
+	Gradient Tool	أداة التدرج
+	Gradient within stroke	تدرج داخل الحد
+	Gradients	التدرجات
+	Graph	رسم بياني
+	Legend	وسيلة الإيضاح
+	Graph Design	تصميم الرسم البياني
+	Ratio	النسبة
+	Stacked	مكدّس
+	Graphic Style	النمط الرسومي
+	Graphic Style Libraries	مكتبات الأنماط الرسومية
+	Graphic Style Libraries Menu	قائمة مكتبات الأنماط الرسومية
+	Graphic Style Library	مكتبة الأنماط الرسومية
+	Graphic Style Options…	خيارات النمط الرسومي…
+	Symbol Options	خيارات الرمز
+	Symbol Options…	خيارات الرمز…
+	Graphic Styles	الأنماط الرسومية
+	Graphics	الرسومات
+	Gravity	الجاذبية
+	Grayscale	تدرج الرمادي
+	High Color	لون مرتفع
+	Low Color	لون منخفض
+	Green	أخضر
+	Grid	الشبكة
+	Grid Size:	حجم الشبكة:
+	Gridline every	خط الشبكة كل
+	Group	تجميع
+	Guides	خطوط التوجيه
+	H Spacing:	التباعد الأفقي:
+	H:	ع:
+	Hair Space	مسافة شعرية
+	Hand Tool	أداة اليد
+	Hard Light	ضوء قاسٍ
+	Hard Mix	مزج صلب
+	Height	الارتفاع
+	Height:	الارتفاع:
+	Help	مساعدة
+	Hex by Column	سداسي حسب العمود
+	Hex by Row	سداسي حسب الصف
+	Hide	إخفاء
+	Hide Artboards	إخفاء لوحات العمل
+	Hide Bounding Box	إخفاء مربع الإحاطة
+	More Options	خيارات إضافية
+	Hide Corner Widget	إخفاء عنصر الزاوية
+	Hide Shape Widgets	إخفاء عناصر الشكل
+	Show Shape Widgets	إظهار عناصر الشكل
+	Hide Edges	إخفاء الحواف
+	Hide Gradient Annotator	إخفاء موجّه التدرج
+	Hide Grid	إخفاء الشبكة
+	Hide Guides	إخفاء الأدلة
+	Hide Hidden Characters	إخفاء الأحرف المخفية
+	Hide Note	إخفاء الملاحظة
+	Hide Options	إخفاء الخيارات
+	Hide Others	إخفاء الآخرين
+	Hide Print Tiling	إخفاء تبليط الطباعة
+	Hide Rulers	إخفاء المساطر
+	Hide Slices	إخفاء الشرائح
+	Hide Template	إخفاء القالب
+	Hide Text Threads	إخفاء خيوط النص
+	Hide Thumbnail	إخفاء الصورة المصغرة
+	Hide Thumbnails	إخفاء الصور المصغرة
+	Hide Transparency Grid	إخفاء شبكة الشفافية
+	High	عالي
+	History	السجل
+	History Options…	خيارات السجل…
+	Step Backward	خطوة للخلف
+	Step Forward	خطوة للأمام
+	Clear History	مسح السجل
+	Set History Limit…	تعيين حد السجل…
+	Delete Style	حذف النمط
+	Grid Repeat	تكرار شبكي
+	Merge Live Paint	دمج التلوين المباشر
+	Mirror Repeat	تكرار مرآة
+	Pen	قلم
+	Radial Repeat	تكرار شعاعي
+	Objects on Path	كائنات على المسار
+	Attach	إرفاق
+	Rotate:	تدوير:
+	Detach	فصل
+	Rename Style	إعادة تسمية النمط
+	Typing	الكتابة
+	Hollow	مجوّف
+	Home	الرئيسية
+	Horizontal	أفقي
+	Horizontal Align Center	محاذاة أفقية للوسط
+	Horizontal Align Left	محاذاة أفقية لليسار
+	Horizontal Align Right	محاذاة أفقية لليمين
+	Horizontal Distribute Center	توزيع أفقي من الوسط
+	Horizontal Distribute Left	توزيع أفقي من اليسار
+	Horizontal Distribute Right	توزيع أفقي من اليمين
+	Horizontal Distribute Space	توزيع المسافات أفقيًا
+	Hue	درجة اللون
+	Hue/Saturation…	درجة اللون/التشبع…
+	Hyphenate	وصل الكلمات
+	Hyphenation	تقسيم الكلمات
+	Hyphenation…	الواصلات…
+	Identify Objects By	تحديد الكائنات حسب
+	Ignore	تجاهل
+	Enhanced	محسّن
+	Limited	محدود
+	Full Tone	درجة كاملة
+	Document Library	مكتبة المستند
+	Image	صورة
+	Image Map:	خريطة الصورة:
+	Image Size	حجم الصورة
+	Image Trace	تتبع الصورة
+	Image Tracing	تتبع الصورة
+	Tracing Presets	إعدادات التتبع المسبقة
+	Rename…	إعادة التسمية…
+	Tracing Presets…	إعدادات التتبع المسبقة…
+	Import Keyboard Shortcuts…	استيراد اختصارات لوحة المفاتيح…
+	Import…	استيراد…
+	Inches	بوصة
+	Inflate…	نفخ…
+	Info	معلومات
+	Ink	الحبر
+	Inner Glow…	توهج داخلي…
+	Insert Break Character	إدراج حرف فاصل
+	Insert Special Character	إدراج حرف خاص
+	Insert Whitespace Character	إدراج حرف مسافة
+	Inspect Document	فحص المستند
+	Install Plug-in…	تثبيت مكون إضافي…
+	Intent:	الغرض:
+	Interlaced	متشابك
+	Internet Standard RGB (sRGB)	RGB القياسي للإنترنت (sRGB)
+	Intersect	تقاطع
+	Intertwine	تشابك
+	Inverse	عكس التحديد
+	Invert	عكس
+	Invert Colors	عكس الألوان
+	Invert Mask	عكس القناع
+	Isolate	عزل
+	Isolate Blending	عزل المزج
+	Isolate Group	عزل المجموعة
+	Italian	الإيطالية
+	Japanese	اليابانية
+	Join	وصل
+	Join Our Discord	انضم إلى Discord
+	Join our Discord	انضم إلى خادمنا على Discord
+	Justification…	ضبط المحاذاة…
+	Justify all lines	ضبط كل الأسطر
+	Align Center	توسيط
+	Justify with last line aligned center	ضبط مع محاذاة آخر سطر للوسط
+	Justify with last line aligned left	ضبط مع محاذاة آخر سطر لليسار
+	Justify with last line aligned right	ضبط مع محاذاة آخر سطر لليمين
+	Keep:	الإبقاء على:
+	Kerning	تقارب الأحرف
+	Keyboard Increment	زيادة لوحة المفاتيح
+	Keyboard Shortcut Conflicts	تعارضات اختصارات لوحة المفاتيح
+	Keyboard Shortcut Set	مجموعة اختصارات لوحة المفاتيح
+	Keyboard Shortcuts…	اختصارات لوحة المفاتيح…
+	Import Shortcut Set…	استيراد مجموعة اختصارات…
+	Ready	جاهز
+	Knockout Group	مجموعة الاستبعاد
+	Lab	Lab
+	OKLCH Sliders	منزلقات OKLCH
+	HSL Sliders	منزلقات HSL
+	Chroma	الصبغة
+	OKLCH needs sRGB as the working RGB space	يحتاج OKLCH إلى sRGB كفضاء RGB للعمل
+	Landscape	أفقي
+	Interface Language	لغة الواجهة
+	Language	اللغة
+	Language Options	خيارات اللغة
+	Large	كبير
+	Large List View	عرض قائمة كبيرة
+	Large Thumbnail View	عرض صور مصغرة كبيرة
+	Large Thumbnails	صور مصغرة كبيرة
+	Lasso Tool	أداة الحبل
+	Polygonal Lasso Tool	أداة الحبل المضلع
+	Last Effect: {name}	آخر تأثير: {name}
+	Last Effect: {}	آخر تأثير: {}
+	Last Effect…	آخر تأثير…
+	Latin	لاتيني
+	Thai	التايلاندية
+	Layer	طبقة
+	Layers	الطبقات
+	Layers Panel Options	خيارات لوحة الطبقات
+	Leader:	الخط الرابط:
+	Leading	تباعد الأسطر
+	Left	يسار
+	Left in Front	اليسار في المقدمة
+	Left Indent	إزاحة اليسار
+	Left-Justified Tab	علامة جدولة محاذاة لليسار
+	Left:	اليسار:
+	Legacy Macintosh RGB (Gamma 1.8)	RGB القديم لنظام Macintosh (Gamma 1.8)
+	Flatten	تسطيح
+	Omit	حذف
+	Text:	النص:
+	Less	أقل
+	Letter	Letter
+	Levels…	المستويات…
+	Libraries	المكتبات
+	Ligatures are off while the text is tracked.	الحروف المتصلة معطلة أثناء تباعد النص.
+	Light	فاتح
+	Light Blue	أزرق فاتح
+	Light Red	أحمر فاتح
+	Lighten	تفتيح
+	Lightness	الإضاءة
+	Limit Color Guide to Library	حصر دليل الألوان بالمكتبة
+	Limit colors to swatch library	حصر الألوان بمكتبة العينات
+	Limit colors to swatch library: {name}	حصر الألوان بمكتبة العينات: {name}
+	Line	خط
+	Line-end Punctuation Half Width	علامات نهاية السطر بنصف العرض
+	Linear Gradient	تدرج خطي
+	Lines	خطوط
+	Lines: clicks add points joined by a line	الخطوط: كل نقرة تضيف نقطة متصلة بخط
+	Link	رابط
+	Link Info	معلومات الرابط
+	Link Opacity Mask	ربط قناع الشفافية
+	Link the mask	ربط القناع
+	Linked	مرتبط
+	Linked File	ملف مرتبط
+	Links	الارتباطات
+	List Keyboard Shortcuts	سرد اختصارات لوحة المفاتيح
+	List Workspaces	سرد مساحات العمل
+	Live Paint	التلوين المباشر
+	Load Character Styles…	تحميل أنماط الحروف…
+	Load Paragraph Styles…	تحميل أنماط الفقرات…
+	Load All Styles…	تحميل كل الأنماط…
+	Load Profile…	تحميل الملف الشخصي…
+	Local Libraries	المكتبات المحلية
+	Location	الموقع
+	Location:	الموقع:
+	Lock	قفل
+	Lock Grid	قفل الشبكة
+	Lock Guides	قفل خطوط التوجيه
+	Lock Slices	قفل الشرائح
+	Lock Station Point	قفل نقطة الرصد
+	Lossless	بدون فقدان
+	Low	منخفض
+	lowercase	أحرف صغيرة
+	Luminosity	اللمعان (Luminosity)
+	Magenta	أرجواني
+	Magic Wand	العصا السحرية
+	Magic Wand Tool	أداة العصا السحرية
+	Make	الشركة المصنعة
+	Make a theme on Create and save it.	إنشاء سمة عند الإنشاء وحفظها.
+	Make and Expand	إنشاء وتوسيع
+	Make Clipping Mask	إنشاء قناع قص
+	Make Guides	إنشاء أدلة
+	Make Mask	إنشاء قناع
+	Make Opacity Mask	إنشاء قناع شفافية
+	Make Pixel Perfect	ضبط على البكسل
+	Make with Mesh…	إنشاء بالشبكة…
+	Make with Top Object	إنشاء بالكائن العلوي
+	Make with Warp…	إنشاء بالالتواء…
+	Manage Workspaces…	إدارة مساحات العمل…
+	Marker…	العلامة…
+	Marks	العلامات
+	Light Gray	رمادي فاتح
+	Materials…	الخامات…
+	Matte	لون الحافة
+	Maximize	تكبير
+	Maximum	الحد الأقصى
+	Medium	متوسطة
+	Medium Thumbnail View	عرض صور مصغرة متوسطة
+	Medium Thumbnails	صور مصغرة متوسطة
+	Menu Dialog	مربع حوار القائمة
+	Merge	دمج
+	Merge Graphic Styles…	دمج الأنماط الرسومية…
+	Merge Layers	دمج الطبقات
+	Message:	الرسالة:
+	Method:	الطريقة:
+	Pad	حشو
+	Repeats	تكرارات
+	Millimeters	مليمتر
+	Minimize	تصغير
+	Minus Back	طرح الخلفي
+	Minus Front	طرح الأمامي
+	Mirror	مرآة
+	Missing	مفقود
+	Missing: {path}	مفقود: {path}
+	Mixed Appearances	مظاهر مختلطة
+	Mixed Objects	كائنات مختلطة
+	Mixed	متباين
+	Mode:	الوضع:
+	Model	النموذج
+	Modified	تاريخ التعديل
+	Modified since it was read: {path}	تم تعديله منذ قراءته: {path}
+	Modify	تعديل
+	Insert Kashidas	إدراج الكشيدة
+	Kashidas	الكشيدة
+	Long	طويل
+	Stylistic	زخرفي
+	Mojikumi Set	مجموعة موجيكومي
+	Kinsoku Set	مجموعة كينسوكو
+	Kinsoku Shori Type	نوع كينسوكو شوري
+	Kinsoku Shori Settings…	إعدادات كينسوكو شوري…
+	Push In First	الدفع للداخل أولًا
+	Push Out First	الدفع للخارج أولًا
+	Push Out Only	الدفع للخارج فقط
+	Hard	صلب
+	Soft	ناعم
+	Monitor RGB	RGB الشاشة
+	More	المزيد
+	More Pathfinder options	خيارات مستكشف المسارات الإضافية
+	More Align options	خيارات المحاذاة الإضافية
+	Move	نقل
+	Move Down	تحريك لأسفل
+	Move Graphic Style	نقل النمط الرسومي
+	Move Plane to Match Object	نقل المستوى لمطابقة الكائن
+	Move Up	تحريك لأعلى
+	Move…	نقل…
+	Multiply	ضرب
+	My Themes	سماتي
+	Name	الاسم
+	Name 40%	الاسم 40%
+	Name:	الاسم:
+	Navigate	التنقل
+	Navigator	الملاح
+	New	جديد
+	New Artboard	لوحة عمل جديدة
+	Roundness	الاستدارة
+	Roundness:	الاستدارة:
+	Fixed	ثابت
+	Pressure	الضغط
+	Stylus Wheel	عجلة القلم
+	Shape:	الشكل:
+	New Brush…	فرشاة جديدة…
+	New Brush	فرشاة جديدة
+	Calligraphic Brush	فرشاة خطية
+	Scatter Brush	فرشاة مبعثرة
+	Art Brush	فرشاة فنية
+	Bristle Brush	فرشاة شعيرات
+	Pattern Brush	فرشاة نمطية
+	missing from the Brushes panel	مفقود من لوحة الفُرش
+	built in	مدمج
+	embedding not allowed	التضمين غير مسموح
+	embedding for editing	التضمين للتحرير
+	embedding for preview and print	التضمين للمعاينة والطباعة
+	embedding allowed	التضمين مسموح
+	unknown type	نوع غير معروف
+	missing	مفقود
+	{width} × {height} px	{width} × {height} بكسل
+	{n} ppi	{n} ppi
+	{x} × {y} ppi	{x} × {y} ppi
+	resolution unavailable	الدقة غير متاحة
+	estimated memory {memory}	الذاكرة المقدّرة {memory}
+	memory unavailable	الذاكرة غير متاحة
+	Unknown format	تنسيق غير معروف
+	Linear gradient	تدرج خطي
+	Radial gradient	تدرج شعاعي
+	Conic gradient	تدرج مخروطي
+	Diamond gradient	تدرج معيّني
+	Freeform gradient	تدرج حر
+	New Character Style	نمط حرف جديد
+	New Character Style…	نمط حرف جديد…
+	New Color Group	مجموعة ألوان جديدة
+	New Color Group…	مجموعة ألوان جديدة…
+	New from Template…	جديد من قالب…
+	New Graphic Style	نمط رسومي جديد
+	New Artboard Options…	خيارات لوحة العمل الجديدة…
+	New Layer Options…	خيارات الطبقة الجديدة…
+	New Layer…	طبقة جديدة…
+	New Paragraph Style	نمط فقرة جديد
+	New Paragraph Style…	نمط فقرة جديد…
+	New Swatch	عينة جديدة
+	New Swatch…	عينة لون جديدة…
+	New Symbol	رمز جديد
+	New theme from the current color	سمة جديدة من اللون الحالي
+	New View	عرض جديد
+	New View…	عرض جديد…
+	New Window	نافذة جديدة
+	Next Document	المستند التالي
+	Previous Document	المستند السابق
+	New Without Dialog	جديد بدون مربع حوار
+	New Workspace	مساحة عمل جديدة
+	New Workspace…	مساحة عمل جديدة…
+	New Toolbar…	شريط أدوات جديد…
+	Show Toolbar	إظهار شريط الأدوات
+	List Toolbars	سرد أشرطة الأدوات
+	Manage Toolbars…	إدارة أشرطة الأدوات…
+	Rename Toolbar	إعادة تسمية شريط الأدوات
+	Duplicate Toolbar	تكرار شريط الأدوات
+	Delete Toolbar	حذف شريط الأدوات
+	New…	جديد…
+	Next	التالي
+	Next Library	المكتبة التالية
+	Next Object Above	الكائن التالي الأعلى
+	Next Object Below	الكائن التالي الأسفل
+	Next Page	الصفحة التالية
+	Next page	الصفحة التالية
+	No assets	لا أصول
+	No Break	بدون فاصل
+	No brushes	لا فُرش
+	No CSS	لا CSS
+	No document	لا يوجد مستند
+	No document open	لا يوجد مستند مفتوح
+	No document open.	لا يوجد مستند مفتوح.
+	No fonts are available.	لا توجد خطوط متاحة.
+	No gradient swatches	لا عينات تدرج
+	No images	لا صور
+	No matches.	لا توجد تطابقات.
+	No options	لا خيارات
+	No saved themes	لا سمات محفوظة
+	No Selection	لا تحديد
+	No selection	لا تحديد
+	No symbols in this document	لا رموز في هذا المستند
+	No text selected	لم يُحدد نص
+	No Thumbnails	بلا صور مصغرة
+	Noise	تشويش
+	Nonbreaking Hyphen	واصلة غير منقسمة
+	Nonbreaking Space	مسافة غير منقسمة
+	None	بلا
+	None (/)	بلا (/)
+	Normal	عادي
+	Normal Screen Mode	وضع الشاشة العادي
+	Note:	ملاحظة:
+	Nothing matches the Show filter.	لا شيء يطابق مرشح العرض.
+	Nudge	دفع بسيط
+	Object	كائن
+	Objects	الكائنات
+	Objects using them keep their look but are no longer linked.	الكائنات التي تستخدمها تحتفظ بمظهرها لكنها لم تعد مرتبطة.
+	Off	معطل
+	Offset Path	إزاحة المسار
+	Offset Path…	إزاحة المسار…
+	OK	موافق
+	On	مفعل
+	One Point Perspective	منظور بنقطة واحدة
+	One Point Perspective Preset 1	إعداد منظور بنقطة واحدة 1
+	One Point Perspective Preset 2	إعداد منظور بنقطة واحدة 2
+	One Point Perspective Preset 3	إعداد منظور بنقطة واحدة 3
+	One Point Perspective Preset 4	إعداد منظور بنقطة واحدة 4
+	One Point Perspective Preset 5	إعداد منظور بنقطة واحدة 5
+	Only Web Colors	ألوان الويب فقط
+	Opacity	العتامة
+	Show Opacity	إظهار الشفافية
+	Opacity Mask	قناع الشفافية
+	Opacity:	العتامة:
+	Opacity: Default	الشفافية: افتراضي
+	Opacity: {value}	الشفافية: {value}
+	Open	فتح
+	Open a document to edit its patterns.	افتح مستندًا لتحرير أنماطه.
+	Open a document to navigate it.	افتح مستندًا للتنقل فيه.
+	Open a document to preview its flattening.	افتح مستندًا لمعاينة تسطيحه.
+	Open a document to see its artboards.	افتح مستندًا لرؤية لوحات العمل فيه.
+	Open a document to see its graphic styles.	افتح مستندًا لرؤية أنماطه الرسومية.
+	Open a document to see its history.	افتح مستندًا لرؤية سجله.
+	Open a document to see its swatches.	افتح مستندًا لرؤية عيناته اللونية.
+	Open Graphic Style Library	فتح مكتبة الأنماط الرسومية
+	Open Paths	المسارات المفتوحة
+	Open Recent File 1	فتح الملف الأخير 1
+	Open Recent File 10	فتح الملف الأخير 10
+	Open Recent File 11	فتح الملف الأخير 11
+	Open Recent File 12	فتح الملف الأخير 12
+	Open Recent File 13	فتح الملف الأخير 13
+	Open Recent File 14	فتح الملف الأخير 14
+	Open Recent File 15	فتح الملف الأخير 15
+	Open Recent File 16	فتح الملف الأخير 16
+	Open Recent File 17	فتح الملف الأخير 17
+	Open Recent File 18	فتح الملف الأخير 18
+	Open Recent File 19	فتح الملف الأخير 19
+	Open Recent File 2	فتح الملف الأخير 2
+	Open Recent File 20	فتح الملف الأخير 20
+	Open Recent File 21	فتح الملف الأخير 21
+	Open Recent File 22	فتح الملف الأخير 22
+	Open Recent File 23	فتح الملف الأخير 23
+	Open Recent File 24	فتح الملف الأخير 24
+	Open Recent File 25	فتح الملف الأخير 25
+	Open Recent File 26	فتح الملف الأخير 26
+	Open Recent File 27	فتح الملف الأخير 27
+	Open Recent File 28	فتح الملف الأخير 28
+	Open Recent File 29	فتح الملف الأخير 29
+	Open Recent File 3	فتح الملف الأخير 3
+	Open Recent File 30	فتح الملف الأخير 30
+	Open Recent File 4	فتح الملف الأخير 4
+	Open Recent File 5	فتح الملف الأخير 5
+	Open Recent File 6	فتح الملف الأخير 6
+	Open Recent File 7	فتح الملف الأخير 7
+	Open Recent File 8	فتح الملف الأخير 8
+	Open Recent File 9	فتح الملف الأخير 9
+	Open Recent Files	فتح الملفات الأخيرة
+	Open the URL in the web browser	فتح الرابط في متصفح الويب
+	Open…	فتح…
+	Optical	بصري
+	Optical Margin Alignment	محاذاة الهامش البصري
+	Dynamic Text	نص ديناميكي
+	Dynamic Text Presets	إعدادات النص الديناميكي المسبقة
+	Arch	قوس معماري
+	Optimized	محسّن
+	Options	الخيارات
+	Options for Selection…	خيارات التحديد…
+	Options…	خيارات…
+	Ordinals	أرقام ترتيبية
+	Orientation	الاتجاه
+	Orientation:	الاتجاه:
+	Original	الأصل
+	Other	أخرى
+	Other Layers	طبقات أخرى
+	Other Libraries	مكتبات أخرى
+	Other Library…	مكتبة أخرى…
+	Other Script…	سكربت آخر…
+	Outer Glow…	توهج خارجي…
+	Outline	مخطط
+	Outline Stroke	تحويل الحد إلى مخطط
+	Output	الناتج
+	Output intent profile:	ملف تعريف هدف الإخراج:
+	Output:	الإخراج:
+	Overlap:	التداخل:
+	Overlay	تراكب (Overlay)
+	Overprint	طباعة فوقية
+	Custom…	مخصص…
+	Overprint Black…	طباعة الأسود فوق الألوان…
+	Overprint Fill	طباعة التعبئة فوق الألوان
+	Overprint Preview	معاينة الطباعة المتراكبة
+	Overprint Stroke	طباعة الحد فوق الألوان
+	Overprints:	الطباعة المتراكبة:
+	Package…	تجميع الحزمة…
+	Page	صفحة
+	Page information	معلومات الصفحة
+	Pages	الصفحات
+	Panel menu	قائمة اللوحة
+	Panel Options…	خيارات اللوحة…
+	Panels	اللوحات
+	Panels Except Tools and Control	كل اللوحات عدا الأدوات والتحكم
+	Paragraph	الفقرة
+	Paragraph Style	نمط الفقرة
+	Paragraph Style Options	خيارات نمط الفقرة
+	Paragraph Styles	أنماط الفقرات
+	Paragraph Symbol	رمز الفقرة
+	Password	كلمة المرور
+	Paste	لصق
+	Paste in Back	لصق في الخلف
+	Paste in Front	لصق في الأمام
+	Paste in Place	لصق في المكان
+	Paste on All Artboards	لصق على كل لوحات العمل
+	Paste without Formatting	لصق بدون تنسيق
+	Path	مسار
+	Pathfinder	مستكشف المسارات
+	Pathfinders:	مستكشفات المسارات:
+	Paths	المسارات
+	Grid Size	حجم الشبكة
+	Grid Colors	ألوان الشبكة
+	Flattener Preset	إعداد التسطيح المسبق
+	X	X
+	Y	Y
+	Orange	برتقالي
+	Purple	بنفسجي
+	Pattern	النمط
+	Pattern Options	خيارات النمط
+	Pattern options are available in pattern editing mode.	خيارات النمط متاحة في وضع تحرير النمط.
+	PDF	PDF
+	PDF Preset	إعداد PDF مسبق
+	PDF Presets…	إعدادات PDF المسبقة…
+	Pen Tool	أداة القلم
+	Quick Pen Toolbar	شريط أدوات القلم السريع
+	Flip Arc	قلب القوس
+	Pin Toolbar Position	تثبيت موضع شريط الأدوات
+	Reset Toolbar Position	إعادة ضبط موضع شريط الأدوات
+	Pencil	قلم رصاص
+	Pencil Tool	أداة القلم الرصاص
+	Performance	الأداء
+	Perspective	منظوري
+	Perspective Grid	شبكة المنظور
+	Perspective Grid Presets…	إعدادات شبكة المنظور المسبقة…
+	Perspective Plane Options…	خيارات مستوى المنظور…
+	Picas	بيكا
+	Pixel Preview	معاينة البكسل
+	Pixels	بكسل
+	Place	وضع
+	Place Symbol Instance	وضع نسخة من الرمز
+	Placement Options…	خيارات الوضع…
+	Place…	وضع…
+	Plates	الألواح
+	Save Actions…	حفظ الإجراءات…
+	Load Actions…	تحميل الإجراءات…
+	Replace Actions…	استبدال الإجراءات…
+	Clear Actions	مسح الإجراءات
+	Reset Actions	إعادة ضبط الإجراءات
+	Plug-ins	المكونات الإضافية
+	Plug-in…	الإضافة…
+	Point Sample	عينة نقطية
+	Point Text Objects	كائنات نص النقطة
+	Points	نقطة
+	Points: clicks add free points	النقاط: كل نقرة تضيف نقطة حرة
+	Polygon	مضلع
+	Polygon Tool	أداة المضلع
+	Portrait	عمودي
+	Position	الموضع
+	Postcard	بطاقة بريدية
+	PPI	PPI
+	Preferences	التفضيلات
+	Preferences…	التفضيلات…
+	Presentation Mode	وضع العرض التقديمي
+	Load…	تحميل…
+	PRESET DETAILS	تفاصيل الإعداد المسبق
+	Preset Name	اسم الإعداد المسبق
+	Preset:	الإعداد المسبق:
+	Presets:	الإعدادات المسبقة:
+	Preview	معاينة
+	Preview in Browser	معاينة في المتصفح
+	Use:	الاستخدام:
+	Preview the document as it is now	معاينة المستند كما هو الآن
+	Previous	السابق
+	Previous Library	المكتبة السابقة
+	Previous Page	الصفحة السابقة
+	Previous page	الصفحة السابقة
+	Print	طباعة
+	Print Preset	إعداد طباعة مسبق
+	Print Presets…	إعدادات الطباعة المسبقة…
+	Printer	الطابعة
+	Roman	روماني
+	Printer Setup…	إعداد الطابعة…
+	Printer:	الطابعة:
+	Printers	الطابعات
+	Print…	طباعة…
+	Process Color	لون المعالجة
+	Profile:	الملف الشخصي:
+	Progressive	تدريجي
+	Proof Colors	ألوان المعاينة الطباعية
+	Proof Setup	إعداد المعاينة الطباعية
+	Properties	الخصائص
+	Proportional Metrics	مقاييس متناسبة
+	H or V Style	نمط أفقي أو رأسي
+	Roman Italics	مائل لاتيني
+	Character Direction	اتجاه الحرف
+	Digits	الأرقام
+	Arabic	العربية
+	Hindi	الهندية
+	Farsi	الفارسية
+	Proportional Lining	أرقام متناسبة بخط الأساس
+	Position:	الموضع:
+	Default Position	الموضع الافتراضي
+	Numerator	البسط
+	Denominator	المقام
+	Proportional Oldstyle	أرقام قديمة متناسبة
+	Punctuation	علامات الترقيم
+	Punctuation Space	مسافة علامة الترقيم
+	Puppet Warp	التواء الدمية
+	Quality:	الجودة:
+	Quarter Space	ربع مسافة
+	Quick Actions	إجراءات سريعة
+	Quit VectorCraft	إنهاء VectorCraft
+	Radial	شعاعي
+	Radial Gradient	تدرج شعاعي
+	Conic Gradient	تدرج مخروطي
+	Diamond Gradient	تدرج ماسي
+	Rainbow	قوس قزح
+	Random	عشوائي
+	Range:	النطاق:
+	Raster Effects	التأثيرات النقطية
+	Rasterize	تنقيط
+	Rasterize…	تحويل إلى نقطي…
+	Refresh Monitor Profile	تحديث ملف تعريف الشاشة
+	Rearrange All Artboards	إعادة ترتيب كل لوحات العمل
+	Rearrange	إعادة ترتيب
+	Select All Artboards	تحديد كل لوحات العمل
+	Switch Orientation	تبديل الاتجاه
+	Move Artwork with Artboard	نقل العمل الفني مع لوحة العمل
+	Scale Artwork with Artboard	تحجيم العمل الفني مع لوحة العمل
+	Rearrange All Artboards…	إعادة ترتيب كل لوحات العمل…
+	Rearrange…	إعادة ترتيب…
+	Recent	الأخيرة
+	Recent Colors	الألوان الأخيرة
+	Recent File	ملف أخير
+	Recent Files	الملفات الأخيرة
+	Recent Font	خط أخير
+	Recent Font 1	الخط الأخير 1
+	Recent Font 10	الخط الأخير 10
+	Recent Font 11	الخط الأخير 11
+	Recent Font 12	الخط الأخير 12
+	Recent Font 13	الخط الأخير 13
+	Recent Font 14	الخط الأخير 14
+	Recent Font 15	الخط الأخير 15
+	Recent Font 2	الخط الأخير 2
+	Recent Font 3	الخط الأخير 3
+	Recent Font 4	الخط الأخير 4
+	Recent Font 5	الخط الأخير 5
+	Recent Font 6	الخط الأخير 6
+	Recent Font 7	الخط الأخير 7
+	Recent Font 8	الخط الأخير 8
+	Recent Font 9	الخط الأخير 9
+	Recent Fonts	الخطوط الأخيرة
+	Recolor	إعادة تلوين
+	Recolor Artwork…	إعادة تلوين العمل الفني…
+	Recolor with Preset	إعادة التلوين بإعداد مسبق
+	Rectangle	مستطيل
+	Rectangle Tool	أداة المستطيل
+	Red	أحمر
+	Redefine Graphic Style	إعادة تعريف النمط الرسومي
+	Redefine Graphic Style “{name}”	إعادة تعريف النمط الرسومي «{name}»
+	Apply {name}	تطبيق {name}
+	Redefine {name}	إعادة تعريف {name}
+	Redo	إعادة
+	Redo {name}	إعادة {name}
+	Redo {}	إعادة {}
+	Reduce to Basic Appearance	اختزال إلى المظهر الأساسي
+	Reflect	انعكاس
+	Reflect…	انعكاس…
+	Refresh	تحديث
+	Refresh Font List	تحديث قائمة الخطوط
+	Missing Fonts Dialog	مربع حوار الخطوط المفقودة
+	Find Fonts in Folder…	بحث عن الخطوط في مجلد…
+	Stop	إيقاف
+	Registered Trademark Symbol	رمز العلامة التجارية المسجلة
+	Registration marks	علامات التسجيل
+	Regular	عادي
+	Release	فك
+	Release Guides	فك الأدلة
+	Release Opacity Mask	فك قناع الشفافية
+	Release Selection	فك التحديد
+	Release with Perspective	فك مع المنظور
+	Relink…	إعادة الربط…
+	Find Linked Files in Folder…	بحث عن الملفات المرتبطة في مجلد…
+	Reload Plug-ins	إعادة تحميل الإضافات
+	Remove	إزالة
+	Remove Anchor Points	إزالة نقاط الارتكاز
+	Remove Asset	إزالة الأصل
+	Remove Brush Stroke	إزالة ضربة الفرشاة
+	Remove Selected Assets	إزالة الأصول المحددة
+	Remove Threading	إزالة ربط النص
+	Rename	إعادة تسمية
+	Rename Workspace	إعادة تسمية مساحة العمل
+	Repeat	تكرار
+	Repeat Options	خيارات التكرار
+	Repeat Pathfinder	تكرار مستكشف المسارات
+	Replace	استبدال
+	Replace:	استبدال:
+	Replace Spine	استبدال المحور
+	Create Spine:	إنشاء المحور:
+	Always	دائماً
+	Never	أبدًا
+	Reset Transformation	إعادة ضبط التحويل
+	System	النظام
+	Replace…	استبدال…
+	Reselect	إعادة التحديد
+	Reset	إعادة تعيين
+	Reset Bounding Box	إعادة ضبط مربع الإحاطة
+	Rotate Bounding Box…	تدوير مربع الإحاطة…
+	Reset Essentials	إعادة ضبط الأساسيات
+	Reset Keyboard Shortcuts	إعادة ضبط اختصارات لوحة المفاتيح
+	Reset Panel	إعادة ضبط اللوحة
+	Export Preferences…	تفضيلات التصدير…
+	Reset Profiles	إعادة ضبط الملفات الشخصية
+	Arrowheads	رؤوس الأسهم
+	Edit Arrowheads…	تحرير رؤوس الأسهم…
+	Rotate View	تدوير العرض
+	Reset Rotate View	إعادة ضبط تدوير العرض
+	Rotate View to Selection	تدوير العرض إلى التحديد
+	Undo Changes	التراجع عن التغييرات
+	Redo Changes	إعادة التغييرات
+	Reset to Default	إعادة تعيين إلى الافتراضي
+	Reset to White, Black	إعادة الضبط إلى أبيض وأسود
+	Reset with Mesh…	إعادة الضبط بالشبكة…
+	Reset with Warp…	إعادة الضبط بالالتواء…
+	Reset {name}	إعادة ضبط {name}
+	Reset {}	إعادة ضبط {}
+	Resolution	الدقة
+	Resolution:	الدقة:
+	Restore	استعادة
+	Reverse Front to Back	عكس من الأمام إلى الخلف
+	Reverse Gradient	عكس التدرج
+	Reverse Path Direction	عكس اتجاه المسار
+	Reverse Path Direction Off	عكس اتجاه المسار: معطل
+	Reverse Path Direction On	عكس اتجاه المسار: مفعّل
+	Reverse Spine	عكس المحور
+	Revert	استرجاع
+	“{name}” already exists. Replace it?	“{name}” موجود بالفعل. هل تريد استبداله؟
+	Revolve…	دوران…
+	RGB Color	ألوان RGB
+	Right	يمين
+	Right in Front	اليمين في المقدمة
+	Right-Justified Tab	علامة جدولة محاذاة لليمين
+	Right:	يمين:
+	Roman Baseline	خط الأساس اللاتيني
+	Rotate	تدوير
+	Rotate View Tool	أداة تدوير العرض
+	Rotate…	تدوير…
+	Rotation	التدوير
+	Rounded	مستدير
+	Rounded Rectangle	مستطيل بزوايا مستديرة
+	Rows	الصفوف
+	Rule:	القاعدة:
+	Rulers	المساطر
+	Rulers & Grids	المساطر والشبكات
+	Same	نفس
+	Saturate	زيادة التشبع
+	Saturate…	تشبيع…
+	Saturation	التشبع
+	Save	حفظ
+	Save a Copy	حفظ نسخة
+	Save a Copy…	حفظ نسخة…
+	Save As	حفظ باسم
+	Save as PDF…	حفظ بصيغة PDF…
+	Save as Template	حفظ كقالب
+	Save as Template…	حفظ كقالب…
+	Save As…	حفظ باسم…
+	Save changes to {name}	حفظ التغييرات في {name}
+	Save color group to Swatch panel	حفظ مجموعة الألوان في لوحة العينات
+	Save Document Info…	حفظ معلومات المستند…
+	Save for Office Documents…	حفظ لمستندات Office…
+	Save for Web (Legacy)…	حفظ للويب (قديم)…
+	Save Graphic Style Library…	حفظ مكتبة الأنماط الرسومية…
+	Save Grid as Preset…	حفظ الشبكة كإعداد مسبق…
+	Save PDF Dialog	مربع حوار حفظ PDF
+	Save Preset…	حفظ الإعداد المسبق…
+	Save Summary…	حفظ الملخص…
+	Save selected colors as swatches	حفظ الألوان المحددة كعينات
+	Save Selection	حفظ التحديد
+	Save Selection…	حفظ التحديد…
+	Update Selection	تحديث التحديد
+	Save Swatch Library…	حفظ مكتبة الألوان…
+	Save theme to My Themes	حفظ السمة في سماتي
+	Save to Swatches	حفظ في العينات
+	Saved	محفوظ
+	Saved Selection 1	تحديد محفوظ 1
+	Saved Selection 10	تحديد محفوظ 10
+	Saved Selection 11	تحديد محفوظ 11
+	Saved Selection 12	تحديد محفوظ 12
+	Saved Selection 13	تحديد محفوظ 13
+	Saved Selection 14	تحديد محفوظ 14
+	Saved Selection 15	تحديد محفوظ 15
+	Saved Selection 16	تحديد محفوظ 16
+	Saved Selection 17	تحديد محفوظ 17
+	Saved Selection 18	تحديد محفوظ 18
+	Saved Selection 19	تحديد محفوظ 19
+	Saved Selection 2	تحديد محفوظ 2
+	Saved Selection 20	تحديد محفوظ 20
+	Saved Selection 21	تحديد محفوظ 21
+	Saved Selection 22	تحديد محفوظ 22
+	Saved Selection 23	تحديد محفوظ 23
+	Saved Selection 24	تحديد محفوظ 24
+	Saved Selection 25	تحديد محفوظ 25
+	Saved Selection 3	تحديد محفوظ 3
+	Saved Selection 4	تحديد محفوظ 4
+	Saved Selection 5	تحديد محفوظ 5
+	Saved Selection 6	تحديد محفوظ 6
+	Saved Selection 7	تحديد محفوظ 7
+	Saved Selection 8	تحديد محفوظ 8
+	Saved Selection 9	تحديد محفوظ 9
+	Saved View 1	عرض محفوظ 1
+	Saved View 10	عرض محفوظ 10
+	Saved View 11	عرض محفوظ 11
+	Saved View 12	عرض محفوظ 12
+	Saved View 13	عرض محفوظ 13
+	Saved View 14	عرض محفوظ 14
+	Saved View 15	عرض محفوظ 15
+	Saved View 16	عرض محفوظ 16
+	Saved View 17	عرض محفوظ 17
+	Saved View 18	عرض محفوظ 18
+	Saved View 19	عرض محفوظ 19
+	Saved View 2	عرض محفوظ 2
+	Saved View 20	عرض محفوظ 20
+	Saved View 21	عرض محفوظ 21
+	Saved View 22	عرض محفوظ 22
+	Saved View 23	عرض محفوظ 23
+	Saved View 24	عرض محفوظ 24
+	Saved View 25	عرض محفوظ 25
+	Saved View 3	عرض محفوظ 3
+	Saved View 4	عرض محفوظ 4
+	Saved View 5	عرض محفوظ 5
+	Saved View 6	عرض محفوظ 6
+	Saved View 7	عرض محفوظ 7
+	Saved View 8	عرض محفوظ 8
+	Saved View 9	عرض محفوظ 9
+	Saved {path}	تم الحفظ في {path}
+	Save…	حفظ…
+	Saving	الحفظ
+	Scale	المقياس
+	Scale Corners	تحجيم الزوايا
+	Scale Strokes & Effects	تحجيم الحدود والتأثيرات
+	Scale Text Attributes	تحجيم خصائص النص
+	Scale:	التحجيم:
+	Scale…	تحجيم…
+	Scatter	تبعثر
+	Scratch Disks	أقراص التخزين المؤقت
+	Screen	شاشة (Screen)
+	Screen Mode	وضع الشاشة
+	Scripts	السكربتات
+	Search	بحث
+	Filter	مرشح
+	Clear All	مسح الكل
+	Images	صور
+	Groups	المجموعات
+	Linked Files	الملفات المرتبطة
+	Locked	مقفل
+	Hidden	مخفي
+	Filter Layers Panel Rows	تصفية صفوف لوحة الطبقات
+	Toolbar	شريط الأدوات
+	Tool	أداة
+	Command	أمر
+	Recent Commands	الأوامر الحديثة
+	Clear Recent Commands	مسح الأوامر الأخيرة
+	Search commands	البحث في الأوامر
+	Search Commands…	بحث في الأوامر…
+	Section Symbol	رمز القسم
+	Security	الأمان
+	Select	تحديد
+	Select a text object to edit its character attributes.	حدّد كائن نص لتحرير خصائص حروفه.
+	Select a text object to edit its paragraph attributes.	حدّد كائن نص لتحرير خصائص فقراته.
+	Select a text object to set its tab stops.	حدّد كائن نص لضبط علامات الجدولة فيه.
+	Select All	تحديد الكل
+	Select All Instances	تحديد كل النسخ
+	Select All Pins	تحديد كل الدبابيس
+	Select an image to see its Link Info.	حدّد صورة لرؤية معلومات الرابط.
+	Select an image to trace	حدّد صورة لتتبعها
+	Select art and choose Object › Pattern › Make.	حدّد عملًا فنيًا ثم اختر كائن › نمط › إنشاء.
+	Select art and use New Brush to make one.	حدّد عملًا فنيًا واستخدم «فرشاة جديدة» لإنشاء فرشاة.
+	Select Objects	تحديد كائنات
+	Select objects to see their CSS, or Generate CSS for the whole document.	حدّد كائنات لرؤية CSS الخاص بها، أو أنشئ CSS للمستند كله.
+	Select styled art and click New Graphic Style.	حدّد عملًا فنيًا منسقًا وانقر «نمط رسومي جديد».
+	Select text or click into text with the Type tool to insert glyphs	حدّد نصًا أو انقر داخل نص بأداة النص لإدراج الأحرف
+	Select text to set its OpenType features.	حدّد نصًا لضبط ميزات OpenType فيه.
+	Select the art (and, on top of it, the mask object)	حدّد العمل الفني (وفوقه كائن القناع)
+	Select Tool	أداة التحديد
+	Select:	التحديد:
+	Selection	التحديد
+	Selection Only	التحديد فقط
+	Send Backward	إرسال للخلف
+	Send to Back	إرسال إلى الخلف
+	Send to Current Layer	إرسال إلى الطبقة الحالية
+	Sentence case	حالة الجملة
+	Separations Preview	معاينة الفصل اللوني
+	Set base color to the current color	تعيين اللون الأساسي إلى اللون الحالي
+	Set Keyboard Shortcut	تعيين اختصار لوحة المفاتيح
+	Set the current fill or stroke to the selected color	تعيين التعبئة أو الحد الحالي إلى اللون المحدد
+	Set the selected color to the current color	تعيين اللون المحدد إلى اللون الحالي
+	Set Zoom	ضبط التكبير
+	Settings…	إعدادات…
+	Shadows and Glows	الظلال والتوهجات
+	Textures	الخامات
+	Shape	شكل
+	Shape Effects	تأثيرات الشكل
+	Shape Modes:	أوضاع الشكل:
+	Shape Properties:	خصائص الشكل:
+	Shapes	الأشكال
+	Shear	إمالة
+	Shear…	قص مائل…
+	Shift	Shift
+	Show	إظهار
+	Show All	إظهار الكل
+	Show all plates	إظهار كل الألواح
+	Show All Swatches	إظهار كل العينات
+	Show Artboards	إظهار لوحات العمل
+	Show Bounding Box	إظهار مربع الإحاطة
+	Show Center	إظهار المركز
+	Show in Browser	إظهار في المتصفح
+	Show Color Groups	إظهار مجموعات الألوان
+	Show Color Swatches	إظهار عينات الألوان
+	Show Corner Widget	إظهار عنصر الزاوية
+	Show Edges	إظهار الحواف
+	Show Embedded	إظهار المضمّن
+	Show Find Field	إظهار حقل البحث
+	Show Gradient Annotator	إظهار موجّه التدرج
+	Show Gradient Swatches	إظهار عينات التدرج
+	Show Grid	إظهار الشبكة
+	Show Guides	إظهار خطوط التوجيه
+	Show Hidden Characters	إظهار الأحرف المخفية
+	Bold	غامق
+	Italic	مائل
+	Show in Folder	إظهار في المجلد
+	Show Link Info	إظهار معلومات الرابط
+	Show List View	إظهار عرض القائمة
+	Show Mesh	إظهار الشبكة
+	Show Missing	إظهار المفقود
+	Show Modified	إظهار المعدّل
+	Show Note	إظهار الملاحظة
+	Show Options	إظهار الخيارات
+	Show on Shape Creation	إظهار عند إنشاء الشكل
+	Toggle RGB Percent	تبديل نسبة RGB
+	Auto-Simplify	تبسيط تلقائي
+	Auto-Smooth	تنعيم تلقائي
+	Color Panel Options	خيارات لوحة الألوان
+	Show Package	إظهار الحزمة
+	Show Panel	إظهار اللوحة
+	Show Pattern Swatches	إظهار عينات الأنماط
+	Show Print Tiling	إظهار تبليط الطباعة
+	Show Rulers	إظهار المساطر
+	Show Slices	إظهار الشرائح
+	Show Swatch Bounds	إظهار حدود العينة
+	Show Swatch Kinds	إظهار أنواع العينات
+	Show Template	إظهار القالب
+	Show Text Threads	إظهار خيوط النص
+	Show Thumbnail	إظهار الصورة المصغرة
+	Show Thumbnail View	إظهار عرض الصور المصغرة
+	Show Thumbnails	إظهار الصور المصغرة
+	Show Tile Edge	إظهار حافة البلاطة
+	Show Transparency Grid	إظهار شبكة الشفافية
+	Show Video Rulers	إظهار مساطر الفيديو
+	Show/hide plate (Alt-click: only this plate; Alt-click again: all plates)	إظهار/إخفاء اللوح (Alt+نقر: هذا اللوح فقط؛ Alt+نقر مجددًا: كل الألواح)
+	Show:	إظهار:
+	Sides:	الأضلاع:
+	Simplify	تبسيط
+	Simplify…	تبسيط…
+	Smooth…	تنعيم…
+	Simulate Colored Paper	محاكاة الورق الملوّن
+	Simulate Paper	محاكاة الورق
+	Single Left Quotation Mark	علامة اقتباس مفردة يسرى
+	Single Right Quotation Mark	علامة اقتباس مفردة يمنى
+	Middle Eastern & South Asian Single-line Composer	منسّق السطر الواحد للشرق الأوسط وجنوب آسيا
+	Standard Single-line Composer	منسّق السطر الواحد القياسي
+	Toggle Line Composer	تبديل منسّق الأسطر
+	Sixth Space	سدس مسافة
+	Size	الحجم
+	Size Tile to Art	ملاءمة حجم البلاطة للعمل الفني
+	Move Tile with Art	نقل البلاطة مع العمل الفني
+	Size:	الحجم:
+	Size: {size}  Tracking: {tracking}	الحجم: {size}  التباعد: {tracking}
+	Skew	إمالة
+	Slice	شريحة
+	Slice Options…	خيارات الشريحة…
+	Slice Tool	أداة الشريحة
+	Slices	الشرائح
+	Small	صغير
+	Small Caps	أحرف استهلالية صغيرة
+	Small List View	عرض قائمة صغيرة
+	Small Thumbnail View	عرض صور مصغرة صغيرة
+	Small Thumbnails	صور مصغرة صغيرة
+	Smart Guides	خطوط التوجيه الذكية
+	Smart Punctuation…	علامات الترقيم الذكية…
+	Entire Document	المستند بالكامل
+	Smooth	ناعم
+	Corner	زاوية
+	Relative	نسبي
+	Absolute	مطلق
+	Tracing Result	نتيجة التتبع
+	Tracing Result with Outlines	نتيجة التتبع مع المخططات
+	Outlines	المخططات
+	Outlines with Source Image	المخططات مع الصورة المصدر
+	Source Image	الصورة المصدر
+	Split View	عرض مقسوم
+	Divider	الفاصل
+	Press and hold to view the source image	اضغط مطولًا لعرض الصورة المصدر
+	Image Trace View	عرض تتبع الصورة
+	Snap to Glyph	الالتصاق بالحرف
+	Snap to Grid	الالتصاق بالشبكة
+	Snap to Pixel	الالتصاق بالبكسل
+	Image Trace Preview	معاينة تتبع الصورة
+	Snap to Point	الالتصاق بالنقطة
+	Soft Light	ضوء ناعم
+	Solid	متصل
+	Sort by Kind	ترتيب حسب النوع
+	Sort by Name	ترتيب حسب الاسم
+	Sort by Size	ترتيب حسب الحجم
+	Sort by Status	ترتيب حسب الحالة
+	Source Sans 3	Source Sans 3
+	Spaces	المسافات
+	Spacing:	التباعد:
+	Specified Distance	مسافة محددة
+	Specified Steps	خطوات محددة
+	Spelling	الإملاء
+	Total:	الإجمالي:
+	Split Into Grid…	تقسيم إلى شبكة…
+	spot	لون خاص
+	Spot Color	لون موضعي
+	Envelopes	الأظرف
+	Spot Colors…	الألوان الخاصة…
+	Spread:	الانتشار:
+	Square	مربع
+	Stair Step	تدرج درجي
+	Standard Ligatures	حروف مركبة قياسية
+	Standard Vertical Roman Alignment	محاذاة لاتينية رأسية قياسية
+	Star	نجمة
+	Start arrowhead	رأس السهم في البداية
+	Start Global Edit	بدء التحرير الشامل
+	Status	الحالة
+	Steps:	الخطوات:
+	Stop Playing/Recording	إيقاف التشغيل/التسجيل
+	Stray Points	النقاط الشاردة
+	Strikethrough	شطب
+	Stroke	حدود
+	Stroke Color	لون الحد
+	Fill Gradient	تدرج التعبئة
+	Stroke Gradient	تدرج الحد
+	Fill Pattern	نمط التعبئة
+	Stroke Pattern	نمط الحد
+	Patterns	الأنماط
+	Stroke Options	خيارات الحدود
+	Character:	الحرف:
+	Paragraph:	الفقرة:
+	Character options	خيارات الحرف
+	Paragraph options	خيارات الفقرة
+	Stroke options	خيارات الحد
+	Transform options	خيارات التحويل
+	Stroke Weight	سمك الحد
+	Stroke:	حدود:
+	Style	النمط
+	Style:	النمط:
+	Stylize	تنميط
+	Subdivisions	التقسيمات الفرعية
+	Subscript	نص منخفض
+	Subtract	طرح
+	Suffix	اللاحقة
+	Summary	الملخص
+	Superscript	نص مرتفع
+	SVG Filters	مرشحات SVG
+	SVG Interactivity	تفاعلية SVG
+	Event:	الحدث:
+	JavaScript:	JavaScript:
+	Remove Selected Entry	إزالة المدخل المحدد
+	Link JavaScript Files…	ربط ملفات JavaScript…
+	Swap start and end arrowheads	تبديل رأسي السهم في البداية والنهاية
+	Stylistic Alternates	بدائل أسلوبية
+	Ligatures	الحروف المتصلة
+	Ornaments	زخارف
+	Figures	الأرقام
+	Swash	حروف مزخرفة
+	Swatch Libraries	مكتبات الألوان
+	Swatch Libraries Menu	قائمة مكتبات العينات
+	Swatch Library	مكتبة الألوان
+	Swatch Options	خيارات العينة
+	Swatch Options…	خيارات العينة اللونية…
+	Swatches	عينات الألوان
+	Add Content	إضافة محتوى
+	Click to apply to the selected type	انقر للتطبيق على النص المحدد
+	Create New Library	إنشاء مكتبة جديدة
+	Create New Library…	إنشاء مكتبة جديدة…
+	Rename Library…	إعادة تسمية المكتبة…
+	Delete the library “{name}”?	حذف المكتبة «{name}»؟
+	Drag art or swatches here, or use + to add the selection's colors and text styles.	اسحب أعمالًا فنية أو عينات إلى هنا، أو استخدم + لإضافة ألوان التحديد وأنماط النص.
+	Its graphics, colors and text styles are deleted from this machine.	تُحذف رسوماتها وألوانها وأنماط النص فيها من هذا الجهاز.
+	Keep graphics, colors and text styles here to use them in any document. Libraries are stored on this machine — no account required.	احتفظ هنا بالرسومات والألوان وأنماط النص لاستخدامها في أي مستند. تُخزَّن المكتبات على هذا الجهاز — بدون حساب.
+	This library is empty	هذه المكتبة فارغة
+	Delete Library	حذف المكتبة
+	Library	المكتبة
+	Rename Library	إعادة تسمية المكتبة
+	Graphic	رسم
+	Symbol Instance	نسخة الرمز
+	Link Block Series	ربط سلسلة الكتل
+	Symbol Libraries	مكتبات الرموز
+	Symbols	الرموز
+	System Layout	تخطيط النظام
+	Tab	Tab
+	Tabs	مواضع الجدولة
+	Tabular Lining	أرقام جدولية بخط الأساس
+	Tabular Oldstyle	أرقام جدولية قديمة
+	Titling Alternates	بدائل العناوين
+	Target	الهدف
+	Target:	الهدف:
+	Tate-chu-yoko	تاتيه-تشو-يوكو
+	Tate-chu-yoko Settings…	إعدادات تاتيه-تشو-يوكو…
+	Warichu	واريتشو
+	Warichu Settings…	إعدادات واريتشو…
+	Composite Fonts…	الخطوط المركّبة…
+	Numerals	الأرقام
+	Temperature	درجة الحرارة
+	Templates	القوالب
+	Text Fill & Stroke Color	لون تعبئة النص وحدّه
+	Text Fill Color	لون تعبئة النص
+	Text Stroke Color	لون حد النص
+	Text Wrap	التفاف النص
+	Text Wrap Options	خيارات التفاف النص
+	Text Wrap Options…	خيارات التفاف النص…
+	The selected objects have no CSS of their own (see below).	الكائنات المحددة ليس لها CSS خاص بها (انظر أدناه).
+	Thin Space	مسافة رفيعة
+	Third Space	ثلث مسافة
+	This library is empty.	هذه المكتبة فارغة.
+	Threaded Text	نص مترابط
+	Three Point Perspective	منظور بثلاث نقاط
+	Three Point Perspective Preset 1	إعداد منظور بثلاث نقاط 1
+	Three Point Perspective Preset 2	إعداد منظور بثلاث نقاط 2
+	Three Point Perspective Preset 3	إعداد منظور بثلاث نقاط 3
+	Three Point Perspective Preset 4	إعداد منظور بثلاث نقاط 4
+	Three Point Perspective Preset 5	إعداد منظور بثلاث نقاط 5
+	Threshold	العتبة (Threshold)
+	Thumbnail View	عرض الصور المصغرة
+	Tile	تكرار (Tile)
+	Tile All Vertically	تجانب الكل عموديًا
+	Tile All Horizontally	تجانب الكل أفقيًا
+	2-Up Layout	تخطيط من نسختين
+	3-Up Layout	تخطيط من ثلاث نسخ
+	4-Up Layout	تخطيط من أربع نسخ
+	6-Up Layout	تخطيط من ست نسخ
+	Tile Edge Color…	لون حافة البلاطة…
+	Tile Type:	نوع البلاطة:
+	Tint	صبغة
+	Tip extends past the end point	الطرف يتجاوز نقطة النهاية
+	Tip on the end point	الطرف عند نقطة النهاية
+	Title Case	حالة العنوان
+	to	إلى
+	Tolerance	التفاوت (Tolerance)
+	Tolerance:	التفاوت:
+	Tool Option	خيار الأداة
+	Tool Options…	خيارات الأداة…
+	Toolbar: Advanced / Basic	شريط الأدوات: متقدم / أساسي
+	Toolbar: Single/Double Column	شريط الأدوات: عمود واحد/عمودان
+	Toolbar: Add Tool	شريط الأدوات: إضافة أداة
+	Toolbar: Remove Tool	شريط الأدوات: إزالة أداة
+	Remove Tool	أداة الإزالة
+	Toolbar: Reset	شريط الأدوات: إعادة ضبط
+	Toolbars	أشرطة الأدوات
+	Tools	الأدوات
+	Top	أعلى
+	Top in Front	الأعلى في المقدمة
+	Top-Justified Tab	علامة جدولة محاذاة علوية
+	Top:	أعلى:
+	Trace	تتبع
+	Trace the image with the Default preset	تتبع الصورة بالإعداد المسبق الافتراضي
+	Tracking	تباعد الأحرف
+	Trademark Symbol	رمز العلامة التجارية
+	Transform	تحويل
+	Transform Again	تحويل مرة أخرى
+	Transform Both	تحويل الاثنين
+	Transform Each…	تحويل كل كائن…
+	Transform Object Only	تحويل الكائن فقط
+	Transform Pattern Only	تحويل النمط فقط
+	Transparency	شفافية
+	Transparency Flattener Presets…	إعدادات تسطيح الشفافية المسبقة…
+	Transparency Options	خيارات الشفافية
+	Transparent	شفاف
+	Trap…	حصر الألوان…
+	Trap	الاحتواء
+	Trim	حدود التشذيب
+	Trim marks	علامات القص
+	Trim View	عرض القص
+	Two Point Perspective	منظور بنقطتين
+	Two Point Perspective Preset 1	إعداد منظور بنقطتين 1
+	Two Point Perspective Preset 2	إعداد منظور بنقطتين 2
+	Two Point Perspective Preset 3	إعداد منظور بنقطتين 3
+	Two Point Perspective Preset 4	إعداد منظور بنقطتين 4
+	Two Point Perspective Preset 5	إعداد منظور بنقطتين 5
+	Type	النوع
+	Type on a Path	نص على مسار
+	Type on a Path Options	خيارات النص على مسار
+	Type on a Path Options…	خيارات النص على مسار…
+	Center on Top	توسيط في الأعلى
+	Center on Bottom	توسيط في الأسفل
+	Type Orientation	اتجاه النص
+	Type:	النوع:
+	Type…	النص…
+	UI Brightness	سطوع الواجهة
+	Underline	تسطير
+	Undo	تراجع
+	Undo {name}	تراجع عن {name}
+	Undo {}	تراجع عن {}
+	Unembedded to {}	فك التضمين إلى {}
+	Unembed…	فك التضمين…
+	Ungroup	فك التجميع
+	Color Group Options…	خيارات مجموعة الألوان…
+	Uniform	موحد (Uniform)
+	Unite	توحيد
+	Units	الوحدات
+	Units: {units}	الوحدات: {units}
+	Unlink Opacity Mask	فك ربط قناع الشفافية
+	Unlink the mask	فك ربط القناع
+	Unlock	إلغاء القفل
+	Unlock All	فتح قفل الكل
+	Unlock Grid	فتح قفل الشبكة
+	Unlock Guides	فتح قفل الأدلة
+	Unselected Artwork	العمل الفني غير المحدد
+	Untitled	بدون عنوان
+	Update Link	تحديث الرابط
+	UPPERCASE	أحرف كبيرة
+	URL:	الرابط:
+	Use Black Point Compensation	استخدام تعويض النقطة السوداء
+	Use Even-Odd Fill Rule	استخدام قاعدة التعبئة الزوجية-الفردية
+	Use Non-Zero Winding Fill Rule	استخدام قاعدة التعبئة بالتفاف غير الصفري
+	Use Precise Cursors	استخدام مؤشرات دقيقة
+	Use Registration Point for Symbol	استخدام نقطة التسجيل للرمز
+	User Defined	معرّف من المستخدم
+	User Graphic Style Library 1	مكتبة أنماط رسومية للمستخدم 1
+	User Graphic Style Library 10	مكتبة أنماط رسومية للمستخدم 10
+	User Graphic Style Library 2	مكتبة أنماط رسومية للمستخدم 2
+	User Graphic Style Library 3	مكتبة أنماط رسومية للمستخدم 3
+	User Graphic Style Library 4	مكتبة أنماط رسومية للمستخدم 4
+	User Graphic Style Library 5	مكتبة أنماط رسومية للمستخدم 5
+	User Graphic Style Library 6	مكتبة أنماط رسومية للمستخدم 6
+	User Graphic Style Library 7	مكتبة أنماط رسومية للمستخدم 7
+	User Graphic Style Library 8	مكتبة أنماط رسومية للمستخدم 8
+	User Graphic Style Library 9	مكتبة أنماط رسومية للمستخدم 9
+	User Library	مكتبة المستخدم
+	User Swatch Library 1	مكتبة ألوان للمستخدم 1
+	User Swatch Library 10	مكتبة ألوان للمستخدم 10
+	User Swatch Library 2	مكتبة ألوان للمستخدم 2
+	User Swatch Library 3	مكتبة ألوان للمستخدم 3
+	User Swatch Library 4	مكتبة ألوان للمستخدم 4
+	User Swatch Library 5	مكتبة ألوان للمستخدم 5
+	User Swatch Library 6	مكتبة ألوان للمستخدم 6
+	User Swatch Library 7	مكتبة ألوان للمستخدم 7
+	User Swatch Library 8	مكتبة ألوان للمستخدم 8
+	User Swatch Library 9	مكتبة ألوان للمستخدم 9
+	V Spacing:	التباعد الرأسي:
+	Variable Width Profile	ملف العرض المتغير
+	Variables	متغيرات
+	Vector Effects	التأثيرات المتجهة
+	Vector Halftone…	نصف تدرج متجه…
+	VectorCraft Help…	مساعدة VectorCraft…
+	VectorCraft on getartcraft.com	VectorCraft على getartcraft.com
+	VectorCraft on GitHub	VectorCraft على GitHub
+	Vertical	عمودي
+	Vertical Align Bottom	محاذاة رأسية للأسفل
+	Vertical Align Center	محاذاة رأسية للوسط
+	Horizontal & Vertical Align Center	محاذاة أفقية ورأسية للوسط
+	Vertical Align Top	محاذاة رأسية للأعلى
+	Vertical Distribute Bottom	توزيع رأسي من الأسفل
+	Vertical Distribute Center	توزيع رأسي من الوسط
+	Vertical Distribute Space	توزيع المسافات رأسيًا
+	Vertical Distribute Top	توزيع رأسي من الأعلى
+	Vertical Type Tool	أداة النص العمودي
+	Very High	عالٍ جدًا
+	View	عرض
+	View Artboard Contents Only	عرض محتويات لوحة العمل فقط
+	W:	العرض:
+	Warnings	التحذيرات
+	Warp	التواء (Warp)
+	Wave…	موجة…
+	Weight	الوزن
+	Weight:	الوزن:
+	White	أبيض
+	Width	العرض
+	Width Point Edit…	تحرير نقطة العرض…
+	Width:	العرض:
+	Window	نافذة
+	Windows	Windows
+	Working CMYK	مساحة عمل CMYK
+	Don't Color Manage This Document	عدم إدارة ألوان هذا المستند
+	Working RGB: {name}	RGB العامل: {name}
+	Working CMYK: {name}	CMYK العامل: {name}
+	Workspace	مساحة العمل
+	Yellow	أصفر
+	Your changes will be lost if you don't save them.	ستفقد تغييراتك إن لم تحفظها.
+	Zoom In	تكبير
+	Zoom Out	تصغير
+	Zoom to Selection	تكبير إلى التحديد
+	Zoom Tool	أداة التكبير/التصغير
+	{kind} Gradient	تدرج {kind}
+	{name} (spot)	{name} (لون خاص)
+	{percent}% opacity	شفافية {percent}%
+	{title} (selection)	{title} (التحديد)
+	:	:
+	Isolate Selected Group	عزل المجموعة المحددة
+	Isolate Selected Path	عزل المسار المحدد
+	Release Clipping Mask	تحرير قناع القص
+	Make Compound Path	إنشاء مسار مركّب
+	Release Compound Path	فك المسار المركّب
+	[Normal Character Style]	[نمط الحرف العادي]
+	About	حول
+	Contributors	المساهمون
+	Models	النماذج
+	Username	اسم المستخدم
+	Display name	الاسم المعروض
+	Real name	الاسم الحقيقي
+	Sort	فرز
+	Reverse the order	عكس الترتيب
+	Grab bag	متفرقات
+	Table	جدول
+	Name (A–Z)	الاسم (أ–ي)
+	Merged PRs	طلبات السحب المدموجة
+	PRs	طلبات السحب
+	Commits	الإيداعات
+	Lines added	الأسطر المضافة
+	Lines deleted	الأسطر المحذوفة
+	Line delta	فرق الأسطر
+	Binary assets added	الأصول الثنائية المضافة
+	Binary assets removed	الأصول الثنائية المُزالة
+	First commit	أول إيداع
+	Last commit	آخر إيداع
+	First	الأول
+	Last	الأخير
+	No contributor data was built into this copy.	لم تُضمَّن بيانات المساهمين في هذه النسخة.
+	No model credits were built into this copy.	لم يُضمَّن ذكر النماذج في هذه النسخة.
+	Company	الشركة
+	Version	الإصدار
+	% of all commits	% من كل الإيداعات
+	Lines +/−	الأسطر +/−
+	Miter	حادة
+	Bevel	شطف الحواف
+	Offset	إزاحة
+	Axis	المحور
+	Drag to move	اسحب للنقل
+	Float Panel	تعويم اللوحة
+	Dock Panel	إرساء اللوحة
+	Dock Toolbar	تثبيت شريط الأدوات
+	Float Toolbar	تعويم شريط الأدوات
+	Control Bar Options	خيارات شريط التحكم
+	Image Options	خيارات الصورة
+	Vertical Alignment	المحاذاة العمودية
+	Align and Distribute	محاذاة وتوزيع
+	Dock Control Bar	تثبيت شريط التحكم
+	Float Tool Group	تعويم مجموعة الأدوات
+	Run	تشغيل
+	Run Script	تشغيل سكربت
+	Services	الخدمات
+	Hide VectorCraft	إخفاء VectorCraft
+	Zoom	تكبير/تصغير
+	Bring All to Front	إحضار الكل إلى الأمام
+	Settings	الإعدادات
+	Break Link	قطع الارتباط
+	Artboard	لوح التصميم
+	Exit	خروج
+	Free Transform	تحويل حر
+	Insert Inline Symbol	إدراج رمز مضمن
+	Show Font Height Options	إظهار خيارات ارتفاع الخط
+	Hide Font Height Options	إخفاء خيارات ارتفاع الخط
+	Pixelate	بكسلة
+	Color Halftone…	أنصاف ألوان…
+	Crystallize…	تبلور…
+	Mezzotint…	ميزوتينت…
+	Pointillize…	تنقيط…
+	Texture	الملمس
+	Video	فيديو
+	De-Interlace…	إزالة التشابك…
+	NTSC Colors	ألوان NTSC
+	New Library Group	مجموعة مكتبة جديدة
+	Rename Library Group	إعادة تسمية مجموعة المكتبة
+	Rename Library Item	إعادة تسمية عنصر المكتبة
+	Add to Character Styles	إضافة إلى أنماط الحروف
+	New Group	مجموعة جديدة
+	Move to Group	نقل إلى مجموعة
+	No results	لا نتائج
+	No items in this library match “{query}”.	لا عناصر في هذه المكتبة تطابق «{query}».
+	Drag an item here, or right-click one, to put it in this group.	اسحب عنصرًا إلى هنا، أو انقر بزر الفأرة الأيمن عليه، لوضعه في هذه المجموعة.
+	Left to Right	من اليسار إلى اليمين
+	Right to Left	من اليمين إلى اليسار
+	Rotation:	التدوير:
+	Fit	ملاءمة
+	Hue Shift	إزاحة تدرج اللون
+	RGB:	RGB:
+	CMYK:	CMYK:
+	RGB Policy:	سياسة RGB:
+	CMYK Policy:	سياسة CMYK:
+	Preserve Embedded Profiles	الحفاظ على الملفات الشخصية المضمّنة
+	Convert to Working Space	التحويل إلى فضاء العمل
+	Preserve Numbers	الحفاظ على الأرقام
+	Profile Mismatches:	عدم تطابق الملفات الشخصية:
+	Ask When Opening	السؤال عند الفتح
+	Ask When Pasting	السؤال عند اللصق
+	Missing Profiles:	الملفات الشخصية المفقودة:
+	Embedded Profile Mismatch	عدم تطابق ملف التعريف المضمن
+	Short	قصير
+	Distort	تشويه
+	Glass	زجاجي
+	Blocks	كتل
+	Canvas	مساحة الرسم
+	Delete Variable	حذف المتغير
+	Lock Variables	قفل المتغيرات
+	Unlock Variables	فتح قفل المتغيرات
+	Unbind Variable	فك ربط المتغير
+	Delete Data Set	حذف مجموعة البيانات
+	Next Data Set	مجموعة البيانات التالية
+	Previous Data Set	مجموعة البيانات السابقة
+	Data Sets	مجموعات البيانات
+	New Variable…	متغير جديد…
+	New Data Set…	مجموعة بيانات جديدة…
+	Edit Data Set…	تحرير مجموعة البيانات…
+	Data Set	مجموعة البيانات
+	Kind	النوع
+	no document	لا يوجد مستند
+	Make Text Dynamic	جعل النص ديناميكيًا
+	Make Visibility Dynamic	جعل الظهور ديناميكيًا
+	Capture Data Set	التقاط مجموعة البيانات
+	Update Data Set	تحديث مجموعة البيانات
+	Rename Data Set…	إعادة تسمية مجموعة البيانات…
+	Variable Options…	خيارات المتغير…
+	Select Bound Object	تحديد الكائن المرتبط
+	Select All Bound Objects	تحديد كل الكائنات المرتبطة
+	Multiple objects	كائنات متعددة
+	Text	نص
+	Visibility	الرؤية
+	Activate Panel	تنشيط اللوحة
+	Change Panel Layout	تغيير تخطيط اللوحات
+	Close Panel	إغلاق اللوحة
+	Collapse Panel Group	طي مجموعة اللوحات
+	Cycle Display Sizes	التنقل بين أحجام العرض
+	Move Panel	تحريك اللوحة
+	Group with	تجميع مع
+	Resize panel window	تغيير حجم نافذة اللوحة
+	Resize panels	تغيير حجم اللوحات
+	Intensity	الشدة
+	Lighting	الإضاءة
+	Reset all	إعادة ضبط الكل
+	Shading	التظليل
+	Show axis	إظهار المحور
+	Strength	القوة
+	Balance	التوازن
+	Artistic	فني
+	Levels	المستويات
+	Grain	حبيبات
+	Inside	داخل
+	Outside	خارج
+	Select two or more objects, or a group	حدّد كائنين أو أكثر، أو مجموعة
+	Back	رجوع
+	Both sides	الوجهان
+	Classic	كلاسيكي
+	Depth	العمق
+	Taper	التناقص التدريجي
+	Twist	لف
+	Volume	مستوى الصوت
+	Presets	إعدادات مسبقة
+	Basic	أساسي
+	Toolbar: Show Controls	شريط الأدوات: إظهار عناصر التحكم
+	Top Left	أعلى اليسار
+	Top Right	أعلى اليمين
+	Bottom Right	أسفل اليمين
+	Bottom Left	أسفل اليسار
+	Softness	النعومة
+	Light behind the object	إضاءة خلف الكائن
+	Move Light to Back	نقل الإضاءة إلى الخلف
+	Move Light to Front	نقل الإضاءة إلى الأمام
+	Shadows	الظلال
+	Standard	قياسي
+	Lights	المناطق الفاتحة
+	Add Light	إضافة إضاءة
+	Dimension	بُعد
+	Set as Default	تعيين كافتراضي
+	Linear	خطي
+	Angular	زاوي
+	Display	العرض
+	X:	X:
+	Y:	Y:
+	Distance	المسافة
+	Make Image Dynamic	جعل الصورة ديناميكية
+	Import Data Sets…	استيراد مجموعات البيانات…
+	Export Data Sets…	تصدير مجموعات البيانات…
+	Load Variable Library…	تحميل مكتبة المتغيرات…
+	Save Variable Library…	حفظ مكتبة المتغيرات…
+	Make Graph Dynamic	جعل الرسم البياني ديناميكيًا
+	Batch…	دفعة…
+	Amber	كهرماني
+	Coral	مرجاني
+	Violet	بنفسجي
+	Pink	وردي
+	Sketch	رسم تخطيطي
+	Halftone Pattern	نقشة أنصاف الألوان
+	Torn Edges	حواف ممزقة
+	Conté Crayon	قلم Conté
+	Dot	نقطة
+	Modern	حديث
+	Sponge	إسفنجة
+	Charcoal	فحم
+	Photocopy	نسخ ضوئي
+	Stamp	ختم
+	Thickness	السماكة
+	Detail	التفاصيل
+	Light Direction	اتجاه الضوء
+	Persistent	دائم
+	Library Panel Options	خيارات لوحة المكتبة
+	Locate Library…	تحديد موقع المكتبة…
+	Snapping	الانجذاب
+	Continue in Background	المتابعة في الخلفية
+	Cancel Export	إلغاء التصدير
+	Cancel Save	إلغاء الحفظ
+	Minimum	الحد الأدنى
+	Justification	الضبط
+	Categories	الفئات
+	Filters	مرشحات
+	Chalk & Charcoal	طباشير وفحم
+	Graphic Pen	قلم رسومي
+	Reticulation	تشبيك
+	Chrome	كروم
+	Drop here to take it out of its group	أفلت هنا لإخراجه من مجموعته
+	Plaster	جبس
+	Note Paper	ورق ملاحظات
+	Water Paper	ورق مائي
+	Ease In	تباطؤ في البداية
+	Ease Out	تباطؤ في النهاية
+	Ease In Out	تباطؤ في البداية والنهاية
+	Ease Out In	تباطؤ في النهاية والبداية
+	Ramp:	الشريط:
+	Shift:	الإزاحة:
+	Lock Artboards	قفل لوحات العمل
+	Unlock Artboards	فتح قفل لوحات العمل
+	Lock Selected	قفل المحدد
+	Lock All Except Selected	قفل الكل عدا المحدد
+	Lock All	قفل الكل
+	Unlock Selected	فتح قفل المحدد
+	Effect Gallery…	معرض التأثيرات…
+	Effect Gallery Dialog	مربع حوار معرض التأثيرات
+	Closed	مغلق
+	Dither	ترقيش
+	Fine noise hides banding in the gradient fill	الضوضاء الدقيقة تخفي تدرج الخطوط في تعبئة التدرج
+	Perceptual	إدراكي
+	Hue Clockwise	تدرج الصبغة مع عقارب الساعة
+	Hue Counterclockwise	تدرج الصبغة عكس عقارب الساعة
+	Cancel Plug-in Run	إلغاء تشغيل الإضافة
+	New Set…	مجموعة جديدة…
+	Action Options	خيارات الإجراء
+	Playback Options…	خيارات التشغيل…
+	Button Mode	وضع الأزرار
+	Insert Stop…	إدراج نقطة توقف…
+	Insert Stop	إدراج توقف
+	Allow Continue	السماح بالمتابعة
+	Continue	متابعة
+	Continue Action	متابعة الإجراء
+	Delete Action Step	حذف خطوة الإجراء
+	Move Action Step	نقل خطوة الإجراء
+	Insert Menu Item	إدراج عنصر قائمة
+	Insert Select Path	إدراج تحديد مسار
+	Select Path	تحديد مسار
+	Select Object	تحديد كائن
+	Case Sensitive	حساس لحالة الأحرف
+	Whole Word	كلمة كاملة
+	Playback Options	خيارات التشغيل
+	Accelerated	مُسرَّع
+	Step by Step	خطوة بخطوة
+	Pause For	إيقاف مؤقت لمدة
+	Rename Action	إعادة تسمية الإجراء
+	New Action…	إجراء جديد…
+	New Action	إجراء جديد
+	Play Action	تشغيل الإجراء
+	Stop Global Edit	إيقاف التحرير الشامل
+	Match	المطابقة
+	Add to Symbols	إضافة إلى الرموز
+	Basic Shapes	أشكال أساسية
+	Button	زر
+	Pin	تثبيت
+	Flag	علم
+	Open Symbol Library	فتح مكتبة الرموز
+	Save Symbols…	حفظ الرموز…
+	Symbol Libraries Menu	قائمة مكتبات الرموز
+	Symbol Library	مكتبة الرموز
+	User Symbol Library 1	مكتبة رموز للمستخدم 1
+	User Symbol Library 2	مكتبة رموز للمستخدم 2
+	User Symbol Library 3	مكتبة رموز للمستخدم 3
+	User Symbol Library 4	مكتبة رموز للمستخدم 4
+	User Symbol Library 5	مكتبة رموز للمستخدم 5
+	User Symbol Library 6	مكتبة رموز للمستخدم 6
+	User Symbol Library 7	مكتبة رموز للمستخدم 7
+	User Symbol Library 8	مكتبة رموز للمستخدم 8
+	User Symbol Library 9	مكتبة رموز للمستخدم 9
+	User Symbol Library 10	مكتبة رموز للمستخدم 10
+	{w} × {h} pt	{w} × {h} نقطة
+	Add to Brushes	إضافة إلى الفُرش
+	Brush Library	مكتبة الفُرش
+	Save Brushes…	حفظ الفُرش…
+	Open Brush Library	فتح مكتبة الفُرش
+	Brush Libraries Menu	قائمة مكتبات الفُرش
+	User Brush Library 1	مكتبة فُرش للمستخدم 1
+	User Brush Library 2	مكتبة فُرش للمستخدم 2
+	User Brush Library 3	مكتبة فُرش للمستخدم 3
+	User Brush Library 4	مكتبة فُرش للمستخدم 4
+	User Brush Library 5	مكتبة فُرش للمستخدم 5
+	User Brush Library 6	مكتبة فُرش للمستخدم 6
+	User Brush Library 7	مكتبة فُرش للمستخدم 7
+	User Brush Library 8	مكتبة فُرش للمستخدم 8
+	User Brush Library 9	مكتبة فُرش للمستخدم 9
+	User Brush Library 10	مكتبة فُرش للمستخدم 10
+	Zigzag	متعرج
+	Arrows	أسهم
+	Double Line	خط مزدوج
+	Wave	موجة
+	Teardrop	قطرة
+	Scallops	حواف صدفية
+	Stars	نجوم
+	Neutrals	الدرجات المحايدة
+	Deep	عميق
+	Copper	نحاسي
+	Night	ليلي
+	Seafoam	رغوة البحر
+	Checkerboard	رقعة الشطرنج
+	Scratches	خدوش
+	Highlighter	قلم التمييز
+	Glossy	لامع
+	Bulge	انتفاخ
+	Burst	انفجار
+	Cloud	سحابة
+	Play	تشغيل
+	Pause	إيقاف مؤقت
+	Bar	شريط
+	Fine Dots	نقاط دقيقة
+	Hexagon	سداسي
+	Triangle	مثلث
+	Measure Type by Glyph Bounds	قياس النص حسب حدود الحرف
+	Show Snap to Glyph Options	إظهار خيارات الالتصاق بالحرف
+	Hide Snap to Glyph Options	إخفاء خيارات الالتصاق بالحرف
+	x-height	ارتفاع x
+	Glyph Bounds	حدود الحرف
+	Proximity Guides	أدلة القرب
+	Angular Guides	أدلة زاوية
+	Average & Join…	المتوسط والدمج…
+	Gap	فجوة
+	Color Effects	تأثيرات الألوان
+	Exposure	التعريض
+	Exposure…	التعريض…
+	Desaturate	إزالة التشبع
+	Adjustment	تعديل
+	Brightness/Contrast	السطوع/التباين
+	Hue/Saturation	درجة اللون/التشبع
+	Double Bar	شريط مزدوج
+	Tag	العلامة
+	Slash	شرطة مائلة
+	Bracket	قوس معقوف
+	Leaf	ورقة
+	Oval	شكل بيضاوي
+	Length	الطول
+	Ring	حلقة
+	Arrow	سهم
+	Cross	علامة خطأ
+	Heart	قلب
+	Count:	العدد:
+	Curved	منحنٍ
+	Grayscale Images	الصور الرمادية
+	Stylistic Sets	المجموعات الزخرفية
+	Set {n}	المجموعة {n}
+	Duotone…	ثنائي اللون…
+	Duotone	ثنائي اللون
+	Inks	الأحبار
+	Curve	منحنى
+	Corner Tool	أداة الزاوية
+	Shared Edge Merge Tool	أداة دمج الحافة المشتركة
+	Reset Transform	إعادة تعيين التحويل
+	Path Effects	تأثيرات المسار
+	Count	العدد
+	Both	كلاهما
+	Gujarati	الغوجاراتية
+	Bengali	البنغالية
+	Tamil	التاميلية
+	Telugu	التيلوغوية
+	Kannada	الكانادية
+	Malayalam	المالايالامية
+	Odia	الأوديا
+	Area	المساحة
+	Help Bar	شريط المساعدة
+	From:	من:
+	To:	إلى:
+	Bow	قوس
+	Spike	حافظة التجميع
+	Contour	المحيط
+	Sharp	حاد
+	Shape Mode Buttons Make Compound Shapes	أزرار وضع الشكل تنشئ أشكالًا مركّبة
+	Open With	فتح بواسطة
+	Copy Troubleshooting Info	نسخ معلومات استكشاف الأخطاء
+	Safe Mode…	الوضع الآمن…
+	Safe Mode	الوضع الآمن
+	Align to Pixel Grid	محاذاة إلى شبكة البكسل
+	Align New Objects to Pixel Grid	محاذاة الكائنات الجديدة إلى شبكة البكسل
+	Not Aligned to Pixel Grid	غير محاذٍ لشبكة البكسل
+	Ignore All	تجاهل الكل
+	Add to Dictionary	إضافة إلى القاموس
+	No Suggestions	لا اقتراحات
+	Script Console	وحدة تحكم السكربت
+	Copy Script Console	نسخ وحدة تحكم السكربت
+	Copy All	نسخ الكل
+	Copy Selected	نسخ المحدد
+	Finished	منتهٍ
+	Ended with an error	انتهى بخطأ
+	Stopped	متوقف
+	time unavailable	الوقت غير متاح
+	{ms} ms	{ms} م.ث
+	slowest: {commands}	الأبطأ: {commands}
+	Learn	تعلّم
+	For you	لك
+	Skills	المهارات
+	Get started	ابدأ
+	Quick skill guide	دليل المهارات السريع
+	Short hands-on tutorials for the essential tools, grouped by skill. Choose a skill to see its tutorials.	دروس عملية قصيرة للأدوات الأساسية، مجمعة حسب المهارة. اختر مهارة لرؤية دروسها.
+	List Tutorials	سرد الدروس
+	Show Tutorial	إظهار الدرس
+	Show Tool Location	إظهار موقع الأداة
+	Show where this tool is	إظهار مكان هذه الأداة
+	View more	عرض المزيد
+	Finish tutorial	إنهاء الدرس
+	Next Up	التالي
+	You finished the last tutorial in this skill.	أنهيت آخر درس في هذه المهارة.
+	Back to skills	رجوع إلى المهارات
+	Open Tutorial Sample	فتح نموذج الدرس
+	Finish Tutorial	إنهاء الدرس
+	Next Tutorial	الدرس التالي
+	Show Learn Tab	إظهار تبويب التعلّم
+	Show Skill	إظهار المهارة
+	Back One Level	رجوع مستوى واحد
+	Back to Skills	رجوع إلى المهارات
+	Reset progress	إعادة ضبط التقدم
+	Mark Tutorial Step	تعليم خطوة الدرس
+	Reset Learn Progress	إعادة ضبط تقدم التعلّم
+	Refresh Deferred Effects	تحديث التأثيرات المؤجلة
+	Direction	الاتجاه
+	Margin	هامش
+	Box	المربع
+	Diameter	القطر
+	Check	علامة صح
+	Ornamental	زخرفي
+	Paint	رسم
+	Fold Preview	معاينة الطي

@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['.github/workflows/phase0-windows-build.yml', 'upstream/**']
+    paths: ['.github/workflows/phase0-windows-build.yml']
 jobs:
   build:
     runs-on: windows-latest

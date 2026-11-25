@@ -41,6 +41,7 @@ pub use craft::i18n::Lang;
 /// The catalogs of every language but English (the source language), by code. English is reserved
 /// by `craft-i18n` and has no catalog.
 static EMBEDDED: &Embedded = &[
+    ("ar", "", include_str!("i18n/ar.tsv")),
     ("hi", "", include_str!("i18n/hi.tsv")),
     ("gu", "", include_str!("i18n/gu.tsv")),
     ("el", "", include_str!("i18n/el.tsv")),
@@ -239,6 +240,12 @@ pub fn set_current(lang: Lang) {
 /// The language the UI is drawn in.
 pub fn current() -> Lang {
     offered().get(current_index().load(Ordering::Relaxed)).copied().unwrap_or(Lang::EN)
+}
+
+/// Is the UI language written right to left (Arabic, Hebrew, Persian, Urdu)? The window's chrome
+/// mirrors in such a language (naqsh-studio change).
+pub fn is_rtl() -> bool {
+    i18n().rtl(current())
 }
 
 /// Does `lang` have a catalog entry for this plain string? (English never does: it is the source.)
