@@ -50,7 +50,7 @@ jobs:
           log0=call("auth",{"token":tok})
           log=open("shots/steps.log","w")
           log.write("auth: "+json.dumps(log0)+"\n")
-          for name,m,p in [("lang","app.language",{"lang":"ar"}),("wait",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
+          for name,m,p in [("lang","prefs.set",{"key":"interfaceLanguage","value":"ar"}),("wait",None,None),("shot0","ui.screenshot",{"path":"shots/before.png"}),("wait2",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
               if m is None: time.sleep(5); continue
               try: r=call(m,p)
               except Exception as e: r={"exception":str(e)}
