@@ -40,18 +40,16 @@ jobs:
           python - <<'PY'
           import socket, json, time, base64, re
           tok=re.search(r"control token: (\S+)", open("shots/app.log").read()).group(1)
-          def call(m, p=None, i=[0]):
-              i[0]+=1
-              s=socket.create_connection(("127.0.0.1",7979),timeout=90)
-              s.sendall((json.dumps({"id":i[0],"token":tok,"method":m,"params":p or {}})+"\n").encode())
-              buf=b""
-              while not buf.endswith(b"\n"):
-                  d=s.recv(65536)
-                  if not d: break
-                  buf+=d
-              s.close()
-              return json.loads(buf)
+          sock=socket.create_connection(("127.0.0.1",7979),timeout=120)
+          rf=sock.makefile("rb")
+          n=[0]
+          def call(m, p=None):
+              n[0]+=1
+              sock.sendall((json.dumps({"id":n[0],"method":m,"params":p or {}})+"\n").encode())
+              return json.loads(rf.readline())
+          log0=call("auth",{"token":tok})
           log=open("shots/steps.log","w")
+          log.write("auth: "+json.dumps(log0)+"\n")
           for name,m,p in [("lang","app.language",{"lang":"ar"}),("wait",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
               if m is None: time.sleep(5); continue
               try: r=call(m,p)
