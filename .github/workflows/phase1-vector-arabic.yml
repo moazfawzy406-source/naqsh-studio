@@ -50,8 +50,15 @@ jobs:
           log0=call("auth",{"token":tok})
           log=open("shots/steps.log","w")
           log.write("auth: "+json.dumps(log0)+"\n")
-          for name,m,p in [("lang","command",{"command":"app.language","params":{"lang":"ar"}}),("wait",None,None),("shot0","ui.screenshot",{"path":"shots/before.png"}),("wait2",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
+          for name,m,p in [("lang","LANG",None),("wait",None,None),("shot0","ui.screenshot",{"path":"shots/before.png"}),("wait2",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
               if m is None: time.sleep(5); continue
+              if m=="LANG":
+                  for mm in ("ui.menu.invoke","command","engine.execute"):
+                      try: r=call(mm,{"command":"app.language","params":{"lang":"ar"}})
+                      except Exception as e: r={"exception":str(e)}
+                      log.write("lang via "+mm+": "+json.dumps(r)[:600]+"\n")
+                      if r.get("ok"): break
+                  continue
               try: r=call(m,p)
               except Exception as e: r={"exception":str(e)}
               log.write(name+": "+json.dumps(r)[:3000]+"\n")
