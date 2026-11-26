@@ -6211,3 +6211,6 @@
 	Type your text: it follows the path.	اكتب نصك: يتبع المسار.
 	Select a text object with the [Selection tool].	حدد كائن نص بـ[أداة التحديد].
 	Choose Type › Create Outlines to turn its letters into paths.	اختر نص › إنشاء مخططات لتحويل حروفه إلى مسارات.
+	About {app}	حول {app}
+	Version {version}	الإصدار {version}
+	Open-source vector illustration in pure Rust.	برنامج رسم متجهات مفتوح المصدر بلغة Rust الخالصة.
