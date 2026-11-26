@@ -62,7 +62,7 @@ jobs:
                   continue
               if m=="RAW":
                   pj=json.dumps(p[1]).replace('"$LAST"',str(last.get("id"))).replace('"$PATH"',str(last.get("path")))
-                  try: r=call(p[0],json.loads(pj))
+                  try: r=call("engine.execute",{"command":p[0],"params":json.loads(pj)}) if p[0].split(".")[0] in ("text","path","paint","brush") else call(p[0],json.loads(pj))
                   except Exception as e: r={"exception":str(e)}
                   try:
                       rr=r.get("result") or {}
