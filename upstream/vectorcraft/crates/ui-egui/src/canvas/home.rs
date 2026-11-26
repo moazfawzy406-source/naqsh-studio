@@ -94,10 +94,10 @@ fn learn(app: &mut VectorcraftApp, ui: &mut Ui, pressed: &mut Option<&'static st
     use crate::panels::learn::{catalog, guide_card};
     guide_card(app, ui); // PLAN: assumed `guide_card(app, ui)` as document-panels-w18 leaves it, on `Button::detail`.
     for skill in catalog::SKILLS {
-        let _ = Text::new(skill.title).show(ui);
+        let _ = Text::new(tl!(skill.title)).show(ui);
         let _ = Row::new().show(ui, |ui, _| {
             for tutorial in skill.tutorials {
-                if Button::new(tutorial.title).id_salt(tutorial.id).show(ui).clicked() {
+                if Button::new(tl!(tutorial.title)).id_salt(tutorial.id).show(ui).clicked() {
                     *pressed = Some(tutorial.id);
                 }
             }

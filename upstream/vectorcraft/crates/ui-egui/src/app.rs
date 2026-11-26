@@ -624,11 +624,11 @@ impl VectorcraftApp {
             .anchor(egui::Align2::CENTER_TOP, egui::vec2(0.0, 3.0))
             .show(ctx, |ui| {
                 ui.horizontal(|ui| {
-                    let (txt, to) = if rtl { ("EN", "en") } else { ("عربي", "ar") };
+                    let (txt, to) = if rtl { ("EN", "en") } else { ("AR", "ar") };
                     if ui.button(txt).on_hover_text("Language / اللغة").clicked() {
                         lang_to = Some(to);
                     }
-                    let (txt, to) = if dark { ("☀", "light") } else { ("🌙", "dark") };
+                    let (txt, to) = if dark { ("Light", "light") } else { ("Dark", "dark") };
                     if ui.button(txt).on_hover_text("Dark / Light").clicked() {
                         bright_to = Some(to);
                     }
