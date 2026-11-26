@@ -55,14 +55,20 @@ jobs:
           log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
           time.sleep(40)
           ImageGrab.grab().save("../shots/after-click-layout-arabic.png")
-          log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"en"}}))+"\n")
-          time.sleep(3)
-          call("ui.screenshot",{"path":"shots/hub-english.png"})
-          r=call("ui.find",{"name":"Open Deck"}); log.write(json.dumps(r)+"\n")
-          rc=r["result"]["rect"]
-          log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
-          time.sleep(40)
-          ImageGrab.grab().save("../shots/after-click-deck.png")
+          try:
+              log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"en"}}))+"\n")
+              time.sleep(3)
+              call("ui.screenshot",{"path":"shots/hub-english.png"})
+          except Exception as e:
+              log.write("english step failed: "+str(e)+"\n")
+          try:
+              r=call("ui.find",{"name":"Open Deck"}); log.write(json.dumps(r)+"\n")
+              rc=r["result"]["rect"]
+              log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
+              time.sleep(40)
+              ImageGrab.grab().save("../shots/after-click-deck.png")
+          except Exception as e:
+              log.write("deck step failed: "+str(e)+"\n")
           log.close()
           PY
           cp shots/*.png ../shots/ || true
@@ -70,7 +76,7 @@ jobs:
           taskkill //F //IM naqsh-studio.exe || true
           sleep 3
           for app in layout photo; do
-            NAQSH_APP=$app ./target/release/naqsh-studio.exe > ../shots/$app.log 2>&1 &
+            NAQSH_LANG=ar NAQSH_APP=$app ./target/release/naqsh-studio.exe > ../shots/$app.log 2>&1 &
             sleep 40
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/$app.png')"
             taskkill //F //IM naqsh-studio.exe || true

@@ -205,6 +205,10 @@ impl Lang {
     /// unknown, e.g. a code from a newer version) to follow the system locale.
     pub fn from_pref(pref: &str) -> Lang {
         if pref.eq_ignore_ascii_case("auto") {
+            // Naqsh Studio: the suite hub passes its language on (`ar`) through NAQSH_LANG.
+            if let Some(lang) = std::env::var("NAQSH_LANG").ok().filter(|l| l == "ar").and_then(|l| Lang::from_code(&l)) {
+                return lang;
+            }
             return system_lang();
         }
         Lang::from_code(pref).or_else(|| lang_from_tag(pref)).unwrap_or_else(system_lang)
