@@ -217,6 +217,12 @@ pub fn defaults() -> &'static [Brush] {
                     ..Default::default()
                 }),
             },
+            // Arabic qalam presets (naqsh-studio): original starting points, nib angle and width in points, to tune by eye.
+            calli("Naskh Qalam / قلم النسخ", 60.0, 10.0, 4.0),
+            calli("Thuluth Qalam / قلم الثلث", 65.0, 10.0, 9.0),
+            calli("Diwani Qalam / قلم الديواني", 50.0, 14.0, 5.0),
+            calli("Ruqaa Qalam / قلم الرقعة", 45.0, 12.0, 3.5),
+            calli("Kufi Qalam / قلم الكوفي", 0.0, 10.0, 6.0),
         ]
     })
 }

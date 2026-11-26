@@ -17,3 +17,8 @@ and ATTRIBUTION files unchanged.
 The names and logos of ArtCraft and the Crafting Apps are trademarks of their owners. This project is
 independent and will ship under its own name and branding (see `docs/brand` rules in each upstream
 repo). No ArtCraft branding is used for this project's own name.
+
+## Arabic fonts bundled by naqsh-studio
+
+- Amiri (Regular, Bold): Copyright 2010-2022 The Amiri Project Authors, SIL Open Font License 1.1. Source: https://github.com/google/fonts/tree/main/ofl/amiri. Licence text: upstream/vectorcraft/assets/fonts/OFL-Amiri.txt.
+- Aref Ruqaa (Regular): Copyright 2015-2020 The Aref Ruqaa Project Authors, SIL Open Font License 1.1. Source: https://github.com/google/fonts/tree/main/ofl/arefruqaa. Licence text: upstream/vectorcraft/assets/fonts/OFL-ArefRuqaa.txt.

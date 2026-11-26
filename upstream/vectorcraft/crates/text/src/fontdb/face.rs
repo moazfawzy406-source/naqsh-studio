@@ -82,6 +82,10 @@ pub(super) static BUNDLED: &[&[u8]] = &[
     include_bytes!("../../../../assets/fonts/Inter-Medium.ttf"),
     include_bytes!("../../../../assets/fonts/Inter-SemiBold.ttf"),
     include_bytes!("../../../../assets/fonts/JetBrainsMono-Regular.ttf"),
+    // naqsh-studio: Arabic fonts under the SIL OFL 1.1 (licence files beside them).
+    include_bytes!("../../../../assets/fonts/Amiri-Regular.ttf"),
+    include_bytes!("../../../../assets/fonts/Amiri-Bold.ttf"),
+    include_bytes!("../../../../assets/fonts/ArefRuqaa-Regular.ttf"),
 ];
 
 /// Without `bundled-fonts` a database starts with none: the embedder adds its fonts
