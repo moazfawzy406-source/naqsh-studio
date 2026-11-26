@@ -1,0 +1,46 @@
+name: phase2-photo-egui
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/phase2-photo-egui.yml']
+jobs:
+  deck:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [own-egui, vector-egui]
+    runs-on: windows-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: upstream/photocraft
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            upstream/photocraft/target
+          key: photo-${{ matrix.variant }}-${{ hashFiles('upstream/photocraft/Cargo.lock') }}
+      - name: Switch egui to Vector's revision
+        if: matrix.variant == 'vector-egui'
+        run: |
+          sed -i 's/a87d00caaec947ea781657c6ff410c9838016d18/b15ffe9bfc2c8e6748533b32b708e10abaf2afec/g' Cargo.toml
+          grep -c b15ffe9 Cargo.toml
+      - name: Check Photo app
+        run: |
+          mkdir -p ../../report
+          cargo check -p photocraft --message-format short > ../../report/${{ matrix.variant }}.log 2>&1; echo "exit=$?" >> ../../report/${{ matrix.variant }}.log
+          tail -40 ../../report/${{ matrix.variant }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: photo-${{ matrix.variant }}
+          path: report/
