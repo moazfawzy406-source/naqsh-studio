@@ -1,0 +1,34 @@
+name: phase3-suite-link
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/phase3-suite-link.yml', 'studio/**']
+jobs:
+  link:
+    runs-on: windows-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: studio
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - name: Resolve (one lockfile for all four apps)
+        run: |
+          mkdir -p ../report
+          cargo generate-lockfile > ../report/resolve.log 2>&1; echo "exit=$?" >> ../report/resolve.log
+          tail -40 ../report/resolve.log
+      - name: Check all four in one workspace
+        run: |
+          cargo check -p naqsh-suite --message-format short > ../report/check.log 2>&1; echo "exit=$?" >> ../report/check.log
+          tail -60 ../report/check.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: suite-link
+          path: report/

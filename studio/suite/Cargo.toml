@@ -1,0 +1,11 @@
+[package]
+name = "naqsh-suite"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+vectorcraft-ui-egui = { path = "../../upstream/vectorcraft/crates/ui-egui" }
+deckcraft-ui-egui = { path = "../../upstream/deckcraft/crates/ui-egui" }
+designcraft-ui-egui = { path = "../../upstream/designcraft/crates/ui-egui" }
+photocraft-ui-egui = { path = "../../upstream/photocraft/crates/ui-egui" }
