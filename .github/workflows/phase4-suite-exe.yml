@@ -1,0 +1,57 @@
+name: phase4-suite-exe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/phase4-suite-exe.yml']
+jobs:
+  exe:
+    runs-on: windows-latest
+    timeout-minutes: 360
+    defaults:
+      run:
+        working-directory: studio
+        shell: bash
+    env:
+      CRAFT_I18N_DIR: ${{ github.workspace }}/upstream/craft-i18n
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            studio/target
+          key: suite-exe-${{ hashFiles('studio/Cargo.toml', 'studio/suite/Cargo.toml') }}
+      - name: Build naqsh-studio.exe (release, all four apps)
+        run: cargo build --release -p naqsh-suite --bin naqsh-studio
+      - name: Launch each app from the one exe and screenshot the desktop
+        continue-on-error: true
+        env:
+          VECTORCRAFT_CONFIG_DIR: ${{ runner.temp }}/vcfg
+        run: |
+          pip install pillow
+          mkdir -p ../shots
+          for app in vector deck layout photo; do
+            NAQSH_APP=$app ./target/release/naqsh-studio.exe > ../shots/$app.log 2>&1 &
+            PID=$!
+            sleep 40
+            python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/$app.png')"
+            echo "$app alive: $(tasklist | grep -ci naqsh-studio)" >> ../shots/summary.txt
+            taskkill //F //IM naqsh-studio.exe || true
+            sleep 3
+          done
+          cat ../shots/summary.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: suite-shots
+          path: shots/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: naqsh-studio-windows-x64
+          path: studio/target/release/naqsh-studio.exe
