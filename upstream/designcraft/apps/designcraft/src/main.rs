@@ -425,7 +425,7 @@ fn app_command(args: impl IntoIterator<Item = std::ffi::OsString>, nightly: bool
     command
 }
 
-fn main() -> std::process::ExitCode {
+pub fn main() -> std::process::ExitCode {
     let Some(launch) = prepare_launch() else { return std::process::ExitCode::SUCCESS };
     // Windows: the update helper is a copy of this program started with `--finish-update`. A
     // Nightly copy is installed and updated by the Launcher, so it never runs the updater.

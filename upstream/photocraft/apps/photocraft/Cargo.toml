@@ -15,6 +15,10 @@ heif = ["photocraft-codecs/heif"]
 [lints]
 workspace = true
 
+[lib]
+name = "photocraft_app"
+path = "src/main.rs"
+
 [dependencies]
 photocraft-doc = { workspace = true }
 photocraft-color = { workspace = true }

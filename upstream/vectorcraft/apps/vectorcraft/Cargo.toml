@@ -14,6 +14,10 @@ default = ["wgpu", "accessibility"]
 wgpu = ["eframe/wgpu", "dep:winsafe"]
 accessibility = ["eframe/accesskit"]
 
+[lib]
+name = "vectorcraft_app"
+path = "src/main.rs"
+
 [dependencies]
 vectorcraft-engine = { workspace = true, features = ["bundled-fonts", "heif"] }
 vectorcraft-ui-egui = { workspace = true }

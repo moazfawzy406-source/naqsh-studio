@@ -473,7 +473,7 @@ fn prepare_launch() -> Option<Vec<std::ffi::OsString>> {
     Some(early.args)
 }
 
-fn main() -> eframe::Result {
+pub fn main() -> eframe::Result {
     let Some(arguments) = prepare_launch() else { return Ok(()) };
 
     // Before anything starts a thread: may re-execute this process with glibc tuned to return

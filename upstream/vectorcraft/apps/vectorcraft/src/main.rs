@@ -512,7 +512,7 @@ fn finish_pending_update(nightly: bool) {
     }
 }
 
-fn main() -> std::process::ExitCode {
+pub fn main() -> std::process::ExitCode {
     // The launch profile first: a nightly build without one is refused here, before the update
     // helper, the logger, fonts or any saved state, and `--version` is answered here too.
     let Some(arguments) = prepare_launch() else { return std::process::ExitCode::SUCCESS };

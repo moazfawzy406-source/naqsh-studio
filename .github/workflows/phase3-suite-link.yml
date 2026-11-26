@@ -18,6 +18,13 @@ jobs:
         run: |
           rustup toolchain install stable --profile minimal
           rustup default stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            studio/target
+          key: suite-${{ hashFiles('studio/Cargo.toml', 'studio/suite/Cargo.toml') }}
       - name: Resolve (one lockfile for all four apps)
         run: |
           mkdir -p ../report
@@ -25,7 +32,7 @@ jobs:
           tail -40 ../report/resolve.log
       - name: Check all four in one workspace
         run: |
-          cargo check -p naqsh-suite --message-format short > ../report/check.log 2>&1; echo "exit=$?" >> ../report/check.log
+          cargo check -p naqsh-suite --bins --message-format short > ../report/check.log 2>&1; echo "exit=$?" >> ../report/check.log
           tail -60 ../report/check.log
       - uses: actions/upload-artifact@v4
         if: always()

@@ -275,7 +275,7 @@ fn report_launch_profile_error(error: &str) {
 
 /// Install logging, parse startup arguments and environment, launch the native app, and
 /// propagate an eframe startup failure.
-fn main() -> eframe::Result {
+pub fn main() -> eframe::Result {
     let Some(arguments) = prepare_launch() else { return Ok(()) };
     let nightly = launch_profile::current().is_nightly();
     // Nightly session health: the record names this window's owner and survives an abnormal end.

@@ -10,6 +10,10 @@ default-run = "deckcraft"
 [lints]
 workspace = true
 
+[lib]
+name = "deckcraft_app"
+path = "src/main.rs"
+
 [dependencies]
 deckcraft-engine = { workspace = true }
 deckcraft-ui-egui = { workspace = true }
