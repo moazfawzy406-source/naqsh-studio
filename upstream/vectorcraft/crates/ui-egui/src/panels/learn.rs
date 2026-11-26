@@ -212,7 +212,7 @@ fn steps(app: &mut VectorcraftApp, ui: &mut Ui, tutorial: &'static catalog::Tuto
         // PLAN: assumed the row aligns its members to the top by default or by a `Row` option; a wrapped step
         // text should keep its number and box on its first line.
         Row::new().gap(Gap::Item).show(ui, |ui, _| {
-            let name = format!("{}. {}", i + 1, step.plain());
+            let name = format!("{}. {}", i + 1, tl!(step.text).replace(['[', ']'], ""));
             // PLAN: assumed `Field::id_salt` takes any hashable value.
             let next = Field::new(name)
                 .side(SideLabel::new().kind(LabelKind::Hidden))
@@ -242,13 +242,19 @@ fn steps(app: &mut VectorcraftApp, ui: &mut Ui, tutorial: &'static catalog::Tuto
 /// activated, by a click or by Enter or Space with the keyboard focus on it. The Learn panel and
 /// Discover show steps with it.
 pub(crate) fn step_text(ui: &mut Ui, step: &catalog::Step) -> bool {
-    match (step.tool, step.tool_name()) {
+    let shown: &str = tl!(step.text);
+    let parts = step.tool.and_then(|_| {
+        let (before, rest) = shown.split_once('[')?;
+        let (name, after) = rest.split_once(']')?;
+        Some((before, name, after))
+    });
+    match (step.tool, parts) {
         // PLAN: assumed `Link::in_sentence(before, after)` (dp.R2, document-panels-w4).
         (Some(_), Some((before, name, after))) => {
             clicked(&Link::new(name).in_sentence(before, after).tooltip(tl!("Show where this tool is")).show(ui))
         }
         _ => {
-            Text::new(step.text).show(ui);
+            Text::new(shown).show(ui);
             false
         }
     }

@@ -6177,3 +6177,37 @@
 	Turn type into shapes	حوّل النص إلى أشكال
 	Type along a path	اكتب على مسار
 	Dark / Light	داكن / فاتح
+	Choose the [Rectangle tool] in the toolbar.	اختر [أداة المستطيل] من شريط الأدوات.
+	Drag on the artboard to draw a rectangle.	اسحب على لوحة العمل لرسم مستطيل.
+	With the rectangle still selected, click a color in the Swatches panel to fill it.	والمستطيل ما زال محدداً، انقر لوناً في لوحة العينات لتعبئته.
+	Click the Stroke box under the tools, then click another swatch to color the outline.	انقر مربع الحد أسفل الأدوات، ثم انقر عينة أخرى لتلوين الإطار.
+	Choose the [Ellipse tool] and draw two circles that overlap.	اختر [أداة الشكل البيضاوي] وارسم دائرتين متداخلتين.
+	Choose the [Selection tool] and drag across both circles to select them.	اختر [أداة التحديد] واسحب عبر الدائرتين لتحديدهما.
+	Choose the [Shape Builder tool] and drag across the parts you want to merge.	اختر [أداة منشئ الأشكال] واسحب عبر الأجزاء التي تريد دمجها.
+	Choose the [Type tool] and click on the artboard.	اختر [أداة النص] وانقر على لوحة العمل.
+	Type a few words, then press Escape to finish.	اكتب بضع كلمات، ثم اضغط Escape للإنهاء.
+	Pick a font and a size in the Character panel.	اختر خطاً وحجماً من لوحة الحروف.
+	Choose the [Pen tool].	اختر [أداة القلم].
+	Click to place corner points, or drag to pull out a curve.	انقر لوضع نقاط زاوية، أو اسحب لإخراج منحنى.
+	Click the first point again to close the shape, or press Enter to leave it open.	انقر النقطة الأولى مجدداً لإغلاق الشكل، أو اضغط Enter لتركه مفتوحاً.
+	Choose the [Curvature tool].	اختر [أداة الانحناء].
+	Click to place points: the path bends smoothly through each one.	انقر لوضع النقاط: ينحني المسار بسلاسة عبر كل نقطة.
+	Choose the [Direct Selection tool] and drag a point to reshape the curve.	اختر [أداة التحديد المباشر] واسحب نقطة لإعادة تشكيل المنحنى.
+	Choose the [Pencil tool].	اختر [أداة القلم الرصاص].
+	Drag to draw a freehand line.	اسحب لرسم خط حر.
+	Choose the [Smooth tool] and drag along the line to even it out.	اختر [أداة التنعيم] واسحب على طول الخط لتسويته.
+	Select an object with the [Selection tool].	حدد كائناً بـ[أداة التحديد].
+	Click the Fill box under the tools, then pick a color in the Color panel.	انقر مربع التعبئة أسفل الأدوات، ثم اختر لوناً من لوحة الألوان.
+	Click the double arrow beside the boxes to swap the fill and the stroke.	انقر السهم المزدوج بجانب المربعات لتبديل التعبئة والحد.
+	Choose the [Gradient tool] and click the object to give it a gradient.	اختر [أداة التدرج] وانقر الكائن لإعطائه تدرجاً.
+	Drag across the object to set the gradient's direction and length.	اسحب عبر الكائن لضبط اتجاه التدرج وطوله.
+	Select the object to color with the [Selection tool].	حدد الكائن المراد تلوينه بـ[أداة التحديد].
+	Choose the [Eyedropper tool] and click the art whose colors you want.	اختر [أداة القطارة] وانقر العمل الفني الذي تريد ألوانه.
+	Draw a rectangle for the text to fill with the [Rectangle tool].	ارسم مستطيلاً ليملأه النص بـ[أداة المستطيل].
+	Choose the [Area Type tool] and click the rectangle's edge.	اختر [أداة نص المنطقة] وانقر حافة المستطيل.
+	Type or paste your text: it wraps inside the shape.	اكتب نصك أو الصقه: يلتف داخل الشكل.
+	Draw a curved path with the [Pen tool].	ارسم مساراً منحنياً بـ[أداة القلم].
+	Choose the [Type on a Path tool] and click the path.	اختر [أداة النص على مسار] وانقر المسار.
+	Type your text: it follows the path.	اكتب نصك: يتبع المسار.
+	Select a text object with the [Selection tool].	حدد كائن نص بـ[أداة التحديد].
+	Choose Type › Create Outlines to turn its letters into paths.	اختر نص › إنشاء مخططات لتحويل حروفه إلى مسارات.
