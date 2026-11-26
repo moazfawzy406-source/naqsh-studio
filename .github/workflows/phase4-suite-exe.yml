@@ -35,7 +35,7 @@ jobs:
           VECTORCRAFT_CONFIG_DIR: ${{ runner.temp }}/vcfg
         run: |
           pip install pillow
-          mkdir -p ../shots
+          mkdir -p ../shots shots
           NAQSH_APP=vector ./target/release/naqsh-studio.exe --control 7979 > ../shots/vector.log 2>&1 &
           sleep 30
           python - <<'PY'
@@ -49,10 +49,10 @@ jobs:
           log.write(json.dumps(call("auth",{"token":tok}))+"\n")
           log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"ar"}}))+"\n")
           time.sleep(3)
-          call("ui.screenshot",{"path":"../shots/hub-arabic.png"})
+          call("ui.screenshot",{"path":"shots/hub-arabic.png"})
           log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"en"}}))+"\n")
           time.sleep(3)
-          call("ui.screenshot",{"path":"../shots/hub-english.png"})
+          call("ui.screenshot",{"path":"shots/hub-english.png"})
           r=call("ui.find",{"name":"Open Deck (PowerPoint-style)"}); log.write(json.dumps(r)+"\n")
           rc=r["result"]["rect"]
           log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
@@ -60,6 +60,7 @@ jobs:
           ImageGrab.grab().save("../shots/after-click-deck.png")
           log.close()
           PY
+          cp shots/*.png ../shots/ || true
           tasklist | grep -i naqsh-studio >> ../shots/summary.txt || true
           taskkill //F //IM naqsh-studio.exe || true
           sleep 3
