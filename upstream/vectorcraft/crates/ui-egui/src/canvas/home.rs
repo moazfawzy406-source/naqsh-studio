@@ -113,9 +113,9 @@ fn suite(ui: &mut Ui) {
     let _ = Text::new(tl!("Vector (Illustrator-style): open in this window")).show(ui);
     let _ = Row::new().show(ui, |ui, _| {
         for (label, app) in [
-            ("Open Deck (PowerPoint-style)", "deck"),
-            ("Open Layout (InDesign-style)", "layout"),
-            ("Open Photo (Photoshop-style)", "photo"),
+            ("Open Deck", "deck"),
+            ("Open Layout", "layout"),
+            ("Open Photo", "photo"),
         ] {
             if Button::new(tl!(label)).id_salt(app).show(ui).clicked() {
                 launch_app(app);
@@ -126,7 +126,8 @@ fn suite(ui: &mut Ui) {
 
 /// Starts another app of the suite: the same executable with `NAQSH_APP` set. A failure is only logged.
 fn launch_app(app: &str) {
-    match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).env("NAQSH_APP", app).spawn()) {
+    let lang = if crate::i18n::is_rtl() { "ar" } else { "en" };
+    match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).env("NAQSH_APP", app).env("NAQSH_LANG", lang).spawn()) {
         Ok(_) => {}
         Err(e) => log::warn!("could not start {app}: {e}"),
     }

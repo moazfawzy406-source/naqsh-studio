@@ -435,7 +435,8 @@ impl Default for UiState {
             proof_colors: false,
             proof_setup: Default::default(),
             dynamic_spelling: false,
-            language: String::new(),
+            // Naqsh Studio: the suite hub passes its language on (`ar`); anything else is English.
+            language: std::env::var("NAQSH_LANG").ok().filter(|l| l == "ar").unwrap_or_default(),
             flattener: String::new(),
             pdf_export: PdfExportSettings::default(),
             export_batch: None,
