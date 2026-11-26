@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['.github/workflows/phase4-suite-exe.yml']
+    paths: ['.github/workflows/phase4-suite-exe.yml', 'studio/**']
 jobs:
   exe:
     runs-on: windows-latest
@@ -29,19 +29,44 @@ jobs:
           key: suite-exe-${{ hashFiles('studio/Cargo.toml', 'studio/suite/Cargo.toml') }}
       - name: Build naqsh-studio.exe (release, all four apps)
         run: cargo build --release -p naqsh-suite --bin naqsh-studio
-      - name: Launch each app from the one exe and screenshot the desktop
+      - name: Launch test (Vector hub click opens Deck, then each app alone)
         continue-on-error: true
         env:
           VECTORCRAFT_CONFIG_DIR: ${{ runner.temp }}/vcfg
         run: |
           pip install pillow
           mkdir -p ../shots
-          for app in vector deck layout photo; do
+          NAQSH_APP=vector ./target/release/naqsh-studio.exe --control 7979 > ../shots/vector.log 2>&1 &
+          sleep 30
+          python - <<'PY'
+          import socket, json, time, re
+          from PIL import ImageGrab
+          tok=re.search(r"control token: (\S+)", open("../shots/vector.log").read()).group(1)
+          sock=socket.create_connection(("127.0.0.1",7979),timeout=120); rf=sock.makefile("rb"); n=[0]
+          def call(m,p=None):
+              n[0]+=1; sock.sendall((json.dumps({"id":n[0],"method":m,"params":p or {}})+"\n").encode()); return json.loads(rf.readline())
+          log=open("../shots/hub.log","w")
+          log.write(json.dumps(call("auth",{"token":tok}))+"\n")
+          log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"ar"}}))+"\n")
+          time.sleep(3)
+          call("ui.screenshot",{"path":"../shots/hub-arabic.png"})
+          log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"en"}}))+"\n")
+          time.sleep(3)
+          call("ui.screenshot",{"path":"../shots/hub-english.png"})
+          r=call("ui.find",{"name":"Open Deck (PowerPoint-style)"}); log.write(json.dumps(r)+"\n")
+          rc=r["result"]["rect"]
+          log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
+          time.sleep(40)
+          ImageGrab.grab().save("../shots/after-click-deck.png")
+          log.close()
+          PY
+          tasklist | grep -i naqsh-studio >> ../shots/summary.txt || true
+          taskkill //F //IM naqsh-studio.exe || true
+          sleep 3
+          for app in layout photo; do
             NAQSH_APP=$app ./target/release/naqsh-studio.exe > ../shots/$app.log 2>&1 &
-            PID=$!
             sleep 40
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/$app.png')"
-            echo "$app alive: $(tasklist | grep -ci naqsh-studio)" >> ../shots/summary.txt
             taskkill //F //IM naqsh-studio.exe || true
             sleep 3
           done

@@ -106,16 +106,28 @@ fn learn(app: &mut VectorcraftApp, ui: &mut Ui, pressed: &mut Option<&'static st
     }
 }
 
-/// Naqsh Studio suite hub (merge step one): the four apps of the suite. Only Vector runs in this window
-/// today; the others are listed with their merge state so the shared language and theme are visible.
+/// Naqsh Studio suite hub: the four apps of the suite. Vector runs in this window; the other three open
+/// from the same program (the suite executable starts itself with `NAQSH_APP` set to the app's name).
 fn suite(ui: &mut Ui) {
     let _ = Text::new(tl!("Naqsh Studio suite")).show(ui);
-    for line in [
-        "Vector (Illustrator-style): open in this window",
-        "Deck (PowerPoint-style): not merged yet",
-        "Layout (InDesign-style): not merged yet",
-        "Photo (Photoshop-style): not merged yet",
-    ] {
-        let _ = Text::new(tl!(line)).show(ui);
+    let _ = Text::new(tl!("Vector (Illustrator-style): open in this window")).show(ui);
+    let _ = Row::new().show(ui, |ui, _| {
+        for (label, app) in [
+            ("Open Deck (PowerPoint-style)", "deck"),
+            ("Open Layout (InDesign-style)", "layout"),
+            ("Open Photo (Photoshop-style)", "photo"),
+        ] {
+            if Button::new(tl!(label)).id_salt(app).show(ui).clicked() {
+                launch_app(app);
+            }
+        }
+    });
+}
+
+/// Starts another app of the suite: the same executable with `NAQSH_APP` set. A failure is only logged.
+fn launch_app(app: &str) {
+    match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).env("NAQSH_APP", app).spawn()) {
+        Ok(_) => {}
+        Err(e) => log::warn!("could not start {app}: {e}"),
     }
 }
