@@ -3,7 +3,7 @@ use craft::ui::buttons::Button;
 use craft::ui::contract::{Bind, Props as _, Show as _, ShowContainer as _};
 use craft::ui::display::Text;
 use craft::ui::layout_components::Row;
-use craft::ui::shell::{RecentFile, StartAction, StartLayout, StartLink, StartScreen, Template};
+use craft::ui::shell::{RecentFile, StartAction, StartLayout, StartLink, StartPlace, StartScreen, Template};
 
 use super::{Ui, VectorcraftApp, json};
 
@@ -51,6 +51,7 @@ pub(super) fn home(app: &mut VectorcraftApp, ui: &mut Ui, rect: egui::Rect) {
         .templates_title(tl!("Quickly start a new file"))
         .links(&links)
         .links_title(tl!("Community"))
+        .section(StartPlace::BeforeRecent, |ui, _| suite(ui))
         .app_section(tl!("Learn"), &mut learn)
         .show(&mut child);
     app.ui.home_view = view;
@@ -102,5 +103,19 @@ fn learn(app: &mut VectorcraftApp, ui: &mut Ui, pressed: &mut Option<&'static st
                 }
             }
         });
+    }
+}
+
+/// Naqsh Studio suite hub (merge step one): the four apps of the suite. Only Vector runs in this window
+/// today; the others are listed with their merge state so the shared language and theme are visible.
+fn suite(ui: &mut Ui) {
+    let _ = Text::new(tl!("Naqsh Studio suite")).show(ui);
+    for line in [
+        "Vector (Illustrator-style): open in this window",
+        "Deck (PowerPoint-style): not merged yet",
+        "Layout (InDesign-style): not merged yet",
+        "Photo (Photoshop-style): not merged yet",
+    ] {
+        let _ = Text::new(tl!(line)).show(ui);
     }
 }
