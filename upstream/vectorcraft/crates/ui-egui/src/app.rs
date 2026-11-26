@@ -602,6 +602,7 @@ impl VectorcraftApp {
             vectorcraft_engine::guard::catch_panic(|| {
                 self.handle_input(&ctx);
                 self.ui_frame(ui);
+                self.naqsh_switches(&ctx);
                 self.window_keys(&ctx);
             })
         }) {
@@ -610,6 +611,35 @@ impl VectorcraftApp {
         }
         // After the pass's UI, which reads whether the pass carries injected input.
         self.poll_input(&ctx);
+    }
+
+    /// naqsh-studio: always-visible language (AR/EN) and dark/light switches.
+    fn naqsh_switches(&mut self, ctx: &egui::Context) {
+        let mut lang_to: Option<&'static str> = None;
+        let mut bright_to: Option<&'static str> = None;
+        let rtl = crate::i18n::is_rtl();
+        let dark = matches!(self.ui.brightness, crate::theme::Brightness::Dark | crate::theme::Brightness::MediumDark);
+        egui::Area::new(egui::Id::new("naqsh_switches"))
+            .order(egui::Order::Foreground)
+            .anchor(egui::Align2::CENTER_TOP, egui::vec2(0.0, 3.0))
+            .show(ctx, |ui| {
+                ui.horizontal(|ui| {
+                    let (txt, to) = if rtl { ("EN", "en") } else { ("عربي", "ar") };
+                    if ui.button(txt).on_hover_text("Language / اللغة").clicked() {
+                        lang_to = Some(to);
+                    }
+                    let (txt, to) = if dark { ("☀", "light") } else { ("🌙", "dark") };
+                    if ui.button(txt).on_hover_text("Dark / Light").clicked() {
+                        bright_to = Some(to);
+                    }
+                });
+            });
+        if let Some(l) = lang_to {
+            let _ = self.run("app.language", serde_json::json!({ "lang": l }));
+        }
+        if let Some(b) = bright_to {
+            let _ = self.run("window.brightness", serde_json::json!({ "brightness": b }));
+        }
     }
 
     /// [`Self::ui`]'s work, inside its guard: the window's shell with its bars and the panels and

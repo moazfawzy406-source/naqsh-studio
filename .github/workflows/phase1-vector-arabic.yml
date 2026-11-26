@@ -50,7 +50,7 @@ jobs:
           log0=call("auth",{"token":tok})
           log=open("shots/steps.log","w")
           log.write("auth: "+json.dumps(log0)+"\n")
-          for name,m,p in [("lang","LANG",None),("wait",None,None),("shot0","ui.screenshot",{"path":"shots/before.png"}),("wait2",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("inspect","ui.inspect",{})]:
+          for name,m,p in [("lang","LANG",None),("wait",None,None),("shot0","ui.screenshot",{"path":"shots/before.png"}),("wait2",None,None),("shot","ui.screenshot",{"path":"shots/arabic-ui.png"}),("light","LIGHT",None),("wait3",None,None),("shot2","ui.screenshot",{"path":"shots/arabic-light.png"}),("inspect","ui.inspect",{})]:
               if m is None: time.sleep(5); continue
               if m=="LANG":
                   for mm in ("ui.menu.invoke","command","engine.execute"):
@@ -58,6 +58,11 @@ jobs:
                       except Exception as e: r={"exception":str(e)}
                       log.write("lang via "+mm+": "+json.dumps(r)[:600]+"\n")
                       if r.get("ok"): break
+                  continue
+              if m=="LIGHT":
+                  try: r=call("ui.menu.invoke",{"command":"window.brightness","params":{"brightness":"light"}})
+                  except Exception as e: r={"exception":str(e)}
+                  log.write("light: "+json.dumps(r)[:600]+"\n")
                   continue
               try: r=call(m,p)
               except Exception as e: r={"exception":str(e)}
