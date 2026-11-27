@@ -619,6 +619,7 @@ impl VectorcraftApp {
         let mut bright_to: Option<&'static str> = None;
         let rtl = crate::i18n::is_rtl();
         let dark = matches!(self.ui.brightness, crate::theme::Brightness::Dark | crate::theme::Brightness::MediumDark);
+        SUITE_DARK.store(dark, std::sync::atomic::Ordering::Relaxed);
         egui::Area::new(egui::Id::new("naqsh_switches"))
             .order(egui::Order::Foreground)
             .anchor(egui::Align2::CENTER_TOP, egui::vec2(0.0, 3.0))
@@ -797,3 +798,6 @@ fn tone(level: Level) -> Tone {
         Level::Error => Tone::Bad,
     }
 }
+
+/// Whether the window is dark; the hub passes it to the apps it opens as `NAQSH_THEME`.
+pub(crate) static SUITE_DARK: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);

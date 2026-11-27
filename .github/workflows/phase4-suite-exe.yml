@@ -62,6 +62,8 @@ jobs:
           except Exception as e:
               log.write("english step failed: "+str(e)+"\n")
           try:
+              log.write(json.dumps(call("ui.menu.invoke",{"command":"window.brightness","params":{"brightness":"dark"}}))+"\n")
+              time.sleep(3)
               r=call("ui.find",{"name":"Open Deck"}); log.write(json.dumps(r)+"\n")
               rc=r["result"]["rect"]
               log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
@@ -104,3 +106,4 @@ jobs:
 # rebuild 1795775741
 # rebuild 1795780377
 # rebuild 1795785055
+# rebuild
