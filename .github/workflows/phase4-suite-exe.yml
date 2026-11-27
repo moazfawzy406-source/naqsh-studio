@@ -88,6 +88,10 @@ jobs:
           sleep 40
           python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/deck-sample.png')"
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_THEME=dark NAQSH_LANG=ar NAQSH_APP=deck ./target/release/naqsh-studio.exe --sample > ../shots/deck-dark.log 2>&1 &
+          sleep 40
+          python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/deck-dark.png')"
+          taskkill //F //IM naqsh-studio.exe || true
           cat ../shots/summary.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -106,4 +110,5 @@ jobs:
 # rebuild 1795775741
 # rebuild 1795780377
 # rebuild 1795785055
+# rebuild
 # rebuild
