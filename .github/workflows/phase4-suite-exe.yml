@@ -14,21 +14,26 @@ jobs:
         shell: bash
     env:
       CRAFT_I18N_DIR: ${{ github.workspace }}/upstream/craft-i18n
+      SCCACHE_GHA_ENABLED: "true"
+      RUSTC_WRAPPER: sccache
+      CARGO_INCREMENTAL: "0"
     steps:
       - uses: actions/checkout@v4
       - name: Rust toolchain
         run: |
           rustup toolchain install stable --profile minimal
           rustup default stable
+      - uses: mozilla-actions/sccache-action@v0.0.9
       - uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/registry
             ~/.cargo/git
-            studio/target
-          key: suite-exe-${{ hashFiles('studio/Cargo.toml', 'studio/suite/Cargo.toml') }}
+          key: suite-reg-${{ hashFiles('studio/Cargo.toml', 'studio/suite/Cargo.toml') }}
       - name: Build naqsh-studio.exe (release, all four apps)
         run: cargo build --release -p naqsh-suite --bin naqsh-studio
+      - name: sccache stats
+        run: sccache --show-stats || true
       - name: Launch test (Vector hub click opens Deck, then each app alone)
         continue-on-error: true
         env:
@@ -112,3 +117,4 @@ jobs:
 # rebuild 1795785055
 # rebuild
 # rebuild
+# sccache
