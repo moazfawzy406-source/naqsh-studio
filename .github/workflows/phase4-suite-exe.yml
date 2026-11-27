@@ -121,7 +121,7 @@ jobs:
           time.sleep(3)
           log.write(json.dumps(call("ui.menu.invoke",{"command":"window.panel","params":{"panel":"brushes"}}))+"\n")
           time.sleep(3)
-          call("ui.screenshot",{"path":"shots/brushes-doc.png"})
+          call("ui.screenshot",{"path":"../shots/brushes-doc.png"})
           log.close()
           PY
           taskkill //F //IM naqsh-studio.exe || true
@@ -149,3 +149,4 @@ jobs:
 # layout theme
 # brushes
 # brushes doc
+# rerun
