@@ -122,6 +122,21 @@ jobs:
           log.write(json.dumps(call("ui.menu.invoke",{"command":"window.panel","params":{"panel":"brushes"}}))+"\n")
           time.sleep(3)
           call("ui.screenshot",{"path":"../shots/brushes-doc.png"})
+          src = """
+          var d = vc.document;
+          vc.log(JSON.stringify(d).slice(0, 3000));
+          var out = {};
+          var names = ['object.bounds','selection.bounds','document.inspect','object.info','select.info','object.inspect'];
+          for (var i = 0; i < names.length; i++) { try { out[names[i]] = vc.run(names[i], {}); } catch (e) { out[names[i]] = 'ERR ' + e.message; } }
+          vc.log(JSON.stringify(out).slice(0, 3000));
+          var cmds = vc.commands; var m = [];
+          for (var j = 0; j < cmds.length; j++) { var c = (cmds[j].id || cmds[j]) + ''; if (/bounds|layer\\.new|stroke|text\\.|shape\\.(line|ellipse|rect)|guide|select\\.(all|byId)|object\\.(get|info|select)/i.test(c)) m.push(c); }
+          vc.log(m.join(' '));
+          """
+          log.write(json.dumps(call("ui.menu.invoke",{"command":"shape.rectangle","params":{"x":100,"y":100,"width":200,"height":120}}))+"\n")
+          log.write(json.dumps(call("ui.menu.invoke",{"command":"select.all","params":{}}))+"\n")
+          r = call("ui.menu.invoke",{"command":"script.run","params":{"source":src}})
+          open("../shots/discover.json","w").write(json.dumps(r))
           log.close()
           PY
           taskkill //F //IM naqsh-studio.exe || true
@@ -156,3 +171,4 @@ jobs:
 # rerun
 # photo theme
 # photo default
+# discover
