@@ -105,10 +105,10 @@ fn forbidden_roots(platform: Platform, env: &impl Fn(&str) -> Option<OsString>, 
                 .collect::<Result<Vec<_>, _>>()?;
             // The MSI's default per-user and per-machine folders (install-policy.wxi). A custom
             // install folder is not known here; the executable's own folder is fenced below.
-            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("ArtCraft").join("DeckCraft"));
+            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("Naqsh Studio").join("DeckCraft"));
             for key in ["ProgramW6432", "ProgramFiles", "ProgramFiles(x86)"] {
                 if let Some(base) = env(key).filter(|v| !v.is_empty()) {
-                    roots.push(absolute(PathBuf::from(base), key)?.join("ArtCraft").join("DeckCraft"));
+                    roots.push(absolute(PathBuf::from(base), key)?.join("Naqsh Studio").join("DeckCraft"));
                 }
             }
             roots
@@ -439,7 +439,7 @@ mod tests {
             assert_eq!(std::fs::read(stable.join("stable-sentinel")).unwrap(), b"stable bytes");
         }
         let data = PathBuf::from(fixture.get("XDG_DATA_HOME").unwrap());
-        let nightly = data.join("ArtCraftLauncher/nightly/profiles/deckcraft");
+        let nightly = data.join("Naqsh StudioLauncher/nightly/profiles/deckcraft");
         assert_eq!(fixture.check(Platform::Linux, &nightly).unwrap(), nightly);
         assert_eq!(std::fs::read_dir(nightly).unwrap().count(), 0);
     }
@@ -465,7 +465,7 @@ mod tests {
         let inside_resources = fixture.exe.parent().unwrap().parent().unwrap().join("Resources/profile");
         assert!(fixture.check(Platform::Mac, &inside_resources).unwrap_err().contains("overlap"));
         assert!(!inside_resources.exists());
-        let valid = library.join("Application Support/ArtCraftLauncher/nightly/profiles/deckcraft");
+        let valid = library.join("Application Support/Naqsh StudioLauncher/nightly/profiles/deckcraft");
         assert_eq!(fixture.check(Platform::Mac, &valid).unwrap(), valid);
     }
 
@@ -485,16 +485,16 @@ mod tests {
     fn windows_default_msi_install_folders_are_fenced() {
         let mut fixture = Fixture::new();
         let local = PathBuf::from(fixture.get("LOCALAPPDATA").unwrap());
-        let per_user = local.join("Programs").join("ArtCraft").join("DeckCraft");
+        let per_user = local.join("Programs").join("Naqsh Studio").join("DeckCraft");
         assert!(fixture.check(Platform::Windows, &per_user.join("nightly")).unwrap_err().contains("overlap"));
         for key in ["ProgramW6432", "ProgramFiles", "ProgramFiles(x86)"] {
             let base = fixture.root.join(format!("machine {key}"));
             fixture.env.insert(key.into(), base.clone().into_os_string());
-            let machine = base.join("ArtCraft").join("DeckCraft");
+            let machine = base.join("Naqsh Studio").join("DeckCraft");
             assert!(fixture.check(Platform::Windows, &machine.join("nightly")).unwrap_err().contains("overlap"));
             assert!(!machine.exists());
         }
-        let sibling = local.join("Programs").join("ArtCraft").join("ArtCraftLauncher").join("nightly").join("deckcraft");
+        let sibling = local.join("Programs").join("Naqsh Studio").join("Naqsh StudioLauncher").join("nightly").join("deckcraft");
         assert!(fixture.check(Platform::Windows, &sibling).is_ok(), "the Launcher's own Programs sibling is not DeckCraft's install");
     }
 

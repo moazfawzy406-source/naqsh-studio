@@ -215,7 +215,7 @@ mod tests {
     fn a_managed_copy_never_checks_and_explains_who_updates_it() {
         let mut app = DesignApp::new(Session::new(), Default::default());
         app.set_startup_update_check(true);
-        app.set_updates_managed(Some("ArtCraft Launcher"));
+        app.set_updates_managed(Some("Naqsh Studio Launcher"));
         assert!(app.updates_managed());
         check(&mut app).unwrap();
         assert!(app.updates_rt.managed_window_open, "Help ▸ Check for Updates explains the Launcher");

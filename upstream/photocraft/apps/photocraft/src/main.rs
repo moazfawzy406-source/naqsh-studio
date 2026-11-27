@@ -1256,7 +1256,7 @@ mod tests {
     fn nightly_agent_workspace_uses_its_private_profile_not_stable_documents() {
         let dir = temp_dir("nightly-agent-roots");
         let private = dir.join("nightly profile");
-        let stable = dir.join("redirected Documents/ArtCraft/Agents/PhotoCraft");
+        let stable = dir.join("redirected Documents/Naqsh Studio/Agents/PhotoCraft");
         std::fs::create_dir_all(&private).unwrap();
         std::fs::create_dir_all(&stable).unwrap();
         std::fs::write(stable.join("existing-document"), b"stable document bytes").unwrap();
@@ -1280,7 +1280,7 @@ mod tests {
     #[test]
     fn stable_agent_workspace_preserves_the_resolved_default_folder() {
         let dir = temp_dir("stable-agent-roots");
-        let stable = dir.join("redirected Documents/ArtCraft/Agents/PhotoCraft");
+        let stable = dir.join("redirected Documents/Naqsh Studio/Agents/PhotoCraft");
         let (ws, warning) = super::automation_workspace_for_profile(
             &flags(None, None),
             &craft::automation::agents::AgentSettings::default(),
@@ -1306,7 +1306,7 @@ mod tests {
     #[test]
     fn empty_folder_preferences_use_the_default_agent_folder() {
         let dir = temp_dir("automation-roots-default");
-        let default = dir.join("ArtCraft").join("Agents").join("PhotoCraft");
+        let default = dir.join("Naqsh Studio").join("Agents").join("PhotoCraft");
         let empty = craft::automation::agents::AgentSettings::default();
 
         let (ws, warning) = super::automation_workspace_in(&flags(None, None), &empty, Some(&default)).unwrap();

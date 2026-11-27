@@ -40,7 +40,7 @@ impl Default for Runtime {
 /// Help ▸ Check for Updates: starts a check whose outcome the result window shows.
 #[cfg(not(target_arch = "wasm32"))]
 pub(crate) fn check(app: &mut PhotocraftApp, _ctx: &egui::Context, _params: Value) -> Result<Value, String> {
-    let updater = app.updates_rt.updater.as_mut().ok_or("Nightly updates are managed by ArtCraft Launcher")?;
+    let updater = app.updates_rt.updater.as_mut().ok_or("Nightly updates are managed by Naqsh Studio Launcher")?;
     updater.check_now();
     app.ui.updates_open = true;
     Ok(serde_json::json!({"status": "checking"}))

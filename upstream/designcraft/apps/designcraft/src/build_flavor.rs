@@ -18,7 +18,7 @@ pub const STABLE_VERSION_LINE: &str = concat!("designcraft ", env!("CARGO_PKG_VE
 
 pub fn require_profile(flavor: BuildFlavor, profile: &Profile) -> Result<(), String> {
     match (flavor, profile.is_nightly()) {
-        (BuildFlavor::NightlyV1, false) => Err("Open DesignCraft Nightly from ArtCraft Launcher".into()),
+        (BuildFlavor::NightlyV1, false) => Err("Open DesignCraft Nightly from Naqsh Studio Launcher".into()),
         (BuildFlavor::Stable, true) => Err("This is a stable DesignCraft build; nightly-v1 requires the nightly build".into()),
         _ => Ok(()),
     }

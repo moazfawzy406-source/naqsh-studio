@@ -102,10 +102,10 @@ fn forbidden_roots(platform: Platform, env: &impl Fn(&str) -> Option<OsString>, 
             // The MSI's per-machine folder (install-policy.wxi, ProgramFiles6432Folder) and a
             // per-user install folder. A custom folder is not known here; the executable's own
             // folder is fenced below.
-            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("ArtCraft").join("DesignCraft"));
+            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("Naqsh Studio").join("DesignCraft"));
             for key in ["ProgramW6432", "ProgramFiles", "ProgramFiles(x86)"] {
                 if let Some(base) = env(key).filter(|v| !v.is_empty()) {
-                    roots.push(absolute(PathBuf::from(base), key)?.join("ArtCraft").join("DesignCraft"));
+                    roots.push(absolute(PathBuf::from(base), key)?.join("Naqsh Studio").join("DesignCraft"));
                 }
             }
             roots
@@ -318,7 +318,7 @@ mod tests {
         let cases = [
             (Platform::Windows, fixture.root.join("roaming/DesignCraft")),
             (Platform::Windows, fixture.root.join("local/DesignCraft")),
-            (Platform::Windows, fixture.root.join("local/Programs/ArtCraft/DesignCraft")),
+            (Platform::Windows, fixture.root.join("local/Programs/Naqsh Studio/DesignCraft")),
             (Platform::Linux, home.join(".config/designcraft")),
             (Platform::Linux, home.join(".local/share/designcraft")),
             (Platform::Linux, home.join(".cache/designcraft")),

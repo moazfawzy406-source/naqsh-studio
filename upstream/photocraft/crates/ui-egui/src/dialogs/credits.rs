@@ -87,7 +87,7 @@ fn about_info_for(identity: crate::os_window::LaunchIdentity, version: String, c
     let mut links = vec![
         AboutLink::new(tl!("PhotoCraft website"), crate::links::APP_PAGE),
         AboutLink::new(tl!("GitHub"), crate::links::GITHUB),
-        AboutLink::new(tl!("ArtCraft"), crate::links::ARTCRAFT_WEBSITE),
+        AboutLink::new(tl!("Naqsh Studio"), crate::links::ARTCRAFT_WEBSITE),
     ];
     if nightly {
         // Opens only after a user click. No diagnostics, paths or documents are sent automatically.

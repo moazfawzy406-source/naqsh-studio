@@ -12,7 +12,7 @@ pub const COMPILED: BuildFlavor = if cfg!(photocraft_nightly_v1) { BuildFlavor::
 
 pub fn require_profile(flavor: BuildFlavor, profile: &Profile) -> Result<(), String> {
     match (flavor, profile.is_nightly()) {
-        (BuildFlavor::NightlyV1, false) => Err("Open PhotoCraft Nightly from ArtCraft Launcher".into()),
+        (BuildFlavor::NightlyV1, false) => Err("Open PhotoCraft Nightly from Naqsh Studio Launcher".into()),
         (BuildFlavor::Stable, true) => Err("This is a stable PhotoCraft build; nightly-v1 requires the nightly build".into()),
         _ => Ok(()),
     }

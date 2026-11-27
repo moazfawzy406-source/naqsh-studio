@@ -787,7 +787,7 @@ impl PhotocraftMcp {
     }
 
     #[tool(
-        description = "Where this app opens and saves files for agents. Put files the app should open in read_folder (or a folder below it) and find what it saves in write_folder. Both are usually the app's agent folder in Documents/ArtCraft/Agents; the person may have set others. null means the app has no such folder now. Paths passed to other tools may be relative to these folders."
+        description = "Where this app opens and saves files for agents. Put files the app should open in read_folder (or a folder below it) and find what it saves in write_folder. Both are usually the app's agent folder in Documents/Naqsh Studio/Agents; the person may have set others. null means the app has no such folder now. Paths passed to other tools may be relative to these folders."
     )]
     async fn agent_folders(&self) -> Result<CallToolResult, McpError> {
         if let Some(r) = self.headless_op(|h| Ok(session_folders_answer(&h.folders()))).await {

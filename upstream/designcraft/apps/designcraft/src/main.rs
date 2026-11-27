@@ -600,7 +600,7 @@ pub fn main() -> std::process::ExitCode {
                 let mut app = DesignApp::new(session, services());
                 if nightly {
                     // Installed and updated by the Launcher: never check the stable feed from here.
-                    app.set_updates_managed(Some("ArtCraft Launcher"));
+                    app.set_updates_managed(Some("Naqsh Studio Launcher"));
                 } else {
                     app.set_startup_update_check(true);
                 }

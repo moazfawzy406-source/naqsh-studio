@@ -93,3 +93,4 @@ jobs:
           name: naqsh-studio-windows-x64
           path: studio/target/release/naqsh-studio.exe
 # rebuild with menu row translation (0a0244a)
+# rebuild: rebrand strings in Layout/Photo/Deck, Vector Discord removal (515fb02+)
