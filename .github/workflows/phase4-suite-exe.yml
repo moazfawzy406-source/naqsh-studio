@@ -136,6 +136,8 @@ jobs:
           log.write(json.dumps(call("ui.menu.invoke",{"command":"shape.rectangle","params":{"x":100,"y":100,"width":200,"height":120}}))+"\n")
           log.write(json.dumps(call("ui.menu.invoke",{"command":"select.all","params":{}}))+"\n")
           r = call("ui.menu.invoke",{"command":"script.run","params":{"source":src}})
+          time.sleep(8)
+          r = call("ui.inspect",{})
           open("../shots/discover.json","w").write(json.dumps(r))
           log.close()
           PY
@@ -172,3 +174,4 @@ jobs:
 # photo theme
 # photo default
 # discover
+# discover2
