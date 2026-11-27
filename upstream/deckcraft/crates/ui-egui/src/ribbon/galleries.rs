@@ -296,7 +296,7 @@ pub fn effects_menu(app: &mut SlideApp, ui: &mut Ui) {
         }
     });
     ui.menu_button("Glow", |ui| {
-        if ui.button("No Glow").clicked() {
+        if ui.button(crate::ar_ui::tr("No Glow").into_owned()).clicked() {
             run(app, "shape.effects", json!({"glow": null}));
         }
         for r in [5.0, 8.0, 11.0, 18.0] {
@@ -333,7 +333,7 @@ pub fn effects_menu(app: &mut SlideApp, ui: &mut Ui) {
             }
         }
     });
-    if ui.button("Format Shape…").clicked() {
+    if ui.button(crate::ar_ui::tr("Format Shape…").into_owned()).clicked() {
         let _ = app.run("view.pane", json!({"pane": "format", "tab": "effects"}));
     }
 }

@@ -16,7 +16,7 @@ pub(super) fn background(app: &mut SlideApp, ui: &mut Ui) {
     };
     // What "Apply to All" re-applies: the current slide's background as command params.
     let mut current: Option<Value> = None;
-    ui.label(egui::RichText::new("Fill").font(theme::bold(13.0)));
+    ui.label(egui::RichText::new(crate::ar_ui::tr("Fill").into_owned()).font(theme::bold(13.0)));
     for (l, k) in [
         ("Solid fill", "solid"),
         ("Gradient fill", "gradient"),
@@ -50,7 +50,7 @@ pub(super) fn background(app: &mut SlideApp, ui: &mut Ui) {
         Some(Fill::Solid { color }) => {
             current = Some(json!({"color": cref_param(color)}));
             ui.horizontal(|ui| {
-                ui.label("Color");
+                ui.label(crate::ar_ui::tr("Color").into_owned());
                 let r = widgets::drop_button(ui, "Color", vec2(70.0, 20.0), true);
                 widgets::color_popup(&r).show(|ui| {
                     if let Some(Some(c)) = widgets::color_grid(ui, &sc, None) {
@@ -76,7 +76,7 @@ pub(super) fn background(app: &mut SlideApp, ui: &mut Ui) {
             }
         }
         Some(Fill::Picture(pf)) => {
-            if ui.button("Insert picture from file…").clicked()
+            if ui.button(crate::ar_ui::tr("Insert picture from file…").into_owned()).clicked()
                 && let Some(pick) = app.services.pick_open.as_mut()
                 && let Some(path) = pick("picture")
                 && let Some(Ok(bytes)) = app.services.read.as_ref().map(|r| r(&path))
@@ -104,7 +104,7 @@ pub(super) fn background(app: &mut SlideApp, ui: &mut Ui) {
                 run(app, "design.background", json!({"copy": true}));
             }
         }
-        if ui.button("Reset Background").clicked() {
+        if ui.button(crate::ar_ui::tr("Reset Background").into_owned()).clicked() {
             run(app, "design.background", json!({"reset": true}));
         }
     });

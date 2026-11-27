@@ -213,7 +213,7 @@ impl View {
                     commands.push(key(name));
                 }
             }
-            if ui.button("End Show").clicked() {
+            if ui.button(crate::ar_ui::tr("End Show").into_owned()).clicked() {
                 commands.push(Command::End);
             }
         });
@@ -240,7 +240,7 @@ impl View {
         ui.columns(2, |columns| {
             let left = &mut columns[0];
             if snapshot.ended {
-                left.heading("End of slide show");
+                left.heading(crate::ar_ui::tr("End of slide show").into_owned());
             } else if let Some(texture) = &self.current {
                 let response = left.add(
                     egui::Image::new(texture)
@@ -262,10 +262,10 @@ impl View {
                 }
             }
             if snapshot.zoom_armed {
-                left.label("Click the preview to zoom.");
+                left.label(crate::ar_ui::tr("Click the preview to zoom.").into_owned());
             }
             let right = &mut columns[1];
-            right.label("Next");
+            right.label(crate::ar_ui::tr("Next").into_owned());
             if let Some(texture) = &self.next {
                 right.add(egui::Image::new(texture).fit_to_exact_size(fit_preview(
                     texture.size_vec2(),
@@ -273,10 +273,10 @@ impl View {
                     right.available_height() * 0.45,
                 )));
             } else {
-                right.label("End of slide show");
+                right.label(crate::ar_ui::tr("End of slide show").into_owned());
             }
             right.horizontal(|ui| {
-                ui.label("Notes");
+                ui.label(crate::ar_ui::tr("Notes").into_owned());
                 if ui.button("A−").clicked() {
                     commands.push(key(egui::Key::OpenBracket.name()));
                 }
@@ -305,8 +305,8 @@ impl View {
                 .map(|(i, p)| p.image().map(|image| ui.ctx().load_texture(format!("remote-grid-{i}"), image, egui::TextureOptions::LINEAR)))
                 .collect();
         }
-        ui.heading("All slides");
-        ui.label("Choose a slide to show it, or press G to return.");
+        ui.heading(crate::ar_ui::tr("All slides").into_owned());
+        ui.label(crate::ar_ui::tr("Choose a slide to show it, or press G to return.").into_owned());
         if snapshot.total > crate::show::GRID_CAP {
             ui.label(format!("First {} slides", crate::show::GRID_CAP));
         }

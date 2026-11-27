@@ -12,7 +12,7 @@ pub(super) fn thesaurus(app: &mut SlideApp, ui: &mut Ui) {
     ui.add_space(6.0);
     let senses = deckcraft_engine::thesaurus::lookup(&q);
     if q.trim().is_empty() {
-        ui.label(egui::RichText::new("Select a word on the slide, or type one above.").color(t.text_dim));
+        ui.label(egui::RichText::new(crate::ar_ui::tr("Select a word on the slide, or type one above.").into_owned()).color(t.text_dim));
         return;
     }
     if senses.is_empty() {

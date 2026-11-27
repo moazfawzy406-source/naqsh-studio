@@ -54,10 +54,10 @@ pub(super) fn find_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bo
                 d.fields.insert("status".into(), msg);
                 d.fields.remove("cur");
             }
-        } else if ui.button("Replace…").clicked() {
+        } else if ui.button(crate::ar_ui::tr("Replace…").into_owned()).clicked() {
             d.fields.insert("replace".into(), "1".into());
         }
-        if ui.button("Close").clicked() {
+        if ui.button(crate::ar_ui::tr("Close").into_owned()).clicked() {
             close = true;
         }
     });

@@ -337,7 +337,8 @@ fn toggle(app: &mut SlideApp, ui: &mut Ui, icon: Icon, label: &str, id: &str, on
 }
 
 fn tip(id: &str, label: &str) -> String {
-    let label = &*crate::ar_ui::tr(label);
+    let label_tr = crate::ar_ui::tr(label);
+    let label = &*label_tr;
     let sc = deckcraft_engine::find_command(id).and_then(|c| c.shortcut).or_else(|| crate::UI_COMMANDS.iter().find(|c| c.0 == id).and_then(|c| c.2));
     match sc {
         Some(s) => format!("{label} ({})", pretty_shortcut(s)),

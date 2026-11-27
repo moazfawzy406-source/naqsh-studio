@@ -59,10 +59,10 @@ pub(super) fn smartart_design(app: &mut SlideApp, ui: &mut Ui) {
         let (main, arrow) = small_button_ex(ui, Icon::Layout, "Convert", gid.is_some(), false, true);
         if let Some(arrow) = arrow {
             widgets::split_menu(&main, &arrow, |ui| {
-                if ui.button("Convert to Text").clicked() {
+                if ui.button(crate::ar_ui::tr("Convert to Text").into_owned()).clicked() {
                     run(app, "smartArt.toText", json!({"id": gid}));
                 }
-                if ui.button("Convert to Shapes").clicked() {
+                if ui.button(crate::ar_ui::tr("Convert to Shapes").into_owned()).clicked() {
                     run(app, "smartArt.toShapes", json!({"id": gid}));
                 }
             });

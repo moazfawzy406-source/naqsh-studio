@@ -47,11 +47,11 @@ pub(super) fn insert(app: &mut SlideApp, ui: &mut Ui) {
                 ui.close();
             }
             ui.separator();
-            if ui.button("Insert Table…").clicked() {
+            if ui.button(crate::ar_ui::tr("Insert Table…").into_owned()).clicked() {
                 app.dialog = Some(crate::dialogs::Dialog::new("table"));
                 ui.close();
             }
-            if ui.button("Draw Table").clicked() {
+            if ui.button(crate::ar_ui::tr("Draw Table").into_owned()).clicked() {
                 app.session.set_tool(deckcraft_engine::ToolKind::Shape { preset: deckcraft_engine::tools::DRAW_TABLE.into() });
                 ui.close();
             }
@@ -191,7 +191,7 @@ fn render_filtered_icons(app: &mut SlideApp, ui: &mut Ui, icons: &[deckcraft_eng
         }
     });
     if n == 0 {
-        ui.label("No icons match.");
+        ui.label(crate::ar_ui::tr("No icons match.").into_owned());
     }
 }
 

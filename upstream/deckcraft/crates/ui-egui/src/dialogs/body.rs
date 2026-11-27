@@ -99,7 +99,7 @@ fn dlg_slide_size(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         put_slide_dim(d, "w", cur.width, ppu);
         put_slide_dim(d, "h", cur.height, ppu);
     }
-    let label = ui.label("Slides sized for:");
+    let label = ui.label(crate::ar_ui::tr("Slides sized for:").into_owned());
     let preset = d.get("preset", "");
     let combo = craft_ui::ComboBox::from_id_salt("sizes").selected_text(if preset.is_empty() { "Custom" } else { &preset }).show_ui(ui, |ui| {
         for (label, w, h) in deckcraft_model::defaults::SLIDE_SIZES {
@@ -117,7 +117,7 @@ fn dlg_slide_size(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     field(ui, d, &format!("Height ({abbr}):"), "h", &h_seed);
     let (w, h) = (slide_dim_points(d, "w", ppu, cur.width), slide_dim_points(d, "h", ppu, cur.height));
     ui.horizontal(|ui| {
-        ui.label("Orientation:");
+        ui.label(crate::ar_ui::tr("Orientation:").into_owned());
         let portrait = ui.radio(h > w, "Portrait").clicked();
         let landscape = ui.radio(w >= h, "Landscape").clicked();
         // Picking the other orientation swaps the width and height fields.
@@ -148,7 +148,7 @@ fn dlg_header_footer(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let label = rows.iter().find(|(k, _)| *k == fmt).map(|(_, s)| s.clone()).unwrap_or_else(|| fmt.clone());
     ui.add_enabled_ui(date && automatic, |ui| {
         ui.horizontal(|ui| {
-            ui.label("  Format:");
+            ui.label(crate::ar_ui::tr("  Format:").into_owned());
             craft_ui::ComboBox::from_id_salt("hf-date-format").selected_text(label).width(200.0).show_ui(ui, |ui| {
                 for (kind, sample) in &rows {
                     if ui.selectable_label(fmt == *kind, sample).clicked() {
@@ -166,9 +166,9 @@ fn dlg_header_footer(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let mut apply_all = false;
     let mut apply = false;
     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-        apply_all = ui.button("Apply to All").clicked();
-        apply = ui.button("Apply").clicked();
-        if ui.button("Cancel").clicked() {
+        apply_all = ui.button(crate::ar_ui::tr("Apply to All").into_owned()).clicked();
+        apply = ui.button(crate::ar_ui::tr("Apply").into_owned()).clicked();
+        if ui.button(crate::ar_ui::tr("Cancel").into_owned()).clicked() {
             d.fields.insert("cancel".into(), "1".into());
         }
     });
@@ -245,7 +245,7 @@ fn dlg_hyperlink(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
 fn dlg_setup_show(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let sh = app.session.active().map(|s| s.doc.show.clone()).unwrap_or_default();
     let ty = d.get("type", &sh.show_type);
-    ui.label("Show type");
+    ui.label(crate::ar_ui::tr("Show type").into_owned());
     for (l, v) in [
         ("Presented by a speaker (full screen)", "speaker"),
         ("Browsed by an individual (window)", "browsed"),
@@ -262,7 +262,7 @@ fn dlg_setup_show(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let kc = check(ui, d, "Keep mouse cursor visible", "kc", app.ui.show_keep_cursor);
     let names: Vec<String> = app.session.active().map(|s| s.doc.custom_shows.iter().map(|c| c.name.clone()).collect()).unwrap_or_default();
     let chosen = d.fields.entry("custom".into()).or_insert_with(|| sh.custom_show.clone().unwrap_or_default()).clone();
-    let field = ui.label("Slides");
+    let field = ui.label(crate::ar_ui::tr("Slides").into_owned());
     let label = if chosen.is_empty() { "All slides".to_string() } else { chosen.clone() };
     let combo = craft_ui::ComboBox::from_id_salt("setup_custom").selected_text(label).show_ui(ui, |ui| {
         if ui.selectable_label(chosen.is_empty(), "All slides").clicked() {
@@ -294,7 +294,7 @@ fn dlg_quit(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
     }
     let what = if names.len() == 1 { format!("“{}”", names[0]) } else { format!("{} presentations", names.len()) };
     ui.label(egui::RichText::new(format!("Do you want to save the changes you made to {what}?")).strong());
-    ui.label("Your changes will be lost if you don't save them.");
+    ui.label(crate::ar_ui::tr("Your changes will be lost if you don't save them.").into_owned());
     ui.add_space(8.0);
     let mut done = false;
     ui.horizontal(|ui| {
@@ -306,7 +306,7 @@ fn dlg_quit(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
             done = true;
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            let save = ui.add(egui::Button::new(egui::RichText::new("Save").color(t.accent_text)).fill(t.accent).min_size(vec2(72.0, 24.0)));
+            let save = ui.add(egui::Button::new(egui::RichText::new(crate::ar_ui::tr("Save").into_owned()).color(t.accent_text)).fill(t.accent).min_size(vec2(72.0, 24.0)));
             if save.clicked() || ui.input(|i| i.key_pressed(egui::Key::Enter)) {
                 if app.save_all() {
                     app.quit_confirmed = true;
@@ -326,7 +326,7 @@ fn dlg_close(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
     // File › Close and Ctrl+W on a presentation with unsaved changes.
     let Some(name) = app.session.active().map(|d| d.title()) else { return true };
     ui.label(egui::RichText::new(format!("Do you want to save the changes you made to “{name}”?")).strong());
-    ui.label("Your changes will be lost if you don't save them.");
+    ui.label(crate::ar_ui::tr("Your changes will be lost if you don't save them.").into_owned());
     ui.add_space(8.0);
     let mut done = false;
     ui.horizontal(|ui| {
@@ -336,7 +336,7 @@ fn dlg_close(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
             done = true;
         }
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-            let save = ui.add(egui::Button::new(egui::RichText::new("Save").color(t.accent_text)).fill(t.accent).min_size(vec2(72.0, 24.0)));
+            let save = ui.add(egui::Button::new(egui::RichText::new(crate::ar_ui::tr("Save").into_owned()).color(t.accent_text)).fill(t.accent).min_size(vec2(72.0, 24.0)));
             if save.clicked() || ui.input(|i| i.key_pressed(egui::Key::Enter)) {
                 app.save();
                 // In the browser a save is a download: the presentation stays "unsaved". A page
@@ -440,7 +440,7 @@ fn dlg_bullets(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         let _ = combo.response.labelled_by(field.id);
     });
     ui.horizontal(|ui| {
-        if ui.button("None").on_hover_text("Remove bullets and numbering").clicked() {
+        if ui.button(crate::ar_ui::tr("None").into_owned()).on_hover_text("Remove bullets and numbering").clicked() {
             d.fields.insert("none".into(), "1".into());
         }
     });
@@ -560,7 +560,7 @@ fn dlg_action(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         }
         "customShow" => {
             if shows.is_empty() {
-                ui.label("This presentation has no custom shows (Slide Show ▸ Custom Slide Show).");
+                ui.label(crate::ar_ui::tr("This presentation has no custom shows (Slide Show ▸ Custom Slide Show).").into_owned());
             }
             let sel = d.get("arg", if cur_kind == "customShow" { &cur_arg } else { shows.first().map_or("", String::as_str) });
             for n in &shows {
@@ -605,7 +605,7 @@ fn dlg_alt_text(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
             (cur, deco)
         })
         .unwrap_or_default();
-    ui.label("How would you describe this object and its context to someone who is blind or has low vision?");
+    ui.label(crate::ar_ui::tr("How would you describe this object and its context to someone who is blind or has low vision?").into_owned());
     let mut v = d.get("text", &cur);
     ui.add(egui::TextEdit::multiline(&mut v).hint_text("Alt text").desired_rows(4).desired_width(340.0));
     d.fields.insert("text".into(), v.clone());
@@ -618,7 +618,7 @@ fn dlg_alt_text(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
 }
 
 fn dlg_outline(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
-    ui.label("Paste or type an outline. Unindented lines become slide titles; tab-indented lines become bullets.");
+    ui.label(crate::ar_ui::tr("Paste or type an outline. Unindented lines become slide titles; tab-indented lines become bullets.").into_owned());
     let mut v = d.get("text", "");
     ui.add(egui::TextEdit::multiline(&mut v).hint_text("Outline").desired_rows(10).desired_width(380.0).code_editor());
     d.fields.insert("text".into(), v.clone());
@@ -711,7 +711,7 @@ fn dlg_rename_section(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
 /// outline, animated GIF, RTF) and its options; Export hands them to [`SlideApp::export_as`].
 /// Returns true when the dialog should close.
 fn dlg_export(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
-    ui.label("Export the presentation as:");
+    ui.label(crate::ar_ui::tr("Export the presentation as:").into_owned());
     let fmt = d.get("fmt", "pdf");
     for (l, f) in [
         ("PDF document (.pdf)", "pdf"),
@@ -732,7 +732,7 @@ fn dlg_export(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     if fmt == "pdf" {
         ui.add_space(4.0);
         ui.horizontal(|ui| {
-            let field = ui.label("Print layout:");
+            let field = ui.label(crate::ar_ui::tr("Print layout:").into_owned());
             let combo = craft_ui::ComboBox::from_id_salt("pdf_layout")
                 .selected_text(match pdf_layout.as_str() {
                     "notes" => "Notes Pages",
@@ -817,7 +817,7 @@ fn dlg_replace_fonts(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let mut from = d.get("from", used.first().map(String::as_str).unwrap_or(""));
     let mut to = d.get("to", "");
     egui::Grid::new("replace_fonts").num_columns(2).spacing(vec2(10.0, 8.0)).show(ui, |ui| {
-        let field = ui.label("Replace:");
+        let field = ui.label(crate::ar_ui::tr("Replace:").into_owned());
         let combo = craft_ui::ComboBox::from_id_salt("rf_from").width(240.0).selected_text(from.clone()).show_ui(ui, |ui| {
             for f in &used {
                 ui.selectable_value(&mut from, f.clone(), f);
@@ -825,7 +825,7 @@ fn dlg_replace_fonts(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         });
         let _ = combo.response.labelled_by(field.id);
         ui.end_row();
-        ui.label("With:");
+        ui.label(crate::ar_ui::tr("With:").into_owned());
         ui.vertical(|ui| {
             ui.add(egui::TextEdit::singleline(&mut to).desired_width(240.0).hint_text("Font name"));
             let needle = to.trim().to_lowercase();
@@ -857,7 +857,7 @@ fn dlg_replace_fonts(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
 }
 
 fn dlg_symbol(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
-    ui.label("Click a symbol to insert it at the insertion point.");
+    ui.label(crate::ar_ui::tr("Click a symbol to insert it at the insertion point.").into_owned());
     let groups: [(&str, &str); 6] = [
         ("Punctuation", "–—‘’“”…•·§¶†‡‰′″‹›«»¡¿"),
         ("Currency", "$€£¥¢₹₩₽₺₿"),
@@ -884,7 +884,7 @@ fn dlg_symbol(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
 }
 
 fn dlg_equation(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
-    ui.label("Type an equation in linear form (e.g. a^2+b^2=c^2, x=(-b±√(b^2-4ac))/2a).");
+    ui.label(crate::ar_ui::tr("Type an equation in linear form (e.g. a^2+b^2=c^2, x=(-b±√(b^2-4ac))/2a).").into_owned());
     let mut v = d.get("eq", "");
     ui.add(egui::TextEdit::singleline(&mut v).hint_text("Equation").desired_width(340.0).font(theme::font(15.0)));
     d.fields.insert("eq".into(), v.clone());
@@ -910,7 +910,7 @@ fn dlg_paste_special(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     ];
     let has_shapes = !app.session.clipboard.shapes.is_empty();
     let mut cur = d.get("as", "destinationTheme");
-    ui.label("As:");
+    ui.label(crate::ar_ui::tr("As:").into_owned());
     for (id, label) in OPTS {
         let ok = has_shapes || matches!(id, "destinationTheme" | "text");
         ui.add_enabled_ui(ok, |ui| ui.radio_value(&mut cur, id.to_string(), label));
@@ -951,7 +951,7 @@ fn dlg_spelling(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         ),
     };
     if list.is_empty() {
-        ui.label("The spelling check is complete. No issues found.");
+        ui.label(crate::ar_ui::tr("The spelling check is complete. No issues found.").into_owned());
     }
     let mut add_ignore = None;
     egui::ScrollArea::vertical().max_height(320.0).show(ui, |ui| {
@@ -982,7 +982,7 @@ fn dlg_spelling(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
             if item.get("repeated").and_then(Value::as_bool).unwrap_or(false) && !item.get("notes").and_then(Value::as_bool).unwrap_or(false) {
                 ui.horizontal(|ui| {
                     ui.add_space(16.0);
-                    ui.label(egui::RichText::new("Repeated word").weak());
+                    ui.label(egui::RichText::new(crate::ar_ui::tr("Repeated word").into_owned()).weak());
                     if ui.small_button("Delete Repeated Word").clicked() {
                         let from = item.get("deleteFrom").and_then(Value::as_u64).unwrap_or(0) as usize;
                         let end = item.get("end").and_then(Value::as_u64).unwrap_or(0) as usize;
@@ -1011,7 +1011,7 @@ fn dlg_spelling(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
             if !sug.is_empty() {
                 ui.horizontal_wrapped(|ui| {
                     ui.add_space(16.0);
-                    ui.label(egui::RichText::new("Change to:").weak());
+                    ui.label(egui::RichText::new(crate::ar_ui::tr("Change to:").into_owned()).weak());
                     for to in &sug {
                         let r = ui.small_button(to.as_str()).on_hover_text("Click to change this one; Shift-click to change all");
                         if r.clicked() {
@@ -1070,7 +1070,7 @@ fn dlg_accessibility(app: &mut SlideApp, ui: &mut Ui, _d: &mut Dialog) -> bool {
     let v = app.session.execute("review.accessibility", &json!({})).unwrap_or_default();
     let list = v.as_array().cloned().unwrap_or_default();
     if list.is_empty() {
-        ui.label("No accessibility issues found. People with disabilities should not have difficulty reading this document.");
+        ui.label(crate::ar_ui::tr("No accessibility issues found. People with disabilities should not have difficulty reading this document.").into_owned());
     }
     egui::ScrollArea::vertical().max_height(300.0).show(ui, |ui| {
         for item in &list {
@@ -1103,7 +1103,7 @@ fn dlg_language(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let has_sel = deckcraft_engine::cmd::has_text_or_shapes(&app.session).is_ok();
     let mut all = !has_sel || d.get("scope", "") == "all";
     ui.horizontal(|ui| {
-        ui.label("Apply to:");
+        ui.label(crate::ar_ui::tr("Apply to:").into_owned());
         if ui.add_enabled(has_sel, egui::RadioButton::new(!all, "Selected text")).clicked() {
             d.fields.insert("scope".into(), "sel".into());
             all = false;
@@ -1130,7 +1130,7 @@ fn dlg_language(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         }
     });
     ui.add_space(4.0);
-    ui.label(egui::RichText::new("Spelling is checked for languages marked (dictionary).").small().weak());
+    ui.label(egui::RichText::new(crate::ar_ui::tr("Spelling is checked for languages marked (dictionary).").into_owned()).small().weak());
     if ui.checkbox(&mut no_proof, "Do not check spelling or grammar").changed() {
         d.fields.insert("noProof".into(), if no_proof { "1".into() } else { String::new() });
     }
@@ -1178,11 +1178,11 @@ fn dlg_chart_data(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
             .find_map(|x| if let deckcraft_model::ShapeKind::Chart(c) = &x.kind { Some(((**c).clone(), x.id)) } else { None })
     });
     let Some((c, id)) = ch else {
-        ui.label("Select a chart first.");
+        ui.label(crate::ar_ui::tr("Select a chart first.").into_owned());
         let (ok, cancel) = buttons(ui, "Close");
         return ok || cancel;
     };
-    ui.label("Edit the data: first row = series names, first column = categories.");
+    ui.label(crate::ar_ui::tr("Edit the data: first row = series names, first column = categories.").into_owned());
     let mut grid: Vec<Vec<String>> = d.params.get("grid").and_then(|g| serde_json::from_value(g.clone()).ok()).unwrap_or_else(|| {
         let mut g = vec![std::iter::once(String::new()).chain(c.series.iter().map(|s| s.name.clone())).collect::<Vec<_>>()];
         for (i, cat) in c.categories.iter().enumerate() {
@@ -1203,11 +1203,11 @@ fn dlg_chart_data(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         }
     });
     ui.horizontal(|ui| {
-        if ui.button("+ Row").clicked() {
+        if ui.button(crate::ar_ui::tr("+ Row").into_owned()).clicked() {
             let n = grid.first().map(Vec::len).unwrap_or(2);
             grid.push(vec![String::new(); n]);
         }
-        if ui.button("+ Series").clicked() {
+        if ui.button(crate::ar_ui::tr("+ Series").into_owned()).clicked() {
             for r in grid.iter_mut() {
                 r.push(String::new());
             }
@@ -1247,7 +1247,7 @@ fn dlg_trim(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
 }
 
 fn dlg_smartart(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
-    ui.label("Pick a graphic; type one item per line.");
+    ui.label(crate::ar_ui::tr("Pick a graphic; type one item per line.").into_owned());
     let kind = d.get("kind", "process");
     ui.horizontal_wrapped(|ui| {
         for (k, l) in [
@@ -1308,9 +1308,9 @@ fn dlg_autocorrect(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     let mut from = d.get("from", "");
     let mut to = d.get("to", "");
     ui.horizontal(|ui| {
-        let l = ui.label("Replace");
+        let l = ui.label(crate::ar_ui::tr("Replace").into_owned());
         ui.add(egui::TextEdit::singleline(&mut from).desired_width(90.0)).labelled_by(l.id);
-        let l = ui.label("With");
+        let l = ui.label(crate::ar_ui::tr("With").into_owned());
         ui.add(egui::TextEdit::singleline(&mut to).desired_width(130.0)).labelled_by(l.id);
         if ui.add_enabled(!from.trim().is_empty(), egui::Button::new("Add")).clicked() {
             run(app, "text.autocorrect", json!({"add": [from.trim(), to]}));
@@ -1345,7 +1345,7 @@ fn dlg_preferences(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     if d.params.get("before").is_none() {
         d.params = json!({ "before": preferences_snapshot(app) });
     }
-    ui.label(egui::RichText::new("General").font(theme::bold(13.0)));
+    ui.label(egui::RichText::new(crate::ar_ui::tr("General").into_owned()).font(theme::bold(13.0)));
     let mut dark = app.ui.brightness == theme::Brightness::Dark;
     if ui.checkbox(&mut dark, "Dark appearance").changed() {
         let _ = app.run("view.dark", json!({"on": dark}));
@@ -1359,7 +1359,7 @@ fn dlg_preferences(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     // the slider's own text and kept only its accessible name, which left a bare "1.00".
     let r = ui
         .horizontal(|ui| {
-            ui.label("Interface size:");
+            ui.label(crate::ar_ui::tr("Interface size:").into_owned());
             ui.add(egui::Slider::new(&mut scale, 0.75..=1.75))
         })
         .inner;
@@ -1377,18 +1377,18 @@ fn dlg_preferences(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
     }
     // PowerPoint takes the unit from the system's measurement setting; DeckCraft asks here.
     ui.horizontal(|ui| {
-        ui.label("Measurement units:");
+        ui.label(crate::ar_ui::tr("Measurement units:").into_owned());
         let units = &mut app.session.prefs.units;
         ui.radio_value(units, deckcraft_geom::Unit::Inches, "Inches");
         ui.radio_value(units, deckcraft_geom::Unit::Centimeters, "Centimeters");
     });
-    ui.label(egui::RichText::new("Editing").font(theme::bold(13.0)));
+    ui.label(egui::RichText::new(crate::ar_ui::tr("Editing").into_owned()).font(theme::bold(13.0)));
     ui.checkbox(&mut app.session.prefs.smart_guides, "Show smart guides");
     ui.checkbox(&mut app.session.prefs.snap_to_grid, "Snap objects to grid");
     ui.checkbox(&mut app.session.prefs.smart_quotes, "Replace straight quotes with smart quotes");
     ui.horizontal(|ui| {
         ui.checkbox(&mut app.session.prefs.autocorrect, "AutoCorrect as you type");
-        if ui.button("AutoCorrect Options…").clicked() {
+        if ui.button(crate::ar_ui::tr("AutoCorrect Options…").into_owned()).clicked() {
             *d = Dialog::new("autocorrect");
         }
     });
@@ -1396,7 +1396,7 @@ fn dlg_preferences(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bool {
         return false;
     }
     ui.horizontal(|ui| {
-        let label = ui.label("Your name (comments):");
+        let label = ui.label(crate::ar_ui::tr("Your name (comments):").into_owned());
         // Name the field for assistive technology; a bare text edit next to a label is an
         // unnamed input in egui 0.37's accessibility tree.
         let _ = ui.add(egui::TextEdit::singleline(&mut app.session.prefs.author)).labelled_by(label.id);

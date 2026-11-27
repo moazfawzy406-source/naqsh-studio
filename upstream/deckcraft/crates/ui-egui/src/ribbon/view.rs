@@ -66,7 +66,7 @@ pub(super) fn view(app: &mut SlideApp, ui: &mut Ui) {
                         ui.close();
                     }
                 }
-                if ui.button("Fit").clicked() {
+                if ui.button(crate::ar_ui::tr("Fit").into_owned()).clicked() {
                     let _ = app.run("view.fit", json!({}));
                     ui.close();
                 }

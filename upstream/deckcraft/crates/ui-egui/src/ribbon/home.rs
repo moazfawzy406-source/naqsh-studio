@@ -15,16 +15,16 @@ fn clipboard_group(app: &mut SlideApp, ui: &mut Ui) {
         }
         if let Some(a) = arrow {
             egui::Popup::menu(&a).show(|ui| {
-                if ui.button("Paste").clicked() {
+                if ui.button(crate::ar_ui::tr("Paste").into_owned()).clicked() {
                     run(app, "edit.paste", json!({}));
                 }
-                if ui.button("Paste and Match Formatting").clicked() {
+                if ui.button(crate::ar_ui::tr("Paste and Match Formatting").into_owned()).clicked() {
                     run(app, "edit.pasteText", json!({}));
                 }
-                if ui.button("Paste Special…").clicked() {
+                if ui.button(crate::ar_ui::tr("Paste Special…").into_owned()).clicked() {
                     run(app, "app.pasteSpecial", json!({}));
                 }
-                if ui.button("Paste Formatting").clicked() {
+                if ui.button(crate::ar_ui::tr("Paste Formatting").into_owned()).clicked() {
                     run(app, "format.painterApply", json!({}));
                 }
             });
@@ -124,10 +124,10 @@ fn slides_group(app: &mut SlideApp, ui: &mut Ui) {
 fn new_slide_menu(app: &mut SlideApp, ui: &mut Ui) {
     layout_menu(app, ui, "slide.new");
     ui.separator();
-    if ui.button("Duplicate Selected Slides").clicked() {
+    if ui.button(crate::ar_ui::tr("Duplicate Selected Slides").into_owned()).clicked() {
         run(app, "slide.duplicate", json!({}));
     }
-    if ui.button("Slides from Outline…").clicked() {
+    if ui.button(crate::ar_ui::tr("Slides from Outline…").into_owned()).clicked() {
         app.dialog = Some(crate::dialogs::Dialog::new("outline"));
     }
     let desktop = app.services.pick_open.is_some();
@@ -142,10 +142,10 @@ fn new_slide_menu(app: &mut SlideApp, ui: &mut Ui) {
 
 /// The Section split button's menu.
 fn section_menu(app: &mut SlideApp, ui: &mut Ui) {
-    if ui.button("Add Section").clicked() {
+    if ui.button(crate::ar_ui::tr("Add Section").into_owned()).clicked() {
         run(app, "section.add", json!({}));
     }
-    if ui.button("Remove All Sections").clicked() {
+    if ui.button(crate::ar_ui::tr("Remove All Sections").into_owned()).clicked() {
         run(app, "section.removeAll", json!({}));
     }
 }
@@ -190,7 +190,7 @@ fn font_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                     }
                     ui.separator();
                     // Fonts installed while DeckCraft runs (e.g. into ~/.local/share/fonts).
-                    if ui.button("Rescan Installed Fonts").clicked() {
+                    if ui.button(crate::ar_ui::tr("Rescan Installed Fonts").into_owned()).clicked() {
                         run(app, "font.rescan", json!({}));
                         ui.close();
                     }
@@ -281,7 +281,7 @@ fn paragraph_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                 }
                 if let Some(a) = a {
                     egui::Popup::menu(&a).show(|ui| {
-                        if ui.button("None").clicked() {
+                        if ui.button(crate::ar_ui::tr("None").into_owned()).clicked() {
                             run(app, "format.bullets", json!({"on": false}));
                         }
                         for ch in ["•", "○", "■", "□", "◆", "➢", "✓", "–", "★"] {
@@ -290,7 +290,7 @@ fn paragraph_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                             }
                         }
                         ui.separator();
-                        if ui.button("Bullets and Numbering…").clicked() {
+                        if ui.button(crate::ar_ui::tr("Bullets and Numbering…").into_owned()).clicked() {
                             let mut dlg = crate::dialogs::Dialog::new("bullets");
                             dlg.fields.insert("tab".into(), "bulleted".into());
                             app.dialog = Some(dlg);
@@ -303,7 +303,7 @@ fn paragraph_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                 }
                 if let Some(a) = a {
                     egui::Popup::menu(&a).show(|ui| {
-                        if ui.button("None").clicked() {
+                        if ui.button(crate::ar_ui::tr("None").into_owned()).clicked() {
                             run(app, "format.numbering", json!({"on": false}));
                         }
                         for (label, sch) in [
@@ -320,7 +320,7 @@ fn paragraph_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                             }
                         }
                         ui.separator();
-                        if ui.button("Bullets and Numbering…").clicked() {
+                        if ui.button(crate::ar_ui::tr("Bullets and Numbering…").into_owned()).clicked() {
                             let mut dlg = crate::dialogs::Dialog::new("bullets");
                             dlg.fields.insert("tab".into(), "numbered".into());
                             app.dialog = Some(dlg);
@@ -336,10 +336,10 @@ fn paragraph_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                             run(app, "format.lineSpacing", json!({"lines": v}));
                         }
                     }
-                    if ui.button("Line Spacing Options…").clicked() {
+                    if ui.button(crate::ar_ui::tr("Line Spacing Options…").into_owned()).clicked() {
                         run(app, "format.paragraphDialog", json!({}));
                     }
-                    if ui.button("Tabs…").clicked() {
+                    if ui.button(crate::ar_ui::tr("Tabs…").into_owned()).clicked() {
                         app.dialog = Some(crate::dialogs::Dialog::new("tabs"));
                     }
                 });
@@ -350,7 +350,7 @@ fn paragraph_group(app: &mut SlideApp, ui: &mut Ui, st: &Value) {
                             run(app, "format.columns", json!({"count": n, "spacing": 18}));
                         }
                     }
-                    if ui.button("More Columns…").clicked() {
+                    if ui.button(crate::ar_ui::tr("More Columns…").into_owned()).clicked() {
                         run(app, "format.columns", json!({}));
                     }
                 });

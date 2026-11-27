@@ -115,7 +115,7 @@ pub fn gradient_editor(ui: &mut Ui, id: &str, g: &Gradient, sc: &ColorScheme) ->
     let mut sel: usize = ui.data_mut(|d| d.get_temp(sel_id).unwrap_or(0)).min(g.stops.len().saturating_sub(1));
 
     // Preset variations of the first stop's colour.
-    ui.label("Preset gradients");
+    ui.label(crate::ar_ui::tr("Preset gradients").into_owned());
     ui.horizontal_wrapped(|ui| {
         let base = g.stops.first().map(|s| s.color.clone()).unwrap_or(ColorRef::scheme(SchemeSlot::Accent1));
         let mut light = base.clone();
@@ -225,7 +225,7 @@ pub fn gradient_editor(ui: &mut Ui, id: &str, g: &Gradient, sc: &ColorScheme) ->
 
     // Stop bar: click to add, drag a stop to move it.
     ui.add_space(4.0);
-    ui.label("Gradient stops");
+    ui.label(crate::ar_ui::tr("Gradient stops").into_owned());
     let (bar, bar_resp) = ui.allocate_exact_size(vec2(ui.available_width().min(260.0), 18.0), Sense::click());
     bar_resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Unknown, true, "Gradient bar"));
     paint_bar(ui, bar, g, sc);
@@ -490,7 +490,7 @@ pub fn pattern_editor(ui: &mut Ui, pt: &PatternFill, sc: &ColorScheme) -> Option
     let t = Tokens::get(ui.ctx());
     let mut out: Option<PatternFill> = None;
     let (fg, bg) = (c32(&pt.fg, sc), c32(&pt.bg, sc));
-    ui.label("Pattern");
+    ui.label(crate::ar_ui::tr("Pattern").into_owned());
     ui.horizontal_wrapped(|ui| {
         ui.spacing_mut().item_spacing = vec2(2.0, 2.0);
         for name in pattern_gallery() {

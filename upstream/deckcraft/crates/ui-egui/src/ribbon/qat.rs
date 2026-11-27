@@ -144,7 +144,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
             run(app, q);
         }
         r.context_menu(|ui| {
-            if ui.button("Remove from Quick Access Toolbar").clicked() {
+            if ui.button(crate::ar_ui::tr("Remove from Quick Access Toolbar").into_owned()).clicked() {
                 let _ = command(app, &json!({"remove": q.id, "params": q.params}));
                 ui.close();
             }
@@ -152,7 +152,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
     }
     let r = crate::widgets::icon_toggle(ui, Icon::ChevronDown, "Customize Quick Access Toolbar", true, false);
     egui::Popup::menu(&r).show(|ui| {
-        ui.label(egui::RichText::new("Customize Quick Access Toolbar").strong());
+        ui.label(egui::RichText::new(crate::ar_ui::tr("Customize Quick Access Toolbar").into_owned()).strong());
         for c in common() {
             let mut on = app.ui.qat.iter().any(|q| q.same(&c.id, &Value::Null));
             if ui.checkbox(&mut on, &c.label).changed() {
@@ -171,8 +171,8 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
             }
         }
         ui.separator();
-        ui.label(egui::RichText::new("Right-click any ribbon button to add it.").weak());
-        if ui.button("Reset to Defaults").clicked() {
+        ui.label(egui::RichText::new(crate::ar_ui::tr("Right-click any ribbon button to add it.").into_owned()).weak());
+        if ui.button(crate::ar_ui::tr("Reset to Defaults").into_owned()).clicked() {
             let _ = command(app, &json!({"reset": true}));
             ui.close();
         }

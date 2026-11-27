@@ -769,7 +769,7 @@ fn draw_bars(ui: &mut Ui, show: &mut Show, f: &Fr, painter: &egui::Painter, out:
                 .max_rect(Rect::from_min_max(pos2(bar.max.x - 260.0, bar.min.y), bar.max))
                 .layout(egui::Layout::right_to_left(egui::Align::Center)),
         );
-        if child.button("Close").clicked() {
+        if child.button(crate::ar_ui::tr("Close").into_owned()).clicked() {
             out.keep = false;
         }
         if child.button("▶").clicked() {

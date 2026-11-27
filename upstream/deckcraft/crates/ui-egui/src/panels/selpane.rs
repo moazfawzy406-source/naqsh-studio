@@ -398,7 +398,7 @@ fn context_menu(app: &mut SlideApp, resp: &egui::Response, row: &Row) {
             }
         }
         ui.separator();
-        if ui.button("Rename").clicked() {
+        if ui.button(crate::ar_ui::tr("Rename").into_owned()).clicked() {
             app.selpane.renaming = Some((row.id, row.name.clone()));
             app.selpane.rename_started = false;
             ui.close();

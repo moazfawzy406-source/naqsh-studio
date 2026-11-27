@@ -439,7 +439,8 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
 fn nav_item(ui: &mut Ui, nav: Nav, bs: &Backstage, index: usize, t: &Tokens) -> egui::Response {
     let (rect, resp) = ui.allocate_exact_size(vec2(NAV_W, ITEM_H), Sense::click());
     let selected = nav == Nav::Page(bs.page);
-    let label = nav.label();
+    let label_tr = crate::ar_ui::tr(nav.label());
+    let label = &*label_tr;
     resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::Button, true, selected, label));
     let p = ui.painter();
     let row = rect.shrink2(vec2(6.0, 1.0));
@@ -466,18 +467,24 @@ fn separator(ui: &mut Ui, t: &Tokens) {
 // ---------------------------------------------------------------- shared pieces
 
 fn heading(ui: &mut Ui, text: &str) {
+    let text_tr = crate::ar_ui::tr(text);
+    let text = &*text_tr;
     let t = Tokens::get(ui.ctx());
     ui.label(RichText::new(text).font(theme::bold(16.0)).color(t.text));
     ui.add_space(8.0);
 }
 
 fn dim(ui: &mut Ui, text: &str) {
+    let text_tr = crate::ar_ui::tr(text);
+    let text = &*text_tr;
     let t = Tokens::get(ui.ctx());
     ui.label(RichText::new(text).font(theme::font(12.5)).color(t.text_dim));
 }
 
 /// A link with an arrow (More themes →): true when clicked.
 fn arrow_link(ui: &mut Ui, text: &str) -> bool {
+    let text_tr = crate::ar_ui::tr(text);
+    let text = &*text_tr;
     let t = Tokens::get(ui.ctx());
     ui.add(egui::Label::new(RichText::new(format!("{text}  →")).font(theme::font(12.5)).color(t.accent)).sense(Sense::click()))
         .on_hover_cursor(egui::CursorIcon::PointingHand)
@@ -486,6 +493,8 @@ fn arrow_link(ui: &mut Ui, text: &str) -> bool {
 
 /// A search box; true when its text changed.
 fn search(ui: &mut Ui, query: &mut String, hint: &str, width: f32) -> bool {
+    let hint_tr = crate::ar_ui::tr(hint);
+    let hint = &*hint_tr;
     ui.add(egui::TextEdit::singleline(query).hint_text(hint).desired_width(width)).changed()
 }
 

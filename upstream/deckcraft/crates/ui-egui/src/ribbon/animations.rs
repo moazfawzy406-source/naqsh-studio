@@ -130,7 +130,7 @@ pub(super) fn animations(app: &mut SlideApp, ui: &mut Ui) {
         big(app, ui, Icon::AnimationPane, "Animation\nPane", "view.pane", json!({"pane": "animation"}));
         let r = big_button(ui, Icon::Trigger, "Trigger", cur.is_some());
         egui::Popup::menu(&r).show(|ui| {
-            if ui.button("On Click of… (none)").clicked() {
+            if ui.button(crate::ar_ui::tr("On Click of… (none)").into_owned()).clicked() {
                 run(app, "animation.timing", json!({"trigger": null}));
             }
             let shapes: Vec<(u32, String)> =
@@ -158,7 +158,7 @@ pub(super) fn animations(app: &mut SlideApp, ui: &mut Ui) {
     group(ui, |ui| {
         rows(ui, |ui| {
             ui.horizontal(|ui| {
-                ui.label("Start:");
+                ui.label(crate::ar_ui::tr("Start:").into_owned());
                 let s = cur.as_ref().map(|c| match c.start {
                     deckcraft_model::AnimStart::OnClick => "On Click",
                     deckcraft_model::AnimStart::WithPrevious => "With Previous",
@@ -174,7 +174,7 @@ pub(super) fn animations(app: &mut SlideApp, ui: &mut Ui) {
                 });
             });
             ui.horizontal(|ui| {
-                ui.label("Duration:");
+                ui.label(crate::ar_ui::tr("Duration:").into_owned());
                 if let Some(v) =
                     widgets::spinner(ui, "adur", "Duration", cur.as_ref().map(|c| c.duration_ms as f64 / 1000.0).unwrap_or(0.5), 0.25, "", 46.0)
                 {
@@ -182,7 +182,7 @@ pub(super) fn animations(app: &mut SlideApp, ui: &mut Ui) {
                 }
             });
             ui.horizontal(|ui| {
-                ui.label("Delay:");
+                ui.label(crate::ar_ui::tr("Delay:").into_owned());
                 if let Some(v) =
                     widgets::spinner(ui, "adelay", "Delay", cur.as_ref().map(|c| c.delay_ms as f64 / 1000.0).unwrap_or(0.0), 0.25, "", 46.0)
                 {

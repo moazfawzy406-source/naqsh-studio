@@ -57,7 +57,7 @@ pub(super) fn slide_master(app: &mut SlideApp, ui: &mut Ui) {
                 }
             }
             ui.separator();
-            if ui.button("Browse for Themes…").clicked() {
+            if ui.button(crate::ar_ui::tr("Browse for Themes…").into_owned()).clicked() {
                 run(app, "app.browseThemeDialog", json!({}));
             }
         });

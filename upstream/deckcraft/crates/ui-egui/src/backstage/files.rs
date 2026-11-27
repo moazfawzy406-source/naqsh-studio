@@ -5,6 +5,8 @@ use super::{
 
 /// A new-presentation tile: a theme preview drawn in code (or a blank slide) over its name.
 fn tile(ui: &mut Ui, label: &str, theme: Option<&deckcraft_model::Theme>, big: bool) -> egui::Response {
+    let label_tr = crate::ar_ui::tr(label);
+    let label = &*label_tr;
     let t = Tokens::get(ui.ctx());
     let thumb_w = if big { 200.0 } else { 160.0 };
     let (rect, resp) = ui.allocate_exact_size(vec2(thumb_w + 16.0, thumb_w * 9.0 / 16.0 + 44.0), Sense::click());
@@ -169,6 +171,8 @@ pub(super) fn square_button(ui: &mut Ui, icon: Icon, label: &str, enabled: bool)
 
 /// A row of a page's own list on the left (Open's places, Export's tasks).
 pub(super) fn place_row(ui: &mut Ui, icon: Icon, label: &str, selected: bool, width: f32) -> egui::Response {
+    let label_tr = crate::ar_ui::tr(label);
+    let label = &*label_tr;
     let t = Tokens::get(ui.ctx());
     let (rect, resp) = ui.allocate_exact_size(vec2(width, 44.0), Sense::click());
     resp.widget_info(|| egui::WidgetInfo::selected(egui::Role::Button, true, selected, label));
@@ -210,11 +214,11 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
     ui.horizontal(|ui| {
         let (r, _) = ui.allocate_exact_size(vec2(36.0, 36.0), Sense::hover());
         crate::dialogs::paint_logo(ui.painter(), r);
-        ui.label(RichText::new("Naqsh Deck").font(theme::bold(24.0)).color(t.text));
+        ui.label(RichText::new(crate::ar_ui::tr("Naqsh Deck").into_owned()).font(theme::bold(24.0)).color(t.text));
     });
     ui.add_space(18.0);
     ui.horizontal(|ui| {
-        ui.label(RichText::new("New").font(theme::bold(16.0)).color(t.text));
+        ui.label(RichText::new(crate::ar_ui::tr("New").into_owned()).font(theme::bold(16.0)).color(t.text));
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             if arrow_link(ui, "More themes") {
                 out.page = Some(Page::New);
@@ -225,7 +229,7 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
     new_tiles(app, ui, "", 5, true);
     ui.add_space(22.0);
     ui.horizontal(|ui| {
-        ui.label(RichText::new("Templates").font(theme::bold(16.0)).color(t.text));
+        ui.label(RichText::new(crate::ar_ui::tr("Templates").into_owned()).font(theme::bold(16.0)).color(t.text));
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             if arrow_link(ui, "More templates") {
                 out.page = Some(Page::New);
@@ -236,7 +240,7 @@ pub(super) fn home(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage, out: &mu
     template_tiles(app, ui, "", 3);
     ui.add_space(22.0);
     ui.horizontal(|ui| {
-        ui.label(RichText::new("Recent").font(theme::bold(16.0)).color(t.text));
+        ui.label(RichText::new(crate::ar_ui::tr("Recent").into_owned()).font(theme::bold(16.0)).color(t.text));
         ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
             search(ui, &mut bs.query, "Search for a file", 280.0);
         });
@@ -294,7 +298,7 @@ pub(super) fn open_page(app: &mut SlideApp, ui: &mut Ui, bs: &mut Backstage) {
             }
             if app.session.recovery_dir.is_some() {
                 ui.add_space(24.0);
-                if ui.button("Recover Unsaved Presentations").clicked() {
+                if ui.button(crate::ar_ui::tr("Recover Unsaved Presentations").into_owned()).clicked() {
                     match app.run("file.recovery.open", json!({})) {
                         Ok(v) if v.get("opened").and_then(Value::as_array).is_some_and(|a| a.is_empty()) => {
                             app.set_status("There are no unsaved presentations to recover");

@@ -23,7 +23,7 @@ pub(super) fn zoom_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bo
     }
     let mut mode = d.get("mode", "percent");
     let mut percent = d.get("percent", "100");
-    ui.label("Zoom to");
+    ui.label(crate::ar_ui::tr("Zoom to").into_owned());
     if ui.radio(mode == "fit", "Fit").clicked() {
         mode = "fit".into();
     }
@@ -35,7 +35,7 @@ pub(super) fn zoom_dialog(app: &mut SlideApp, ui: &mut Ui, d: &mut Dialog) -> bo
         }
     }
     ui.horizontal(|ui| {
-        let l = ui.label("Percent:");
+        let l = ui.label(crate::ar_ui::tr("Percent:").into_owned());
         let edit = ui.add(egui::TextEdit::singleline(&mut percent).desired_width(72.0)).labelled_by(l.id);
         if edit.changed() {
             mode = "percent".into();

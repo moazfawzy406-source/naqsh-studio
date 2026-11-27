@@ -49,7 +49,8 @@ fn big_button_width(text_w: f32, split: bool) -> f32 {
 /// response). Like Office's split buttons, the icon and the label text run the main command; only
 /// the chevron at the end of the label row opens the menu.
 pub fn big_button_ex(ui: &mut Ui, icon: Icon, label: &str, enabled: bool, split: bool, selected: bool) -> (Response, Option<Response>) {
-    let label = &*crate::ar_ui::tr(label);
+    let label_tr = crate::ar_ui::tr(label);
+    let label = &*label_tr;
     let t = Tokens::get(ui.ctx());
     let font = theme::font(11.0);
     let lines: Vec<&str> = wrap_label(label);
@@ -149,7 +150,8 @@ pub fn small_button_named(
     selected: bool,
     split: bool,
 ) -> (Response, Option<Response>) {
-    let label = &*crate::ar_ui::tr(label);
+    let label_tr = crate::ar_ui::tr(label);
+    let label = &*label_tr;
     let t = Tokens::get(ui.ctx());
     let font = theme::font(12.0);
     let tw = if label.is_empty() { 0.0 } else { ui.fonts_mut(|f| f.layout_no_wrap(label.to_string(), font.clone(), t.text).size().x) + 5.0 };
@@ -264,7 +266,8 @@ pub fn check_item(ui: &mut Ui, label: &str, enabled: bool, on: bool) -> Response
 
 /// A square icon toggle (B, I, U, alignment…).
 pub fn icon_toggle(ui: &mut Ui, icon: Icon, tip: &str, enabled: bool, on: bool) -> Response {
-    let tip = &*crate::ar_ui::tr(tip);
+    let tip_tr = crate::ar_ui::tr(tip);
+    let tip = &*tip_tr;
     let t = Tokens::get(ui.ctx());
     let (rect, resp) = ui.allocate_exact_size(vec2(24.0, 22.0), if enabled { Sense::click() } else { Sense::hover() });
     let painter = ui.painter_at(rect);
@@ -391,7 +394,7 @@ pub fn color_grid(ui: &mut Ui, scheme: &ColorScheme, none_label: Option<&str>) -
     let t = Tokens::get(ui.ctx());
     let mut out = None;
     ui.set_min_width(220.0);
-    ui.label(egui::RichText::new("Theme Colors").font(theme::bold(12.0)));
+    ui.label(egui::RichText::new(crate::ar_ui::tr("Theme Colors").into_owned()).font(theme::bold(12.0)));
     let slots = [
         SchemeSlot::Lt1,
         SchemeSlot::Dk1,
@@ -453,7 +456,7 @@ pub fn color_grid(ui: &mut Ui, scheme: &ColorScheme, none_label: Option<&str>) -
         }
     });
     ui.add_space(4.0);
-    ui.label(egui::RichText::new("Standard Colors").font(theme::bold(12.0)));
+    ui.label(egui::RichText::new(crate::ar_ui::tr("Standard Colors").into_owned()).font(theme::bold(12.0)));
     ui.horizontal(|ui| {
         ui.spacing_mut().item_spacing.x = 3.0;
         for (c, name) in deckcraft_color::STANDARD_COLORS {
@@ -472,7 +475,7 @@ pub fn color_grid(ui: &mut Ui, scheme: &ColorScheme, none_label: Option<&str>) -
     let id = ui.scope_id().with("hex");
     let mut hex: String = ui.data_mut(|d| d.get_temp::<String>(id).unwrap_or_default());
     ui.horizontal(|ui| {
-        ui.label("More Colors… #");
+        ui.label(crate::ar_ui::tr("More Colors… #").into_owned());
         let r = ui.add(egui::TextEdit::singleline(&mut hex).desired_width(70.0).hint_text("RRGGBB"));
         if r.lost_focus()
             && ui.input(|i| i.key_pressed(egui::Key::Enter))
@@ -482,7 +485,7 @@ pub fn color_grid(ui: &mut Ui, scheme: &ColorScheme, none_label: Option<&str>) -
         }
     });
     ui.data_mut(|d| d.insert_temp(id, hex));
-    if ui.button("Eyedropper").on_hover_text("Click the slide to take the colour under the pointer").clicked() {
+    if ui.button(crate::ar_ui::tr("Eyedropper").into_owned()).on_hover_text("Click the slide to take the colour under the pointer").clicked() {
         crate::eyedropper::request(ui.ctx());
         ui.close();
     }
@@ -756,8 +759,8 @@ mod tests {
         let mut harness = egui_kittest::Harness::builder().with_size(vec2(400.0, 200.0)).build_ui(|ui| {
             theme::install_fonts(ui.ctx());
             dropdown(ui, "Font size", "18 pt", 120.0, true, |ui| {
-                ui.label("12 pt");
-                ui.label("18 pt");
+                ui.label(crate::ar_ui::tr("12 pt").into_owned());
+                ui.label(crate::ar_ui::tr("18 pt").into_owned());
             });
             dropdown(ui, "Start", "", 112.0, false, |_| {});
         });
@@ -779,7 +782,7 @@ mod tests {
         let scheme = deckcraft_model::Theme::default().colors;
         let mut harness = egui_kittest::Harness::builder().with_size(vec2(400.0, 500.0)).build_ui(|ui| {
             theme::install_fonts(ui.ctx());
-            let r = ui.button("Pick");
+            let r = ui.button(crate::ar_ui::tr("Pick").into_owned());
             color_popup(&r).show(|ui| {
                 if let Some(c) = color_grid(ui, &scheme, None) {
                     *picked.borrow_mut() = Some(c);
@@ -807,7 +810,7 @@ mod tests {
         let scheme = deckcraft_model::Theme::default().colors;
         let mut harness = egui_kittest::Harness::builder().with_size(vec2(400.0, 500.0)).build_ui(|ui| {
             theme::install_fonts(ui.ctx());
-            let r = ui.button("Pick");
+            let r = ui.button(crate::ar_ui::tr("Pick").into_owned());
             color_popup(&r).show(|ui| {
                 if let Some(c) = color_grid(ui, &scheme, None) {
                     *picked.borrow_mut() = Some(c);

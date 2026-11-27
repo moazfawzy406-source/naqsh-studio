@@ -75,7 +75,7 @@ pub(super) fn transitions(app: &mut SlideApp, ui: &mut Ui) {
         // Sound in its own column, so the timing column keeps its three rows.
         rows(ui, |ui| {
             ui.horizontal(|ui| {
-                let field = ui.label("Sound:");
+                let field = ui.label(crate::ar_ui::tr("Sound:").into_owned());
                 let stop = cur.as_ref().is_some_and(|t| t.stop_sound);
                 let name = cur
                     .as_ref()
@@ -116,7 +116,7 @@ pub(super) fn transitions(app: &mut SlideApp, ui: &mut Ui) {
         });
         rows(ui, |ui| {
             ui.horizontal(|ui| {
-                ui.label("Duration:");
+                ui.label(crate::ar_ui::tr("Duration:").into_owned());
                 let d = cur.as_ref().map(|t| t.duration_ms as f64 / 1000.0).unwrap_or(1.0);
                 if let Some(v) = widgets::spinner(ui, "tdur", "Duration", d, 0.25, "", 46.0) {
                     run(app, "transition.timing", json!({"duration": (v.max(0.0) * 1000.0).round() as u64}));
