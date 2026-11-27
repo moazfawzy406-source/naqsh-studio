@@ -223,6 +223,14 @@ pub fn font_definitions(extra: &[std::sync::Arc<deckcraft_fonts::FontFace>]) -> 
             }
         }
     }
+    // naqsh-studio: Amiri (OFL 1.1, from the Vector app's assets) draws Arabic where no interface font does.
+    defs.font_data.insert(
+        "naqsh-amiri".into(),
+        std::sync::Arc::new(FontData::from_static(include_bytes!("../../../../vectorcraft/assets/fonts/Amiri-Regular.ttf"))),
+    );
+    for chain in defs.families.values_mut() {
+        chain.push("naqsh-amiri".into());
+    }
     add_fallback_faces(&mut defs, extra);
     // The Japanese interface face (the first one when Inter isn't embedded) hints its en and em
     // dashes, bars thinner than a pixel, down to nothing, so they drew as gaps in interface text;
