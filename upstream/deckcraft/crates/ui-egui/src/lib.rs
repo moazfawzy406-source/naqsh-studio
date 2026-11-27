@@ -15,6 +15,7 @@ pub const UPDATE_APP: craft_update::app::App = craft_update::app::App {
     ..craft_update::suite::DECKCRAFT
 };
 
+pub mod ar_ui;
 pub mod backstage;
 pub mod canvas;
 pub mod capture;

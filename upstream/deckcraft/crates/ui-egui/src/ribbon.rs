@@ -120,8 +120,8 @@ fn contextual(app: &SlideApp) -> Vec<&'static str> {
 // This is an existing saved/control-channel key, not the displayed label.
 const DIAGRAM_TAB_ID: &str = "SmartArt Design";
 
-fn tab_label(id: &str) -> &str {
-    if id == DIAGRAM_TAB_ID { "Diagram Design" } else { id }
+fn tab_label(id: &str) -> std::borrow::Cow<'_, str> {
+    crate::ar_ui::tr(if id == DIAGRAM_TAB_ID { "Diagram Design" } else { id })
 }
 
 const TABS: [&str; 10] = ["Home", "Insert", "Draw", "Design", "Transitions", "Animations", "Slide Show", "Record", "Review", "View"];
@@ -156,7 +156,8 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
         }
         let all: Vec<(&str, bool)> = TABS.iter().map(|s| (*s, false)).chain(ctx_tabs.iter().map(|s| (*s, true))).collect();
         for (name, contextual) in all {
-            let label = tab_label(name);
+            let label_owned = tab_label(name).into_owned();
+            let label = label_owned.as_str();
             let font = theme::font(13.0);
             let w = ui.fonts_mut(|f| f.layout_no_wrap(label.to_string(), font.clone(), t.text).size().x) + 18.0;
             let r = Rect::from_min_size(pos2(x, y), vec2(w, 24.0));
@@ -336,6 +337,7 @@ fn toggle(app: &mut SlideApp, ui: &mut Ui, icon: Icon, label: &str, id: &str, on
 }
 
 fn tip(id: &str, label: &str) -> String {
+    let label = &*crate::ar_ui::tr(label);
     let sc = deckcraft_engine::find_command(id).and_then(|c| c.shortcut).or_else(|| crate::UI_COMMANDS.iter().find(|c| c.0 == id).and_then(|c| c.2));
     match sc {
         Some(s) => format!("{label} ({})", pretty_shortcut(s)),

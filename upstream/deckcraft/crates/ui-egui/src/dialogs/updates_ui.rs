@@ -28,7 +28,8 @@ impl Default for Runtime {
             updater: Updater::new(&crate::UPDATE_APP, VERSION),
             enabled: false,
             check_requested: false,
-            stable_services: crate::os_window::stable_services_allowed(),
+            // naqsh-studio: no ArtCraft self-update service.
+            stable_services: false,
         }
     }
 }

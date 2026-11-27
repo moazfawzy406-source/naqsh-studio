@@ -75,7 +75,7 @@ jobs:
           tasklist | grep -i naqsh-studio >> ../shots/summary.txt || true
           taskkill //F //IM naqsh-studio.exe || true
           sleep 3
-          for app in layout photo; do
+          for app in deck layout photo; do
             NAQSH_LANG=ar NAQSH_APP=$app ./target/release/naqsh-studio.exe > ../shots/$app.log 2>&1 &
             sleep 40
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/$app.png')"
