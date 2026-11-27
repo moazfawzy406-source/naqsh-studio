@@ -125,6 +125,10 @@ jobs:
           log.close()
           PY
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_THEME=light NAQSH_LANG=ar NAQSH_APP=photo ./target/release/naqsh-studio.exe > ../shots/photo-light.log 2>&1 &
+          sleep 40
+          python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/photo-light.png')"
+          taskkill //F //IM naqsh-studio.exe || true
           cat ../shots/summary.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -150,3 +154,4 @@ jobs:
 # brushes
 # brushes doc
 # rerun
+# photo theme

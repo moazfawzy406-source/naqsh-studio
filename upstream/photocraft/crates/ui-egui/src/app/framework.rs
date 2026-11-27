@@ -173,7 +173,13 @@ struct ThemePrefs {
 impl ThemePrefs {
     fn of(prefs: &Preferences) -> Self {
         let i = &prefs.interface;
-        ThemePrefs { mode: i.appearance_mode, dark: i.dark_theme.clone(), light: i.light_theme.clone() }
+        // Naqsh Studio: the suite hub passes dark/light on through NAQSH_THEME.
+        let mode = match std::env::var("NAQSH_THEME").as_deref() {
+            Ok("dark") => AppearanceMode::Dark,
+            Ok("light") => AppearanceMode::Light,
+            _ => i.appearance_mode,
+        };
+        ThemePrefs { mode, dark: i.dark_theme.clone(), light: i.light_theme.clone() }
     }
 
     /// What the suite shows: its chosen fields, else PhotoCraft's defaults.
