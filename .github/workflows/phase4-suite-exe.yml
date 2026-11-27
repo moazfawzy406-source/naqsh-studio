@@ -92,3 +92,4 @@ jobs:
         with:
           name: naqsh-studio-windows-x64
           path: studio/target/release/naqsh-studio.exe
+# rebuild with menu row translation (0a0244a)
