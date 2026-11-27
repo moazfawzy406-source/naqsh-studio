@@ -121,13 +121,20 @@ fn suite(ui: &mut Ui) {
                 launch_app(app);
             }
         }
+        let dark = SUITE_DARK.load(std::sync::atomic::Ordering::Relaxed);
+        let label = if dark { "Light mode" } else { "Dark mode" };
+        if Button::new(tl!(label)).id_salt("suite-theme").show(ui).clicked() {
+            SUITE_DARK.store(!dark, std::sync::atomic::Ordering::Relaxed);
+        }
     });
 }
 
 /// Starts another app of the suite: the same executable with `NAQSH_APP` set. A failure is only logged.
+static SUITE_DARK: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
 fn launch_app(app: &str) {
     let lang = if crate::i18n::is_rtl() { "ar" } else { "en" };
-    match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).env("NAQSH_APP", app).env("NAQSH_LANG", lang).spawn()) {
+    match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).env("NAQSH_APP", app).env("NAQSH_LANG", lang).env("NAQSH_THEME", if SUITE_DARK.load(std::sync::atomic::Ordering::Relaxed) { "dark" } else { "light" }).spawn()) {
         Ok(_) => {}
         Err(e) => log::warn!("could not start {app}: {e}"),
     }

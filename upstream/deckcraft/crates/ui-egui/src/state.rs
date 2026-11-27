@@ -99,7 +99,7 @@ pub struct UiState {
 impl Default for UiState {
     fn default() -> Self {
         UiState {
-            brightness: theme::Brightness::Light,
+            brightness: if std::env::var("NAQSH_THEME").map(|v| v == "dark").unwrap_or(false) { theme::Brightness::Dark } else { theme::Brightness::Light },
             tab: "Home".into(),
             ribbon_collapsed: false,
             view: ViewMode::Normal,
