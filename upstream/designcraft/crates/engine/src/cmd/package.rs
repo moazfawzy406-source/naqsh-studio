@@ -396,7 +396,7 @@ fn write_links(
 /// report adds after the font's name (nothing when copied).
 fn copy_font(root: &OutputRoot, face: &FontFace, dir: &Path, copied: &mut Vec<PathBuf>, taken: &mut Taken, files: &mut Vec<PathBuf>) -> String {
     let from = match &face.source {
-        FontSource::Bundled => return " — included with DesignCraft".into(),
+        FontSource::Bundled => return " — included with Naqsh Layout".into(),
         FontSource::Memory => return " — not copied: no font file".into(),
         FontSource::Installed(p) | FontSource::Document(p) => p,
     };
@@ -527,7 +527,7 @@ fn package(s: &mut Session, p: &Value) -> Result<Value> {
         root.write(&path, &designcraft_idml::export_idml_with(&packed, &opts))?;
         files.push(path);
         if super::interchange::has_applicable_pdf_layer_overrides(&packed) {
-            idml_layer_note = "\nPlaced PDF layers\nThe IDML copy links the placed PDFs, so it shows their file defaults. The DesignCraft document keeps each placement's Object Layer Options choice.\n";
+            idml_layer_note = "\nPlaced PDF layers\nThe IDML copy links the placed PDFs, so it shows their file defaults. The Naqsh Layout document keeps each placement's Object Layer Options choice.\n";
         }
     }
     if let Some(params) = pdf {

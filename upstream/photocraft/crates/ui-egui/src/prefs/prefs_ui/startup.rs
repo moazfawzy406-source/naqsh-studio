@@ -93,7 +93,7 @@ fn repair_invalid(app: &mut PhotocraftApp, reset: &[craft::settings::SectionErro
     let paths = reset.iter().map(|e| e.section.as_str()).collect::<Vec<_>>().join(", ");
     let (title, line) = (
         "Some preferences were reset",
-        "The preferences file held values PhotoCraft can't read for {paths}. Those settings are back to their defaults; the rest of your preferences loaded.",
+        "The preferences file held values Naqsh Photo can't read for {paths}. Those settings are back to their defaults; the rest of your preferences loaded.",
     );
     // Notices keep their English source and are translated when drawn.
     let id = crate::notices::post(app, title, vec![line.into()], craft::theme::variant::Tone::Neutral, None);

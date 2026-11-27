@@ -32,7 +32,7 @@ pub(crate) fn open(app: &mut PhotocraftApp, kind: ShapeKind, at: Point) -> Optio
     if kind == ShapeKind::Ellipse {
         options = ellipse_prefill(app, options);
     }
-    Some(app.framework.dialogs.open(CreateShapeDialog::new(options).alert_title(tl!("PhotoCraft"))))
+    Some(app.framework.dialogs.open(CreateShapeDialog::new(options).alert_title(tl!("Naqsh Photo"))))
 }
 
 /// Create Ellipse opens as Photoshop's does (#13229): with the active ellipse layer's size, or 100 × 100 with a pixel

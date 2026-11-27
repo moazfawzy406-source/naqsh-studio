@@ -4,7 +4,7 @@
 
 /// The display name: the same string the Launcher and the macOS bundle use.
 pub const fn app_name() -> &'static str {
-    if is_nightly() { "DeckCraft Nightly" } else { "DeckCraft" }
+    if is_nightly() { "Naqsh Deck Nightly" } else { "Naqsh Deck" }
 }
 
 pub const fn is_nightly() -> bool {

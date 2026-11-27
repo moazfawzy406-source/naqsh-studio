@@ -137,7 +137,7 @@ fn writable_chapter(s: &Session, path: &str, command: &'static str) -> Result<()
         .and_then(std::ffi::OsStr::to_str)
         .is_some_and(|ext| craft_file_formats::from_extension(ext) == Some(craft_file_formats::Format::Idml))
     {
-        return Err(bad(command, format!("cannot change imported IDML chapter {path}; convert it to a native DesignCraft document first")));
+        return Err(bad(command, format!("cannot change imported IDML chapter {path}; convert it to a native Naqsh Layout document first")));
     }
     let target = crate::io::canonicalize(path).map_err(|e| EngineError::Other(format!("{path}: {e}")))?;
     if s.docs.iter().any(|doc| doc.path.as_ref().is_some_and(|open| crate::io::canonicalize(open).is_ok_and(|open| open == target))) {

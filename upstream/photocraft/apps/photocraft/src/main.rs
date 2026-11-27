@@ -120,7 +120,7 @@ fn automation_workspace_for_profile(
 }
 
 /// The app's name in its default agent folder, `Documents/ArtCraft/Agents/PhotoCraft`.
-const AGENT_APP_NAME: &str = "PhotoCraft";
+const AGENT_APP_NAME: &str = "Naqsh Photo";
 
 /// [`automation_workspace`] with `default` as the default agent folder (tests use a temporary one).
 fn automation_workspace_in(
@@ -233,7 +233,7 @@ fn at_least_min_size(mut builder: egui::ViewportBuilder) -> egui::ViewportBuilde
 fn attach_log_file(logger: Option<&'static logging::AppLogger>) {
     if let (Some(logger), Some(dir)) = (logger, services::config_dir()) {
         match logger.attach_dir(&dir.join("logs")) {
-            Ok(path) => log::info!("PhotoCraft {}, log file {}", photocraft_engine::build_info::long_version(), path.display()),
+            Ok(path) => log::info!("Naqsh Photo {}, log file {}", photocraft_engine::build_info::long_version(), path.display()),
             // Standard error only by now (`attach_dir` gave up on the file); unlike `eprintln!`, never panics.
             Err(e) => log::warn!("no log file: {e}"),
         }
@@ -268,7 +268,7 @@ fn claim_single_instance(
     };
     match (single_instance::skip_reason(&context), services::config_dir()) {
         (Some(reason), _) => {
-            log::info!("running as a separate PhotoCraft: {reason}");
+            log::info!("running as a separate Naqsh Photo: {reason}");
             Continue(None)
         }
         (None, None) => Continue(None),
@@ -276,12 +276,12 @@ fn claim_single_instance(
             let paths: Vec<String> = files.iter().map(|f| single_instance::absolute(f)).collect();
             match single_instance::claim(&dir, &paths) {
                 single_instance::Launch::Forwarded => {
-                    log::info!("handed {} file(s) to the running PhotoCraft", paths.len());
+                    log::info!("handed {} file(s) to the running Naqsh Photo", paths.len());
                     Break(())
                 }
                 single_instance::Launch::Primary(primary) => Continue(Some(primary)),
                 single_instance::Launch::Standalone(reason) => {
-                    log::warn!("starting a separate PhotoCraft: {reason}");
+                    log::warn!("starting a separate Naqsh Photo: {reason}");
                     Continue(None)
                 }
             }
@@ -421,18 +421,18 @@ fn initialize_nightly_process_identity() -> Result<(), process_identity::Identit
 }
 
 fn report_launch_profile_error(error: &str) {
-    eprintln!("PhotoCraft launch profile: {error}");
+    eprintln!("Naqsh Photo launch profile: {error}");
     let desktop_session = cfg!(windows)
         || cfg!(target_os = "macos")
         || (cfg!(target_os = "linux") && ["DISPLAY", "WAYLAND_DISPLAY"].into_iter().any(|key| std::env::var_os(key).is_some_and(|v| !v.is_empty())));
     if build_flavor::needs_native_error(build_flavor::COMPILED, desktop_session) {
         if let Err(error) = initialize_nightly_process_identity() {
-            eprintln!("PhotoCraft launch profile: {error}");
+            eprintln!("Naqsh Photo launch profile: {error}");
             return;
         }
         #[cfg(any(windows, target_os = "linux", target_os = "macos"))]
         let _ = rfd::MessageDialog::new()
-            .set_title("PhotoCraft Nightly")
+            .set_title("Naqsh Photo Nightly")
             .set_description(error)
             .set_level(rfd::MessageLevel::Error)
             .set_buttons(rfd::MessageButtons::Ok)
@@ -487,7 +487,7 @@ pub fn main() -> eframe::Result {
         && let Some(done) = craft_update::self_update::finish(&photocraft_ui_egui::UPDATE_APP, &std::env::args_os().skip(1).collect::<Vec<_>>())
     {
         if let Err(e) = done {
-            eprintln!("PhotoCraft update helper failed: {e}");
+            eprintln!("Naqsh Photo update helper failed: {e}");
             std::process::exit(1);
         }
         return Ok(());
@@ -880,16 +880,16 @@ pub fn main() -> eframe::Result {
                 use photocraft_ui_egui::i18n;
                 let message = if previous_nightly_unclean {
                     i18n::t(
-                        "The previous PhotoCraft Nightly session did not finish normally. You can report a problem from About. No diagnostics have been sent.",
+                        "The previous Naqsh Photo Nightly session did not finish normally. You can report a problem from About. No diagnostics have been sent.",
                     )
                 } else {
                     i18n::t(
-                        "PhotoCraft Nightly could not record session health in its private profile. You can still edit, but abnormal-exit detection is unavailable.",
+                        "Naqsh Photo Nightly could not record session health in its private profile. You can still edit, but abnormal-exit detection is unavailable.",
                     )
                 };
                 photocraft_ui_egui::notices::post(
                     &mut app,
-                    i18n::t("PhotoCraft Nightly"),
+                    i18n::t("Naqsh Photo Nightly"),
                     vec![message.to_owned()],
                     craft::theme::variant::Tone::Neutral,
                     None,
@@ -971,7 +971,7 @@ pub fn main() -> eframe::Result {
     // file to attach (#7643). A terminal or automation launch can read standard error or the
     // exit status instead, so it keeps the silent exit.
     if let Err(error) = &result {
-        log::error!("PhotoCraft could not start: {error}");
+        log::error!("Naqsh Photo could not start: {error}");
         if startup_report::needs_dialog(control_port.is_some()) {
             startup_report::show(&error.to_string(), &started_renderer, started_note.as_deref(), logger.and_then(logging::AppLogger::path).as_deref());
         }
@@ -1066,7 +1066,7 @@ mod tests {
             .with_fullscreen(true)
             .with_maximized(true);
         let opened = hook(saved);
-        assert_eq!(opened.fullscreen, Some(false), "Standard Screen Mode is where PhotoCraft starts");
+        assert_eq!(opened.fullscreen, Some(false), "Standard Screen Mode is where Naqsh Photo starts");
         assert_eq!(opened.maximized, Some(true), "the rest of the saved geometry is kept");
         assert_eq!(opened.inner_size, Some(egui::vec2(2560.0, 1392.0)));
     }
@@ -1306,7 +1306,7 @@ mod tests {
     #[test]
     fn empty_folder_preferences_use_the_default_agent_folder() {
         let dir = temp_dir("automation-roots-default");
-        let default = dir.join("Naqsh Studio").join("Agents").join("PhotoCraft");
+        let default = dir.join("Naqsh Studio").join("Agents").join("Naqsh Photo");
         let empty = craft::automation::agents::AgentSettings::default();
 
         let (ws, warning) = super::automation_workspace_in(&flags(None, None), &empty, Some(&default)).unwrap();
@@ -1335,7 +1335,7 @@ mod tests {
         // A default that can't be made is left out with a warning; the app still starts.
         let file = dir.join("file");
         std::fs::write(&file, b"x").unwrap();
-        let (ws, warning) = super::automation_workspace_in(&flags(None, None), &empty, Some(&file.join("PhotoCraft"))).unwrap();
+        let (ws, warning) = super::automation_workspace_in(&flags(None, None), &empty, Some(&file.join("Naqsh Photo"))).unwrap();
         assert_eq!(warning, None, "a folder that couldn't be created is no folder at all");
         assert!(ws.read_folders().is_empty() && ws.write_folder().is_none());
         let _ = std::fs::remove_dir_all(&dir);

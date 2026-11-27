@@ -178,7 +178,7 @@ fn main() -> ExitCode {
         .take_while(|arg| arg.as_str() != "--")
         .any(|arg| arg == "--launch-profile" || arg == "--profile-root" || arg.starts_with("--launch-profile=") || arg.starts_with("--profile-root="))
     {
-        eprintln!("designcraft-cli: nightly-v1 is supported only by the DesignCraft desktop launcher protocol");
+        eprintln!("designcraft-cli: nightly-v1 is supported only by the Naqsh Layout desktop launcher protocol");
         return ExitCode::from(2);
     }
     // `<sub> --help` asks about that subcommand, which every parser but `script`'s read as an
@@ -304,7 +304,7 @@ fn thumbnail(args: &[String]) -> Result<(), String> {
     }
     let file = std::fs::File::open(input).map_err(|e| format!("{input}: {e}"))?;
     let preview = designcraft_format::read_preview(std::io::BufReader::new(file))
-        .ok_or_else(|| format!("{input} has no preview (a DesignCraft file saved before they had one, or not a DesignCraft file)"))?;
+        .ok_or_else(|| format!("{input} has no preview (a Naqsh Layout file saved before they had one, or not a Naqsh Layout file)"))?;
     let png = fit_png(preview, size).map_err(|e| format!("{input}: the preview can't be read: {e}"))?;
     designcraft_engine::atomic::write_atomic(std::path::Path::new(out), &png).map_err(|e| format!("{out}: {e}"))
 }
@@ -379,7 +379,7 @@ so drop --connect (or use --connect without the roots)"
             let addr = control_addr(&c);
             Box::new(
                 Remote::connect(&addr)
-                    .map_err(|e| format!("cannot connect to the DesignCraft app at {addr}: {e} (start it with `designcraft --control PORT`)"))?,
+                    .map_err(|e| format!("cannot connect to the Naqsh Layout app at {addr}: {e} (start it with `designcraft --control PORT`)"))?,
             )
         }
         None => {
@@ -690,7 +690,7 @@ fn script(args: &[String]) -> Result<(), String> {
             let addr = control_addr(c);
             Box::new(
                 Remote::connect(&addr)
-                    .map_err(|e| format!("cannot connect to the DesignCraft app at {addr}: {e} (start it with `designcraft --control PORT`)"))?,
+                    .map_err(|e| format!("cannot connect to the Naqsh Layout app at {addr}: {e} (start it with `designcraft --control PORT`)"))?,
             )
         }
         None => Box::new(Headless::with_document()),
@@ -760,7 +760,7 @@ fn app(args: &[String]) -> Result<(), String> {
     }
     let addr = control_addr(&port);
     let mut r = Remote::connect(&addr)
-        .map_err(|e| format!("cannot connect to the DesignCraft app at {addr}: {e} (start it with `designcraft --control {port}`)"))?;
+        .map_err(|e| format!("cannot connect to the Naqsh Layout app at {addr}: {e} (start it with `designcraft --control {port}`)"))?;
     let json_arg =
         |s: Option<&String>| -> Result<Value, String> { s.map_or(Ok(json!({})), |t| serde_json::from_str(t).map_err(|e| format!("bad JSON: {e}"))) };
     let out = match method {

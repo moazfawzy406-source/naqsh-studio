@@ -97,15 +97,15 @@ fn forbidden_roots(platform: Platform, env: &impl Fn(&str) -> Option<OsString>, 
         Platform::Windows => {
             let mut roots = ["APPDATA", "LOCALAPPDATA"]
                 .into_iter()
-                .map(|key| required_base(env, key).map(|p| p.join("DesignCraft")))
+                .map(|key| required_base(env, key).map(|p| p.join("Naqsh Layout")))
                 .collect::<Result<Vec<_>, _>>()?;
             // The MSI's per-machine folder (install-policy.wxi, ProgramFiles6432Folder) and a
             // per-user install folder. A custom folder is not known here; the executable's own
             // folder is fenced below.
-            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("Naqsh Studio").join("DesignCraft"));
+            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("Naqsh Studio").join("Naqsh Layout"));
             for key in ["ProgramW6432", "ProgramFiles", "ProgramFiles(x86)"] {
                 if let Some(base) = env(key).filter(|v| !v.is_empty()) {
-                    roots.push(absolute(PathBuf::from(base), key)?.join("Naqsh Studio").join("DesignCraft"));
+                    roots.push(absolute(PathBuf::from(base), key)?.join("Naqsh Studio").join("Naqsh Layout"));
                 }
             }
             roots
@@ -172,7 +172,7 @@ fn is_portable_layout(path: &Path, platform: Platform) -> bool {
     // (in a user folder or at a drive root) does not refuse the profile.
     path.ancestors().enumerate().any(|(depth, ancestor)| {
         ancestor.join(PORTABLE_MARKER).is_file()
-            && (depth == 0 || ["designcraft.exe", "designcraft", "DesignCraft.app"].iter().any(|exe| ancestor.join(exe).exists()))
+            && (depth == 0 || ["designcraft.exe", "designcraft", "Naqsh Layout.app"].iter().any(|exe| ancestor.join(exe).exists()))
     }) || path.components().any(|component| match component {
         Component::Normal(name) if platform.ignores_case() => name.to_string_lossy().eq_ignore_ascii_case(PORTABLE_DATA_DIR),
         Component::Normal(name) => name == PORTABLE_DATA_DIR,
@@ -214,7 +214,7 @@ fn validate_for(
     }
     let chosen = canonical_future(root)?;
     if is_portable_layout(root, platform) || is_portable_layout(&chosen, platform) {
-        return Err("the nightly root must not use a portable DesignCraft installation or its DesignCraftData settings folder".into());
+        return Err("the nightly root must not use a portable Naqsh Layout installation or its DesignCraftData settings folder".into());
     }
     let exe = absolute(exe.ok_or("cannot establish the installation boundary")?.to_path_buf(), "the executable")?;
     let forbidden = forbidden_roots(platform, &env, &exe)?;

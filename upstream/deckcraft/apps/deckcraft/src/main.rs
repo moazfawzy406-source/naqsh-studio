@@ -124,7 +124,7 @@ fn services(native_wayland: bool) -> Services {
                 "theme" => d.add_filter("Themes and presentations", &["thmx", "pptx", "potx", "ppsx"]).add_filter("Office Theme", &["thmx"]),
                 _ => d
                     .add_filter("Presentations", &["deckcraft", "pptx", "potx", "ppsx", "ppt", "pot", "pps"])
-                    .add_filter("DeckCraft", &["deckcraft"])
+                    .add_filter("Naqsh Deck", &["deckcraft"])
                     .add_filter("PowerPoint", &["pptx", "potx", "ppsx"])
                     .add_filter("PowerPoint 97-2003", &["ppt", "pot", "pps"])
                     .add_filter("Outline", &["txt", "md"]),
@@ -215,7 +215,7 @@ fn prepare_launch() -> Option<Vec<std::ffi::OsString>> {
     if build_flavor::COMPILED == build_flavor::BuildFlavor::NightlyV1 && (build_flavor::version_query(&argv) || launch_profile::version_query(&argv))
     {
         use std::io::Write as _;
-        let _ = writeln!(std::io::stdout(), "DeckCraft {}", build_flavor::version(build_flavor::COMPILED, deckcraft_ui_egui::flavor::version()));
+        let _ = writeln!(std::io::stdout(), "Naqsh Deck {}", build_flavor::version(build_flavor::COMPILED, deckcraft_ui_egui::flavor::version()));
         return None;
     }
     let early = launch_profile::parse(argv)
@@ -254,18 +254,18 @@ fn initialize_nightly_process_identity() -> Result<(), process_identity::Identit
 }
 
 fn report_launch_profile_error(error: &str) {
-    eprintln!("DeckCraft launch profile: {error}");
+    eprintln!("Naqsh Deck launch profile: {error}");
     let desktop_session = cfg!(windows)
         || cfg!(target_os = "macos")
         || (cfg!(target_os = "linux") && ["DISPLAY", "WAYLAND_DISPLAY"].into_iter().any(|key| std::env::var_os(key).is_some_and(|v| !v.is_empty())));
     if build_flavor::needs_native_error(build_flavor::COMPILED, desktop_session) {
         if let Err(error) = initialize_nightly_process_identity() {
-            eprintln!("DeckCraft launch profile: {error}");
+            eprintln!("Naqsh Deck launch profile: {error}");
             return;
         }
         #[cfg(any(windows, target_os = "linux", target_os = "macos"))]
         let _ = rfd::MessageDialog::new()
-            .set_title("DeckCraft Nightly")
+            .set_title("Naqsh Deck Nightly")
             .set_description(error)
             .set_level(rfd::MessageLevel::Error)
             .set_buttons(rfd::MessageButtons::Ok)
@@ -285,7 +285,7 @@ pub fn main() -> eframe::Result {
         option_env!("DECKCRAFT_BUILD_SHA"),
     )
     .unwrap_or_else(|error| {
-        eprintln!("DeckCraft Nightly session state: {error}");
+        eprintln!("Naqsh Deck Nightly session state: {error}");
         (None, false)
     });
     let previous_unclean = watch.as_ref().is_some_and(nightly_session::Session::previous_unclean);
@@ -301,7 +301,7 @@ pub fn main() -> eframe::Result {
         && let Some(done) = craft_update::self_update::finish(&deckcraft_ui_egui::UPDATE_APP, &std::env::args_os().skip(1).collect::<Vec<_>>())
     {
         if let Err(e) = done {
-            eprintln!("DeckCraft update helper failed: {e}");
+            eprintln!("Naqsh Deck update helper failed: {e}");
             std::process::exit(1);
         }
         return Ok(());
@@ -320,7 +320,7 @@ pub fn main() -> eframe::Result {
         }
         Startup::Run { control_port, files, sample, show } => (control_port, files, sample, show),
     };
-    log::info!("DeckCraft {} ({} {})", deckcraft_ui_egui::flavor::version(), std::env::consts::OS, std::env::consts::ARCH);
+    log::info!("Naqsh Deck {} ({} {})", deckcraft_ui_egui::flavor::version(), std::env::consts::OS, std::env::consts::ARCH);
 
     // The log file lives under the settings directory; opened after the arguments, so `--help` and
     // `--version` leave no file behind. Records logged until now are written to it first.
@@ -356,7 +356,7 @@ pub fn main() -> eframe::Result {
         display::Choice::None => {
             // winit's own error says little to someone who started DeckCraft from a console.
             log::error!("no display: DISPLAY and WAYLAND_DISPLAY are not set");
-            eprintln!("DeckCraft needs a graphical session: neither DISPLAY nor WAYLAND_DISPLAY is set.");
+            eprintln!("Naqsh Deck needs a graphical session: neither DISPLAY nor WAYLAND_DISPLAY is set.");
             false
         }
     };
@@ -416,9 +416,9 @@ pub fn main() -> eframe::Result {
                 deckcraft_engine::spell::set_user_dictionary_path(dictionary);
             }
             if session_unavailable {
-                app.set_status("Another DeckCraft Nightly window owns this profile: its session health is unavailable here.");
+                app.set_status("Another Naqsh Deck Nightly window owns this profile: its session health is unavailable here.");
             } else if previous_unclean {
-                app.set_status("DeckCraft Nightly closed unexpectedly last time.");
+                app.set_status("Naqsh Deck Nightly closed unexpectedly last time.");
                 creator_notice.store(true, std::sync::atomic::Ordering::Relaxed);
             }
             app.integrated_titlebar = cfg!(target_os = "macos");
@@ -529,7 +529,7 @@ mod tests {
     #[test]
     fn both_crates_agree_on_the_compiled_channel() {
         assert_eq!(build_flavor::COMPILED == build_flavor::BuildFlavor::NightlyV1, deckcraft_ui_egui::flavor::is_nightly());
-        assert_eq!(deckcraft_ui_egui::os_window::name_for(deckcraft_ui_egui::os_window::LaunchIdentity::NightlyV1), "DeckCraft Nightly");
+        assert_eq!(deckcraft_ui_egui::os_window::name_for(deckcraft_ui_egui::os_window::LaunchIdentity::NightlyV1), "Naqsh Deck Nightly");
     }
 
     /// The exit hook (the Nightly session record) runs once, on the one exit path macOS has.

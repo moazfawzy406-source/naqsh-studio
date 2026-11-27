@@ -19,7 +19,7 @@ const MARK_PATH: &str = "M104.28,49.49L81.55,0h-31.23l-3.17,4.76L14.75,53.63,0,7
 
 /// The other ArtCraft apps (app-page slug, name, what it is) — same list as the README.
 pub const SIBLINGS: &[(&str, &str, &str)] = &[
-    ("photocraft", "PhotoCraft", "image editing"),
+    ("photocraft", "Naqsh Photo", "image editing"),
     ("vectorcraft", "VectorCraft", "vector illustration"),
     ("filmcraft", "FilmCraft", "video editing, color and sound"),
     ("lightcraft", "LightCraft", "photo library and raw development"),
@@ -161,7 +161,7 @@ pub fn show(app: &mut DesignApp, ctx: &egui::Context) {
             // The channel's own name and version: DesignCraft (stable) or DesignCraft Nightly.
             let channel = crate::channel::current();
             let app_name = match channel {
-                crate::channel::Channel::Stable => crate::i18n::tr(&app.ui.language, "DesignCraft").to_string(),
+                crate::channel::Channel::Stable => crate::i18n::tr(&app.ui.language, "Naqsh Layout").to_string(),
                 crate::channel::Channel::NightlyV1 => channel.name().to_string(),
             };
             ui.label(crate::rtl::widget(ui, egui::RichText::new(app_name).font(semibold(26.0)).color(t.text_strong)));

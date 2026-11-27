@@ -577,7 +577,7 @@ fn builder(
             .previews(preview)
             // Alt keeps Rotate Canvas's Cancel a Cancel, as in the reference application (#14462).
             .alt_resets(key != super::rotate_canvas_ui::COMMAND)
-            .alert_title(tl!("PhotoCraft"));
+            .alert_title(tl!("Naqsh Photo"));
         if let Some(canvas) = canvas {
             dialog = dialog.canvas(canvas);
         }

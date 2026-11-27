@@ -56,8 +56,8 @@ fn main() {
     }
     let mut res = winresource::WindowsResource::new();
     res.set_icon(build_channel::windows_icon_path(nightly))
-        .set("ProductName", if nightly { "PhotoCraft Nightly" } else { "PhotoCraft" })
-        .set("FileDescription", if nightly { "PhotoCraft Nightly image editor" } else { "PhotoCraft image editor" })
+        .set("ProductName", if nightly { "Naqsh Photo Nightly" } else { "Naqsh Photo" })
+        .set("FileDescription", if nightly { "Naqsh Photo Nightly image editor" } else { "Naqsh Photo image editor" })
         .set("CompanyName", "Learning Machines LLC")
         .set("LegalCopyright", "Copyright (c) the PhotoCraft authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "photocraft.exe")

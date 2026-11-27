@@ -14,7 +14,7 @@ pub fn start_screen(app: &mut DesignApp, ui: &mut egui::Ui) {
             egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
                 ui.label(crate::rtl::widget(
                     ui,
-                    egui::RichText::new(crate::i18n::tr(&app.ui.language, "Welcome to DesignCraft")).font(semibold(28.0)).color(t.text_strong),
+                    egui::RichText::new(crate::i18n::tr(&app.ui.language, "Welcome to Naqsh Layout")).font(semibold(28.0)).color(t.text_strong),
                 ));
                 ui.label(crate::rtl::widget(
                     ui,
@@ -221,6 +221,10 @@ fn recent_preview_texture(ctx: &egui::Context, path: &str, modified: Option<std:
 
 /// Start screen: the ArtCraft community (Discord first) and project links.
 fn community_card(app: &mut DesignApp, ui: &mut egui::Ui) {
+    // naqsh-studio: no ArtCraft community card.
+    if true {
+        return;
+    }
     let t = Tokens::get(ui.ctx());
     egui::Frame::NONE.fill(t.panel).corner_radius(10.0).inner_margin(egui::Margin::same(14)).show(ui, |ui| {
         // Wide enough for the longer translations of the line under the title, with the button

@@ -69,7 +69,7 @@ pub(super) fn encode(fields: &DialogFields) -> Result<Vec<u8>, String> {
     let mut xml = String::from('\u{feff}');
     let _ = writeln!(xml, "<{ROOT}>");
     if fields.text("source") == Some("current") {
-        let _ = writeln!(xml, "\t<?PhotoCraft {CURRENT_SOURCE}?>");
+        let _ = writeln!(xml, "\t<?Naqsh Photo {CURRENT_SOURCE}?>");
     }
     for &(tag, field, kind) in ELEMENTS {
         let field = field.unwrap_or_default();
@@ -132,7 +132,7 @@ pub(super) fn decode(bytes: &[u8]) -> Result<DialogFields, String> {
     if root.name != ROOT || root.attr("xmlns").is_some_and(|ns| !ns.is_empty()) {
         return Err(tl!("This file does not contain Image Processor settings.").into());
     }
-    let current = root.children.iter().any(|node| matches!(node, Node::Pi { target, data } if target == "PhotoCraft" && data == CURRENT_SOURCE));
+    let current = root.children.iter().any(|node| matches!(node, Node::Pi { target, data } if target == "Naqsh Photo" && data == CURRENT_SOURCE));
     let mut seen = std::collections::HashSet::new();
     let mut updates = DialogFields::new();
     for node in &root.children {

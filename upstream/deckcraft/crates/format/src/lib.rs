@@ -92,7 +92,7 @@ fn load_within(bytes: &[u8], budget: Budget) -> Result<(Presentation, Vec<String
         let name = media_entry(item.id.0);
         let linked_only = item.link.is_some() && !z.contains(&name);
         if z.declared_size(&name).is_some_and(|size| size > left) {
-            return Err(FormatError::Damaged("embedded media is larger than DeckCraft can open".into()));
+            return Err(FormatError::Damaged("embedded media is larger than Naqsh Deck can open".into()));
         }
         // A failed read is charged for what it inflated, so later members can't reuse that budget.
         match z.read_charged(&name, &mut left) {

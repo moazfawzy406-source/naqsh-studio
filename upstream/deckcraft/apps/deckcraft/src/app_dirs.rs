@@ -61,7 +61,7 @@ pub fn platform_dir(env: impl Fn(&str) -> Option<OsString>) -> Option<PathBuf> {
     if cfg!(target_os = "macos") {
         env("HOME").map(|h| PathBuf::from(h).join("Library/Application Support/DeckCraft"))
     } else if cfg!(windows) {
-        env("APPDATA").map(|a| PathBuf::from(a).join("DeckCraft"))
+        env("APPDATA").map(|a| PathBuf::from(a).join("Naqsh Deck"))
     } else {
         env("XDG_CONFIG_HOME").map(PathBuf::from).or_else(|| env("HOME").map(|h| PathBuf::from(h).join(".config"))).map(|c| c.join("deckcraft"))
     }
@@ -132,7 +132,7 @@ mod tests {
         if cfg!(target_os = "macos") {
             assert_eq!(dir, PathBuf::from(home).join("Library/Application Support/DeckCraft"));
         } else if cfg!(windows) {
-            assert_eq!(dir, PathBuf::from(r"C:\Users\me\AppData\Roaming").join("DeckCraft"));
+            assert_eq!(dir, PathBuf::from(r"C:\Users\me\AppData\Roaming").join("Naqsh Deck"));
         } else {
             assert_eq!(dir, PathBuf::from("/xdg/config").join("deckcraft"));
         }

@@ -1246,7 +1246,7 @@ impl PhotocraftMcp {
             }
             if !same_target(pinned.as_ref(), self.target().as_ref()) {
                 failed += 1;
-                results.push(json!({"ok": false, "error": "PhotoCraft restarted (or the session changed) during the batch; this step and the ones after it did not run"}));
+                results.push(json!({"ok": false, "error": "Naqsh Photo restarted (or the session changed) during the batch; this step and the ones after it did not run"}));
                 break;
             }
             let response = self.step(s.id, s.params.unwrap_or_else(|| json!({})), s.wait.unwrap_or(true), &mut waiter, (i, total)).await;

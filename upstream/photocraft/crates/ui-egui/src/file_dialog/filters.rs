@@ -24,7 +24,7 @@ const SVG_EXTS: &[&str] = &["svg", "svgz"];
 /// picker defaults to another filter.
 pub(super) const OPEN_FILTERS: &[(&str, &[&str])] = &[
     ("Photoshop", &["psd", "psb", "psdt"]),
-    ("PhotoCraft", &["pcraft"]),
+    ("Naqsh Photo", &["pcraft"]),
     ("Affinity", &["af", "afdesign", "afphoto", "afpub"]),
     ("Amiga IFF", &["iff", "lbm", "ilbm"]),
     ("BMP", &["bmp", "dib"]),
@@ -68,7 +68,7 @@ pub(super) const OPEN_FILTERS: &[(&str, &[&str])] = &[
 pub(super) const SAVE_FILTERS: &[(&str, &[&str])] = &[
     ("PSD Document", &["psd", "psb"]),
     ("PSB Large Document", &["psb"]),
-    ("PhotoCraft", &["pcraft"]),
+    ("Naqsh Photo", &["pcraft"]),
     ("Amiga IFF", &["iff"]),
     ("BMP", &["bmp", "dib"]),
     ("Cineon", &["cin"]),

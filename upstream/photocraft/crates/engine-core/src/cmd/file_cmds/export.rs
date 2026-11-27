@@ -194,7 +194,7 @@ fn bake_cube_layers(size: usize, title: &str, layers: &[&Layer], depth: photocra
         let px = out.px[g * w as usize + b * n + r];
         [px[0], px[1], px[2]]
     });
-    craft_cms::lutfile::write_cube_export("PhotoCraft", title, n, !matches!(depth, photocraft_color::SampleType::F32), rows)
+    craft_cms::lutfile::write_cube_export("Naqsh Photo", title, n, !matches!(depth, photocraft_color::SampleType::F32), rows)
 }
 
 /// How the refusal of a canvas too small for the lattice begins ([`bake_cube`] keeps the adjustment table for it alone).
@@ -352,7 +352,7 @@ fn bake_cube_stack(size: usize, title: &str, doc: &Document) -> Result<String> {
     }
     // The shared writer owns CUBE syntax and precision; red changes fastest, then green, then blue.
     let rows = (0..n).flat_map(|b| (0..n).flat_map(move |g| (0..n).map(move |r| (b, g, r)))).map(|(b, g, r)| out[g * cols + b * n + r]);
-    Ok(craft_cms::lutfile::write_cube_export("PhotoCraft", title, n, !matches!(doc.depth, photocraft_color::SampleType::F32), rows))
+    Ok(craft_cms::lutfile::write_cube_export("Naqsh Photo", title, n, !matches!(doc.depth, photocraft_color::SampleType::F32), rows))
 }
 
 /// The table `file.export.colorLookupTables` bakes by default: the whole visible stack of an RGB

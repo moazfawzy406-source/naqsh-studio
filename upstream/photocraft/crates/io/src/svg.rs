@@ -383,7 +383,7 @@ fn parse_at_depth<T: Send>(depth: usize, parse: impl FnOnce() -> Result<T, IoErr
             return parse().map_err(ParseFailure::Decode);
         }
         Err(ParseFailure::Isolation(IoError::Svg(format!(
-            "SVG parsing deeper than {INLINE_XML_DEPTH} levels requires the native app's isolated parser; simplify the drawing or open it in PhotoCraft desktop"
+            "SVG parsing deeper than {INLINE_XML_DEPTH} levels requires the native app's isolated parser; simplify the drawing or open it in Naqsh Photo desktop"
         ))))
     }
 }

@@ -507,7 +507,7 @@ fn import_interchange(s: &mut Session, bytes: Vec<u8>, package: Option<&std::pat
         // What the converter can't read still comes over as IDML (#21).
         let conversion = craft_indd::convert(&bytes, &file).map_err(|e| {
             EngineError::Other(format!(
-                "can't convert the InDesign file: {e}. In InDesign, choose File ▸ Export… ▸ InDesign Markup (IDML) and open the .idml in DesignCraft."
+                "can't convert the InDesign file: {e}. In InDesign, choose File ▸ Export… ▸ InDesign Markup (IDML) and open the .idml in Naqsh Layout."
             ))
         })?;
         warnings.extend(conversion.warnings.iter().map(|w| w.message().to_string()));

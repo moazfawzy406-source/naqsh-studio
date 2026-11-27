@@ -101,14 +101,14 @@ fn forbidden_roots(platform: Platform, env: &impl Fn(&str) -> Option<OsString>, 
         Platform::Windows => {
             let mut roots = ["APPDATA", "LOCALAPPDATA"]
                 .into_iter()
-                .map(|key| required_base(env, key).map(|p| p.join("DeckCraft")))
+                .map(|key| required_base(env, key).map(|p| p.join("Naqsh Deck")))
                 .collect::<Result<Vec<_>, _>>()?;
             // The MSI's default per-user and per-machine folders (install-policy.wxi). A custom
             // install folder is not known here; the executable's own folder is fenced below.
-            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("Naqsh Studio").join("DeckCraft"));
+            roots.push(required_base(env, "LOCALAPPDATA")?.join("Programs").join("Naqsh Studio").join("Naqsh Deck"));
             for key in ["ProgramW6432", "ProgramFiles", "ProgramFiles(x86)"] {
                 if let Some(base) = env(key).filter(|v| !v.is_empty()) {
-                    roots.push(absolute(PathBuf::from(base), key)?.join("Naqsh Studio").join("DeckCraft"));
+                    roots.push(absolute(PathBuf::from(base), key)?.join("Naqsh Studio").join("Naqsh Deck"));
                 }
             }
             roots
@@ -210,12 +210,12 @@ fn validate_for(
         // Flatpak (packaging/linux/flatpak-bundle.sh) is the one allowed instance, matched by its
         // exact id; the stable id and any other app are refused.
         if platform == Platform::Windows || id != NIGHTLY_FLATPAK_ID {
-            return Err("nightly-v1 accepts only the DeckCraft Nightly Flatpak instance; launch through the native Launcher".into());
+            return Err("nightly-v1 accepts only the Naqsh Deck Nightly Flatpak instance; launch through the native Launcher".into());
         }
     }
     let chosen = canonical_future(root)?;
     if is_portable_layout(root, platform) || is_portable_layout(&chosen, platform) {
-        return Err("the nightly root must not use a portable DeckCraft copy or its DeckCraftData settings folder".into());
+        return Err("the nightly root must not use a portable Naqsh Deck copy or its DeckCraftData settings folder".into());
     }
     let exe = absolute(exe.ok_or("cannot establish the installation boundary")?.to_path_buf(), "the executable")?;
     let forbidden = forbidden_roots(platform, &env, &exe)?;
@@ -473,7 +473,7 @@ mod tests {
     fn windows_roaming_local_and_install_fences_remain_active() {
         let fixture = Fixture::new();
         for key in ["APPDATA", "LOCALAPPDATA"] {
-            let stable = PathBuf::from(fixture.get(key).unwrap()).join("DeckCraft");
+            let stable = PathBuf::from(fixture.get(key).unwrap()).join("Naqsh Deck");
             assert!(fixture.check(Platform::Windows, &stable.join("nightly")).unwrap_err().contains("overlap"));
             assert!(!stable.exists());
         }
@@ -485,17 +485,17 @@ mod tests {
     fn windows_default_msi_install_folders_are_fenced() {
         let mut fixture = Fixture::new();
         let local = PathBuf::from(fixture.get("LOCALAPPDATA").unwrap());
-        let per_user = local.join("Programs").join("Naqsh Studio").join("DeckCraft");
+        let per_user = local.join("Programs").join("Naqsh Studio").join("Naqsh Deck");
         assert!(fixture.check(Platform::Windows, &per_user.join("nightly")).unwrap_err().contains("overlap"));
         for key in ["ProgramW6432", "ProgramFiles", "ProgramFiles(x86)"] {
             let base = fixture.root.join(format!("machine {key}"));
             fixture.env.insert(key.into(), base.clone().into_os_string());
-            let machine = base.join("Naqsh Studio").join("DeckCraft");
+            let machine = base.join("Naqsh Studio").join("Naqsh Deck");
             assert!(fixture.check(Platform::Windows, &machine.join("nightly")).unwrap_err().contains("overlap"));
             assert!(!machine.exists());
         }
         let sibling = local.join("Programs").join("Naqsh Studio").join("Naqsh StudioLauncher").join("nightly").join("deckcraft");
-        assert!(fixture.check(Platform::Windows, &sibling).is_ok(), "the Launcher's own Programs sibling is not DeckCraft's install");
+        assert!(fixture.check(Platform::Windows, &sibling).is_ok(), "the Launcher's own Programs sibling is not Naqsh Deck's install");
     }
 
     #[test]

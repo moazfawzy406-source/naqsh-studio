@@ -36,8 +36,8 @@ impl Channel {
     /// The name About, captions and dialogs show.
     pub fn name(self) -> &'static str {
         match self {
-            Self::Stable => "DesignCraft",
-            Self::NightlyV1 => "DesignCraft Nightly",
+            Self::Stable => "Naqsh Layout",
+            Self::NightlyV1 => "Naqsh Layout Nightly",
         }
     }
 }
@@ -104,7 +104,7 @@ mod tests {
     #[test]
     fn the_default_is_the_stable_identity() {
         assert_eq!(current(), Channel::Stable, "the web build and tests never select a channel");
-        assert_eq!(name(), "DesignCraft");
+        assert_eq!(name(), "Naqsh Layout");
         assert_eq!(version(), env!("CARGO_PKG_VERSION"));
         assert_eq!(commit(), None);
     }
@@ -114,7 +114,7 @@ mod tests {
         assert_ne!(Channel::NightlyV1.app_id(), Channel::Stable.app_id());
         assert_ne!(NIGHTLY_PACKAGE_ID, NIGHTLY_APP_ID);
         assert_eq!(Channel::Stable.app_id(), APP_ID);
-        assert_eq!(Channel::NightlyV1.name(), "DesignCraft Nightly");
+        assert_eq!(Channel::NightlyV1.name(), "Naqsh Layout Nightly");
         assert!(Channel::NightlyV1.is_nightly() && !Channel::Stable.is_nightly());
     }
 }

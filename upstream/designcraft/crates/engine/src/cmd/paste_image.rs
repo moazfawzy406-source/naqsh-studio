@@ -105,7 +105,7 @@ fn paste_image(s: &mut Session, p: &Value) -> Result<Value> {
         return Err(bad(ID, format!("`name` must end in an image extension ({})", IMAGE_EXTENSIONS.join(", "))));
     }
     let bytes = super::base64_decode(b64);
-    let (pw, ph) = raster_size(&bytes).ok_or_else(|| bad(ID, "the clipboard doesn't hold an image DesignCraft can read"))?;
+    let (pw, ph) = raster_size(&bytes).ok_or_else(|| bad(ID, "the clipboard doesn't hold an image Naqsh Layout can read"))?;
     check_pasted_size(pw, ph).map_err(|e| bad(ID, e))?;
     // The header can be whole while the pixels after it are cut off: decode the whole raster so
     // a damaged image is refused instead of stored.

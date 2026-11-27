@@ -18,7 +18,7 @@ mod tests {
     use super::*;
     #[test]
     fn nightly_native_caption_keeps_channel_across_document_dirty_and_hidden_name_updates() {
-        let channel = "PhotoCraft Nightly";
+        let channel = "Naqsh Photo Nightly";
         assert_eq!(os_title(channel, None, true), channel);
         for dirty in [false, true] {
             let shown = os_title(channel, Some(("my document.psd", dirty)), true);
@@ -34,7 +34,7 @@ mod tests {
 
     #[test]
     fn drawn_nightly_caption_keeps_channel_when_a_document_is_open() {
-        let channel = "PhotoCraft Nightly";
+        let channel = "Naqsh Photo Nightly";
         for show_name in [false, true] {
             for dirty in [false, true] {
                 let title = drawn_title(channel, Some(("work.psd", dirty)), show_name, true);
@@ -47,7 +47,7 @@ mod tests {
 
     #[test]
     fn stable_drawn_caption_preserves_the_document_only_style_and_dirty_dot() {
-        let stable = "PhotoCraft";
+        let stable = "Naqsh Photo";
         assert_eq!(drawn_title(stable, None, true, false), stable);
         let clean = drawn_title(stable, Some(("work.psd", false)), true, false);
         assert_eq!(clean, "work.psd");

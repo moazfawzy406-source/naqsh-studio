@@ -18,8 +18,8 @@ pub const STABLE_VERSION_LINE: &str = concat!("designcraft ", env!("CARGO_PKG_VE
 
 pub fn require_profile(flavor: BuildFlavor, profile: &Profile) -> Result<(), String> {
     match (flavor, profile.is_nightly()) {
-        (BuildFlavor::NightlyV1, false) => Err("Open DesignCraft Nightly from Naqsh Studio Launcher".into()),
-        (BuildFlavor::Stable, true) => Err("This is a stable DesignCraft build; nightly-v1 requires the nightly build".into()),
+        (BuildFlavor::NightlyV1, false) => Err("Open Naqsh Layout Nightly from Naqsh Studio Launcher".into()),
+        (BuildFlavor::Stable, true) => Err("This is a stable Naqsh Layout build; nightly-v1 requires the nightly build".into()),
         _ => Ok(()),
     }
 }
@@ -36,7 +36,7 @@ pub fn version_query(args: &[OsString]) -> bool {
 pub fn version_line(flavor: BuildFlavor, stable: &str, version: &str) -> String {
     match flavor {
         BuildFlavor::Stable => stable.to_owned(),
-        BuildFlavor::NightlyV1 => format!("DesignCraft {version} (nightly-v1)"),
+        BuildFlavor::NightlyV1 => format!("Naqsh Layout {version} (nightly-v1)"),
     }
 }
 
@@ -72,7 +72,7 @@ mod tests {
     fn nightly_version_query_is_unambiguous_and_never_reinterprets_file_arguments() {
         let version = "0.2.1-nightly.20261124.17.1.gabcdef012345";
         assert_eq!(version_line(BuildFlavor::Stable, "designcraft 0.2.1", version), "designcraft 0.2.1");
-        assert_eq!(version_line(BuildFlavor::NightlyV1, "designcraft 0.2.1", version), format!("DesignCraft {version} (nightly-v1)"));
+        assert_eq!(version_line(BuildFlavor::NightlyV1, "designcraft 0.2.1", version), format!("Naqsh Layout {version} (nightly-v1)"));
         assert!(version_query(&["--version".into()]));
         assert!(version_query(&["-V".into()]));
         assert!(!version_query(&["--".into(), "--version".into()]));

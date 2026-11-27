@@ -46,7 +46,7 @@ where
         let text = arg.to_string_lossy();
         text == "--launch-profile" || text == "--profile-root" || text.starts_with("--launch-profile=") || text.starts_with("--profile-root=")
     }) {
-        let _ = writeln!(err, "nightly-v1 is supported only by the PhotoCraft desktop launcher protocol");
+        let _ = writeln!(err, "nightly-v1 is supported only by the Naqsh Photo desktop launcher protocol");
         return 2;
     }
 

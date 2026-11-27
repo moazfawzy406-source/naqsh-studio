@@ -301,11 +301,11 @@ fn desktop_session() -> bool {
 /// A Nightly launch that is refused before the window: say why where the user looks.
 #[allow(clippy::disallowed_types, reason = "native refusal before any window exists")]
 fn report_launch_profile_error(error: &str) {
-    eprintln!("DesignCraft launch profile: {error}");
+    eprintln!("Naqsh Layout launch profile: {error}");
     if build_flavor::needs_native_error(build_flavor::COMPILED, desktop_session()) {
         // Before any window exists, so this is not the in-frame dialog clippy.toml forbids.
         let _ = rfd::MessageDialog::new()
-            .set_title("DesignCraft Nightly")
+            .set_title("Naqsh Layout Nightly")
             .set_description(error)
             .set_level(rfd::MessageLevel::Error)
             .set_buttons(rfd::MessageButtons::Ok)
@@ -586,7 +586,7 @@ pub fn main() -> std::process::ExitCode {
                         // A processor chosen by `WGPU_POWER_PREF` can be the one that can't show the window.
                         let hint = if chosen_gpu { " (without WGPU_POWER_PREF it uses the one that drives your display)" } else { "" };
                         restarted = Some(format!(
-                            "The graphics processor tried first couldn't show the window, so DesignCraft started again on {} ({:?}, {:?}){hint}.",
+                            "The graphics processor tried first couldn't show the window, so Naqsh Layout started again on {} ({:?}, {:?}){hint}.",
                             info.name.trim(),
                             info.backend,
                             info.device_type
@@ -619,9 +619,9 @@ pub fn main() -> std::process::ExitCode {
                 // Last, so the interruption is the line the user reads. Showing it is also what
                 // lets this session clear the record instead of passing it on.
                 if unclean_notice_shown {
-                    app.status("DesignCraft Nightly did not close cleanly last time. Recovered documents are listed below.");
+                    app.status("Naqsh Layout Nightly did not close cleanly last time. Recovered documents are listed below.");
                 } else if session_unavailable && nightly {
-                    log::warn!("another DesignCraft Nightly holds this profile's session record");
+                    log::warn!("another Naqsh Layout Nightly holds this profile's session record");
                 }
                 app.integrated_titlebar = cfg!(target_os = "macos");
                 app.custom_titlebar = cfg!(target_os = "windows");
@@ -671,7 +671,7 @@ pub fn main() -> std::process::ExitCode {
     match gpu::finish(run, &startup) {
         Ok(()) => std::process::ExitCode::SUCCESS,
         Err(e) => {
-            log::error!("DesignCraft stopped: {e}");
+            log::error!("Naqsh Layout stopped: {e}");
             std::process::ExitCode::FAILURE
         }
     }

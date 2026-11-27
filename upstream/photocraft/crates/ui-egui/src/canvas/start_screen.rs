@@ -79,10 +79,10 @@ fn links() -> [StartLink; 2] {
 /// The community pages, at the bottom of the Home rail.
 fn footer_links() -> [StartLink; 3] {
     [
-        StartLink::url(tl!("Website"), Some(IconId::new("link")), crate::links::APP_PAGE),
+        StartLink::url(tl!("Naqsh Studio"), Some(IconId::new("link")), "https://github.com/moazfawzy406-source/naqsh-studio"),
         // A speech bubble and a chain link, as the rail showed before the framework move (#15449).
-        StartLink::url(tl!("Discord"), Some(IconId::new("note")), crate::links::DISCORD),
-        StartLink::url(tl!("GitHub"), Some(IconId::new("link_layers")), crate::links::GITHUB),
+        StartLink::url(tl!("Downloads"), Some(IconId::new("note")), "https://github.com/moazfawzy406-source/naqsh-studio/releases"),
+        StartLink::url(tl!("Source code"), Some(IconId::new("link_layers")), "https://github.com/moazfawzy406-source/naqsh-studio"),
     ]
 }
 

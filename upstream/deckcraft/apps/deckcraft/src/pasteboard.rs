@@ -47,7 +47,7 @@ mod tests {
         let html = super::html().unwrap_or_default();
         assert!(html.contains("<b>") || html.contains("<B>"), "{html}");
         let text = arboard::Clipboard::new().ok().and_then(|mut cb| cb.get_text().ok()).unwrap_or_default();
-        assert_eq!(text, "DeckCraft");
+        assert_eq!(text, "Naqsh Deck");
         let mut cb = arboard::Clipboard::new().expect("pasteboard");
         let img = arboard::ImageData { width: 1, height: 1, bytes: Cow::Owned(vec![255, 0, 0, 255]) };
         cb.set_image(img).expect("set image");

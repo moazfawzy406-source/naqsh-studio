@@ -31,7 +31,7 @@ pub use craft::automation::agents::{LAUNCH_TIMEOUT, LaunchFn};
 pub type PrepareFn = Box<dyn Fn(&mut Headless) + Send + Sync>;
 
 /// The app's name in the lookup's messages.
-const APP_NAME: &str = "PhotoCraft";
+const APP_NAME: &str = "Naqsh Photo";
 /// The desktop app's file name beside the CLI (without `.exe`).
 const APP_EXE: &str = "photocraft";
 

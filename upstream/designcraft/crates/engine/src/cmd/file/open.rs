@@ -133,7 +133,7 @@ pub fn read_document(path: &str, cancel: &std::sync::atomic::AtomicBool) -> Resu
         return Ok(ReadDocument { path: path.to_string(), content: ReadContent::Interchange(bytes) });
     }
     if !native && legacy.is_none() {
-        return Err(bad("file.open", format!("{path}: not a DesignCraft or IDML file")));
+        return Err(bad("file.open", format!("{path}: not a Naqsh Layout or IDML file")));
     }
     let (mut d, warnings) = match legacy {
         Some(loaded) => loaded,
@@ -347,7 +347,7 @@ mod document_fonts_tests {
         // The extension decides (any case), not the bytes: no InDesign-made file is needed.
         let dir = temp_dir("indd");
         let path = dir.join("Brochure.INDD");
-        std::fs::write(&path, b"not a DesignCraft document").unwrap();
+        std::fs::write(&path, b"not a Naqsh Layout document").unwrap();
         let mut s = Session::new();
         let e = s.execute("file.open", &json!({"path": path.to_string_lossy()})).unwrap_err().to_string();
         assert!(e.contains("InDesign Markup (IDML)") && !e.contains("expected value"), "{e}");
@@ -620,7 +620,7 @@ mod open_bytes_tests {
         let native = s.execute("file.serialize", &json!({})).unwrap();
         for (name, title) in [
             ("Brochure.designcraft", "Brochure"),
-            ("Brochure.DesignCraft", "Brochure"),
+            ("Brochure.Naqsh Layout", "Brochure"),
             ("Brochure", "Brochure"),
             ("Brochure.v2", "Brochure.v2"),
             ("Brochure.indd", "Brochure.indd"),

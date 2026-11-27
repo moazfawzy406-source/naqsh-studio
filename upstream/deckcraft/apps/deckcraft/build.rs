@@ -50,8 +50,8 @@ fn main() {
     }
     let mut res = winresource::WindowsResource::new();
     res.set_icon(build_channel::windows_icon_path(nightly))
-        .set("ProductName", if nightly { "DeckCraft Nightly" } else { "DeckCraft" })
-        .set("FileDescription", if nightly { "DeckCraft Nightly presentations" } else { "DeckCraft presentations" })
+        .set("ProductName", if nightly { "Naqsh Deck Nightly" } else { "Naqsh Deck" })
+        .set("FileDescription", if nightly { "Naqsh Deck Nightly presentations" } else { "Naqsh Deck presentations" })
         .set("CompanyName", "Learning Machines LLC")
         .set("LegalCopyright", "Copyright (c) the DeckCraft authors. MIT OR Apache-2.0.")
         .set("OriginalFilename", "deckcraft.exe")

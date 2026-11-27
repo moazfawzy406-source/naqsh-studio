@@ -43,8 +43,8 @@ pub fn app_id() -> &'static str {
 
 pub const fn name_for(identity: LaunchIdentity) -> &'static str {
     match identity {
-        LaunchIdentity::Stable => "PhotoCraft",
-        LaunchIdentity::NightlyV1 => "PhotoCraft Nightly",
+        LaunchIdentity::Stable => "Naqsh Photo",
+        LaunchIdentity::NightlyV1 => "Naqsh Photo Nightly",
     }
 }
 

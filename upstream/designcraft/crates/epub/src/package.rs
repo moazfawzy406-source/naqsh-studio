@@ -52,7 +52,7 @@ fn metadata(doc: &Document, opts: &EpubOptions, title: &str, language: &str) -> 
         language: language.to_owned(),
         creators: opts.author.as_deref().or(doc.metadata_author()).into_iter().map(str::to_owned).collect(),
         modified: modified(doc, opts),
-        generator: Some("DesignCraft".into()),
+        generator: Some("Naqsh Layout".into()),
         ..Default::default()
     }
 }

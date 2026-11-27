@@ -64,7 +64,7 @@ impl craft_pptx::Defaults for DeckDefaults {
     }
 
     fn application(&self) -> &str {
-        "DeckCraft"
+        "Naqsh Deck"
     }
 }
 

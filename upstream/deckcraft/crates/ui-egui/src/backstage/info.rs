@@ -4,7 +4,7 @@ use super::{Backstage, Icon, Outcome, Page, RichText, Sense, SlideApp, Tokens, U
 /// Save As and Change File Type: (id for [`SlideApp::export_as`], label, detail).
 pub const SAVE_TYPES: [(&str, &str, &str); 9] = [
     ("pptx", "PowerPoint Presentation (*.pptx)", "Opens in PowerPoint and other presentation apps"),
-    ("deckcraft", "DeckCraft Presentation (*.deckcraft)", "DeckCraft's own format: everything is kept"),
+    ("deckcraft", "Naqsh Deck Presentation (*.deckcraft)", "Naqsh Deck's own format: everything is kept"),
     ("pdf", "PDF (*.pdf)", "A fixed copy that keeps its layout on any device"),
     ("outline", "Outline (*.txt)", "The slide titles and bullet text as plain text"),
     ("rtf", "Outline/RTF (*.rtf)", "The slide titles and bullet text for word processors"),
@@ -218,12 +218,12 @@ pub(super) fn about(app: &mut SlideApp, ui: &mut Ui) {
             ui.horizontal(|ui| {
                 let (r, _) = ui.allocate_exact_size(vec2(40.0, 40.0), Sense::hover());
                 crate::dialogs::paint_logo(ui.painter(), r);
-                ui.label(RichText::new("DeckCraft").font(theme::bold(24.0)).color(t.text));
+                ui.label(RichText::new("Naqsh Deck").font(theme::bold(24.0)).color(t.text));
             });
             dim(ui, &crate::dialogs::version_line());
             dim(ui, "Open source under MIT OR Apache-2.0. Not affiliated with Microsoft.");
             ui.add_space(14.0);
-            if task(ui, Icon::Help, "Credits", "Credits", "The people and models who built DeckCraft.", true) {
+            if task(ui, Icon::Help, "Credits", "Credits", "The people and models who built Naqsh Deck.", true) {
                 let _ = app.run("app.about", json!({}));
             }
             ui.hyperlink_to("Join our community on Discord", deckcraft_engine::links::DISCORD);

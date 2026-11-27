@@ -9,7 +9,7 @@ use crate::SlideApp;
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// What Help > Check for Updates… answers in Nightly, which ArtCraft Launcher updates.
-pub(crate) const NIGHTLY_UPDATES: &str = "DeckCraft Nightly is updated by Naqsh Studio Launcher";
+pub(crate) const NIGHTLY_UPDATES: &str = "Naqsh Deck Nightly is updated by Naqsh Studio Launcher";
 
 pub(crate) struct Runtime {
     updater: Updater,

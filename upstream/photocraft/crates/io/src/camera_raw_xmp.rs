@@ -263,7 +263,7 @@ pub fn load(params: &mut CameraRaw, bytes: &[u8]) -> Result<LoadReport, String> 
 }
 
 /// The XMP toolkit [`save`] names on `x:xmpmeta`.
-const TOOLKIT: &str = "PhotoCraft";
+const TOOLKIT: &str = "Naqsh Photo";
 
 /// Did [`save`] write this file? True when its `x:xmpmeta` names PhotoCraft as the toolkit
 /// (`x:xmptk`). Lightroom, Bridge and Camera Raw put their own toolkit there when they write a

@@ -166,12 +166,12 @@ fn open_other(name: &str, bytes: &[u8]) -> Result<(Presentation, Vec<String>, Ve
         return Ok((p, lost_slides, warnings));
     }
     if deckcraft_pptx::is_encrypted(bytes) {
-        return Err(EngineError::Other(format!("{name} is password-protected. DeckCraft can't open password-protected presentations yet.")));
+        return Err(EngineError::Other(format!("{name} is password-protected. Naqsh Deck can't open password-protected presentations yet.")));
     }
     if deckcraft_ppt::sniff(bytes) {
         let (mut p, lost) = deckcraft_ppt::import_checked(bytes).map_err(|e| match e {
             deckcraft_ppt::PptError::Encrypted => {
-                EngineError::Other(format!("{name} is password-protected. DeckCraft can't open password-protected presentations yet."))
+                EngineError::Other(format!("{name} is password-protected. Naqsh Deck can't open password-protected presentations yet."))
             }
             other => EngineError::Other(format!("{name}: {other}")),
         })?;
@@ -195,7 +195,7 @@ fn open_other(name: &str, bytes: &[u8]) -> Result<(Presentation, Vec<String>, Ve
         }
         return Ok((p, vec![], vec![]));
     }
-    Err(EngineError::Other(format!("{name}: not a presentation DeckCraft can read")))
+    Err(EngineError::Other(format!("{name}: not a presentation Naqsh Deck can read")))
 }
 
 /// Fill in each audio and video clip's length and picture size from its bytes: a `.pptx` doesn't

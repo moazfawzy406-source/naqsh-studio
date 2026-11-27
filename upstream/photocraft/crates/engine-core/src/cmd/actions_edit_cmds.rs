@@ -385,7 +385,7 @@ pub fn specs() -> Vec<CommandSpec> {
             label: "Reset Actions…",
             menu: &[],
             shortcut: None,
-            params: r#"{"confirm":true,"mode":"replace"|"append"} → {set,appended,actions:[names]}. Restores the PhotoCraft Basics set; appended beside a set of that name it gets a numbered name."#,
+            params: r#"{"confirm":true,"mode":"replace"|"append"} → {set,appended,actions:[names]}. Restores the Naqsh Photo Basics set; appended beside a set of that name it gets a numbered name."#,
             enabled: library_commands::enabled,
             run: library_commands::reset,
             journal: false,

@@ -155,7 +155,7 @@ pub fn preview_release(app: &mut PhotocraftApp, version: &str, url: &str) {
     updater.offer(craft::update::Release {
         tag: format!("v{version}"),
         version: craft::update::parse_version(version),
-        name: format!("PhotoCraft {version}"),
+        name: format!("Naqsh Photo {version}"),
         html_url: url.into(),
         ..Default::default()
     });

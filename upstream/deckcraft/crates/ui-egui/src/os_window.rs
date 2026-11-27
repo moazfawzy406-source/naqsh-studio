@@ -41,8 +41,8 @@ pub fn app_id() -> &'static str {
 
 pub const fn name_for(identity: LaunchIdentity) -> &'static str {
     match identity {
-        LaunchIdentity::Stable => "DeckCraft",
-        LaunchIdentity::NightlyV1 => "DeckCraft Nightly",
+        LaunchIdentity::Stable => "Naqsh Deck",
+        LaunchIdentity::NightlyV1 => "Naqsh Deck Nightly",
     }
 }
 
@@ -73,7 +73,7 @@ mod tests {
         assert_eq!(id_for(LaunchIdentity::Stable), APP_ID);
         assert_ne!(id_for(LaunchIdentity::NightlyV1), APP_ID);
         assert_eq!(id_for(LaunchIdentity::NightlyV1), "ai.storyteller.deckcraft.nightly-v1");
-        assert_eq!(name_for(LaunchIdentity::NightlyV1), "DeckCraft Nightly");
+        assert_eq!(name_for(LaunchIdentity::NightlyV1), "Naqsh Deck Nightly");
         assert!(stable_services_for(LaunchIdentity::Stable));
         assert!(!stable_services_for(LaunchIdentity::NightlyV1));
     }

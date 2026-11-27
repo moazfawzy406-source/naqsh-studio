@@ -157,7 +157,7 @@ pub(super) fn image_processor(s: &mut Session, p: &Value) -> Result<Value> {
 
 const IMAGE_PROCESSOR: &str = "file.scripts.imageProcessor";
 const IMAGE_PROCESSOR_NO_FORMAT: &str = "You must save to at least one file type.";
-const IMAGE_PROCESSOR_NO_SOURCE: &str = "There were no source files that could be opened by PhotoCraft.";
+const IMAGE_PROCESSOR_NO_SOURCE: &str = "There were no source files that could be opened by Naqsh Photo.";
 
 fn image_processor_folder_inputs(p: &Value, output: &str) -> Result<Vec<BatchInput>> {
     if p.get("input").or_else(|| p.get("files")).and_then(Value::as_str) == Some("") {

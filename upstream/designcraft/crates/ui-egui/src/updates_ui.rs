@@ -139,7 +139,7 @@ pub(crate) fn show(app: &mut DesignApp, ctx: &egui::Context) {
             && app.updates_rt.managed_window_open
         {
             let mut open = true;
-            let title = crate::i18n::tr(&app.ui.language, "DesignCraft Updates");
+            let title = crate::i18n::tr(&app.ui.language, "Naqsh Layout Updates");
             let ok_label = crate::i18n::tr(&app.ui.language, "OK");
             egui::Window::new(title)
                 .open(&mut open)
@@ -184,7 +184,7 @@ pub(crate) fn show(app: &mut DesignApp, ctx: &egui::Context) {
     #[cfg(target_arch = "wasm32")]
     if app.updates_rt.manual_window_open {
         let mut open = true;
-        let title = crate::i18n::tr(&app.ui.language, "DesignCraft Updates");
+        let title = crate::i18n::tr(&app.ui.language, "Naqsh Layout Updates");
         let ok_label = crate::i18n::tr(&app.ui.language, "OK");
         egui::Window::new(title)
             .open(&mut open)
@@ -272,7 +272,7 @@ mod tests {
         let release = craft_update::Release {
             tag: "v99.0.0".into(),
             version: craft_update::parse_version("99.0.0"),
-            name: "DesignCraft 99.0.0".into(),
+            name: "Naqsh Layout 99.0.0".into(),
             html_url: "https://github.com/storytold/designcraft/releases/tag/v99.0.0".into(),
             ..Default::default()
         };

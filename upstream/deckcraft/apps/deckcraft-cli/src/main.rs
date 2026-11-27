@@ -48,7 +48,7 @@ fn main() -> ExitCode {
         .take_while(|arg| arg.as_str() != "--")
         .any(|arg| arg == "--launch-profile" || arg == "--profile-root" || arg.starts_with("--launch-profile=") || arg.starts_with("--profile-root="))
     {
-        eprintln!("nightly-v1 is supported only by the DeckCraft desktop launcher protocol");
+        eprintln!("nightly-v1 is supported only by the Naqsh Deck desktop launcher protocol");
         return ExitCode::from(2);
     }
     let rest = args.get(1..).unwrap_or(&[]);
@@ -684,7 +684,7 @@ fn app(args: &[String]) -> Result<(), String> {
         }
     }
     let mut r = Remote::connect(&control_addr(&port))
-        .map_err(|e| format!("no DeckCraft app on port {port} ({e}); start it with `deckcraft --control {port}`"))?;
+        .map_err(|e| format!("no Naqsh Deck app on port {port} ({e}); start it with `deckcraft --control {port}`"))?;
     let parse = |s: Option<&String>| -> Result<Value, String> {
         s.map(|j| serde_json::from_str(j).map_err(|e| format!("bad JSON: {e}"))).transpose().map(|v| v.unwrap_or(json!({})))
     };

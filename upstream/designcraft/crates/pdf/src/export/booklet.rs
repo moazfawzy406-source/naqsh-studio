@@ -11,7 +11,7 @@ pub fn merge_pdfs(parts: &[(Vec<u8>, Vec<(f32, f32)>)], title: Option<&str>) -> 
 }
 
 fn merge_pdfs_inner(parts: &[(Vec<u8>, Vec<(f32, f32)>)], title: Option<&str>) -> Result<Vec<u8>> {
-    let metadata = Metadata { creator: "DesignCraft".into(), producer: "DesignCraft".into(), title: title.map(str::to_owned), ..Default::default() };
+    let metadata = Metadata { creator: "Naqsh Layout".into(), producer: "Naqsh Layout".into(), title: title.map(str::to_owned), ..Default::default() };
     let mut writer = Writer::new(krilla::SerializeSettings::default(), metadata);
     let pdf = writer.document_mut();
     let mut pages = 0;

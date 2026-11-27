@@ -140,7 +140,7 @@ fn stale_document(app: &PhotocraftApp, doc: u64) -> Option<String> {
 /// patch lands on the rasterized layer (#12121). Cancel does nothing.
 pub fn open_patch(app: &mut PhotocraftApp, kind: Kind, layer: photocraft_doc::LayerId, params: Value) -> DialogId {
     let prompt = StandardPrompt::custom(tl!(kind.message()).to_owned())
-        .title(tl!("PhotoCraft").to_owned())
+        .title(tl!("Naqsh Photo").to_owned())
         .button(PromptChoice::Proceed, tl!("OK").to_owned())
         .button(PromptChoice::Cancel, tl!("Cancel").to_owned())
         .tag(Rasterize { kind, doc: active_doc(app), layer: layer.0, filter: None, patch: Some(params) });
@@ -152,7 +152,7 @@ pub fn open_patch(app: &mut PhotocraftApp, kind: Kind, layer: photocraft_doc::La
 /// never replayed, so they change nothing.
 pub fn open(app: &mut PhotocraftApp, kind: Kind, layer: photocraft_doc::LayerId, _tool: Tool, _at: [f64; 3]) -> DialogId {
     let prompt = StandardPrompt::custom(tl!(kind.message()).to_owned())
-        .title(tl!("PhotoCraft").to_owned())
+        .title(tl!("Naqsh Photo").to_owned())
         .button(PromptChoice::Proceed, tl!("OK").to_owned())
         .button(PromptChoice::Cancel, tl!("Cancel").to_owned())
         .tag(Rasterize { kind, doc: active_doc(app), layer: layer.0, filter: None, patch: None });
@@ -191,7 +191,7 @@ pub fn filter_needs(app: &PhotocraftApp, id: &str) -> Option<(photocraft_doc::La
 pub fn intercept_filter(app: &mut PhotocraftApp, id: &str, params: &Value) -> Option<Result<Value, String>> {
     let (layer, smart) = filter_needs(app, id)?;
     let mut prompt = StandardPrompt::custom(tl!(Kind::Type.message()).to_owned())
-        .title(tl!("PhotoCraft").to_owned())
+        .title(tl!("Naqsh Photo").to_owned())
         .button(PromptChoice::Proceed, tl!("Rasterize").to_owned());
     if smart {
         prompt = prompt.button(PromptChoice::Alternate, tl!("Convert to Smart Object").to_owned());

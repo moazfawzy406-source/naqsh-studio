@@ -592,7 +592,7 @@ fn shared_command(app: &mut DesignApp, id: &str, params: &Value) -> Result<Value
         DockCommand::NewWorkspace { name } => return app.run("window.newWorkspace", json!({"name": name})),
         DockCommand::DeleteWorkspace { name } => return app.run("window.deleteWorkspace", json!({"name": name})),
         DockCommand::ResetWorkspace {} => return app.run("window.resetWorkspace", json!({})),
-        DockCommand::Lock { .. } => return Err("Lock Workspace is not available in DesignCraft".into()),
+        DockCommand::Lock { .. } => return Err("Lock Workspace is not available in Naqsh Layout".into()),
         DockCommand::Window { .. } => {
             return Err(
                 "Move Panel to New Window is not available: a floating panel has its own window on the desktop and stays in the page on the web"

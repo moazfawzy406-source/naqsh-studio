@@ -698,7 +698,7 @@ mod tests {
                 "AI apps such as Claude can open, edit and save documents in this window while Naqsh Studio Launcher › Settings › AI agents › Let AI agents use Craft apps is on. Only programs on this computer can connect."
             );
             tl!(
-                "PhotoCraft found your keyboard shortcut set {set} from another image editor on this computer: {n} of its shortcuts differ from PhotoCraft's. Import it?"
+                "Naqsh Photo found your keyboard shortcut set {set} from another image editor on this computer: {n} of its shortcuts differ from Naqsh Photo's. Import it?"
             );
         "#;
         let expected: BTreeSet<Key> = quoted_strings(source).into_iter().map(|source| Key { context: String::new(), source }).collect();
