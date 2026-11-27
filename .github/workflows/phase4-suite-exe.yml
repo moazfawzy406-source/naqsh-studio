@@ -55,6 +55,12 @@ jobs:
           log.write(json.dumps(call("ui.menu.invoke",{"command":"app.language","params":{"lang":"ar"}}))+"\n")
           time.sleep(3)
           call("ui.screenshot",{"path":"shots/hub-arabic.png"})
+          try:
+              log.write(json.dumps(call("ui.menu.invoke",{"command":"window.panel","params":{"panel":"brushes"}}))+"\n")
+              time.sleep(3)
+              call("ui.screenshot",{"path":"shots/brushes-panel.png"})
+          except Exception as e:
+              log.write("brushes step failed: "+str(e)+"\n")
           r=call("ui.find",{"name":"فتح التخطيط"}); log.write(json.dumps(r)+"\n")
           rc=r["result"]["rect"]
           log.write(json.dumps(call("ui.click",{"x":rc[0]+rc[2]/2,"y":rc[1]+rc[3]/2}))+"\n")
@@ -123,3 +129,4 @@ jobs:
 # rebuild
 # sccache
 # layout theme
+# brushes

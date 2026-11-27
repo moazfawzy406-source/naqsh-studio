@@ -42,7 +42,7 @@ pub(super) fn home(app: &mut VectorcraftApp, ui: &mut Ui, rect: egui::Rect) {
     let mut child = ui.new_child(egui::UiBuilder::new().max_rect(rect).layout(egui::Layout::top_down(egui::Align::Min)));
     let out = StartScreen::new(Bind::bound(&mut view), Bind::bound(&mut sort), &recent)
         .layout(StartLayout::Column)
-        .title(tl!("Welcome to VectorCraft"))
+        .title(tl!("Welcome to Naqsh Vector"))
         .subtitle(tl!("Vector illustration — fast, open, scriptable."))
         .new_label(tl!("New file"))
         .open_label(tl!("Open"))
