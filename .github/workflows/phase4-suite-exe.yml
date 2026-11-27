@@ -107,6 +107,24 @@ jobs:
           sleep 40
           python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/layout-light.png')"
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_LANG=ar NAQSH_APP=vector ./target/release/naqsh-studio.exe --control 7980 > ../shots/vector2.log 2>&1 &
+          sleep 30
+          python - <<'PY'
+          import socket, json, time, re
+          tok=re.search(r"control token: (\S+)", open("../shots/vector2.log").read()).group(1)
+          sock=socket.create_connection(("127.0.0.1",7980),timeout=120); rf=sock.makefile("rb"); n=[0]
+          def call(m,p=None):
+              n[0]+=1; sock.sendall((json.dumps({"id":n[0],"method":m,"params":p or {}})+"\n").encode()); return json.loads(rf.readline())
+          log=open("../shots/brushes.log","w")
+          log.write(json.dumps(call("auth",{"token":tok}))+"\n")
+          log.write(json.dumps(call("ui.menu.invoke",{"command":"file.new","params":{"width":600,"height":400}}))+"\n")
+          time.sleep(3)
+          log.write(json.dumps(call("ui.menu.invoke",{"command":"window.panel","params":{"panel":"brushes"}}))+"\n")
+          time.sleep(3)
+          call("ui.screenshot",{"path":"shots/brushes-doc.png"})
+          log.close()
+          PY
+          taskkill //F //IM naqsh-studio.exe || true
           cat ../shots/summary.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -130,3 +148,4 @@ jobs:
 # sccache
 # layout theme
 # brushes
+# brushes doc
