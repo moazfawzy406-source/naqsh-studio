@@ -82,6 +82,10 @@ jobs:
             taskkill //F //IM naqsh-studio.exe || true
             sleep 3
           done
+          NAQSH_LANG=ar NAQSH_APP=deck ./target/release/naqsh-studio.exe --sample > ../shots/deck-sample.log 2>&1 &
+          sleep 40
+          python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/deck-sample.png')"
+          taskkill //F //IM naqsh-studio.exe || true
           cat ../shots/summary.txt
       - uses: actions/upload-artifact@v4
         if: always()
