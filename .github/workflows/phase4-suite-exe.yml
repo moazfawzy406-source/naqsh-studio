@@ -97,6 +97,10 @@ jobs:
           sleep 40
           python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/deck-dark.png')"
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_THEME=light NAQSH_LANG=ar NAQSH_APP=layout ./target/release/naqsh-studio.exe > ../shots/layout-light.log 2>&1 &
+          sleep 40
+          python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/layout-light.png')"
+          taskkill //F //IM naqsh-studio.exe || true
           cat ../shots/summary.txt
       - uses: actions/upload-artifact@v4
         if: always()
@@ -118,3 +122,4 @@ jobs:
 # rebuild
 # rebuild
 # sccache
+# layout theme

@@ -398,7 +398,7 @@ pub struct UiState {
 impl Default for UiState {
     fn default() -> Self {
         UiState {
-            brightness: theme::Brightness::MediumDark,
+            brightness: match std::env::var("NAQSH_THEME").as_deref() { Ok("light") => theme::Brightness::Light, Ok("dark") => theme::Brightness::Dark, _ => theme::Brightness::MediumDark },
             screen_mode: ScreenMode::Normal,
             presentation_return: ScreenMode::Normal,
             presentation_view: None,
