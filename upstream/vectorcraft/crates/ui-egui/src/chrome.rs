@@ -82,7 +82,8 @@ impl Trailing {
                     app.run("help.safeMode", json!({})).ok();
                 }
             }
-            Trailing::Discord => crate::community::discord_button(app, ui),
+            // naqsh-studio: no ArtCraft Discord button.
+            Trailing::Discord => { let _ = (&app, &ui); }
             // Named as production's search, not after the command's menu row.
             Trailing::Search => {
                 IconButton::command(IconId::new("search"), PALETTE).label(tl!("Search commands")).show(ui);
