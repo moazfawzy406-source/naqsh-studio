@@ -590,6 +590,7 @@ static TABLE: &[(&str, &str)] = &[
     ("Change to:", "تغيير إلى:"),
     ("Album theme", "سمة الألبوم"),
     ("Right-click any ribbon button to add it.", "انقر بزر الفأرة الأيمن على أي زر في الشريط لإضافته."),
+    ("Cut", "قص"),
 ];
 
 fn map() -> &'static HashMap<&'static str, &'static str> {
