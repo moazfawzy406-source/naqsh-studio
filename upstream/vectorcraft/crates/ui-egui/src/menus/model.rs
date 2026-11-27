@@ -467,7 +467,14 @@ impl Build<'_> {
         }
         self.states.set(command.clone(), state);
         self.refs.push((command.clone(), item.label.clone(), checked.is_some()));
-        Some(self.decorate(item, id, params))
+        // naqsh-studio: draw the row in the UI language (the bar showed the English label next to translated submenus).
+        let mut item = self.decorate(item, id, params);
+        let shown = self.item_title(id, params, &item.label);
+        if shown != item.label {
+            let english = std::mem::replace(&mut item.label, shown);
+            item.english.get_or_insert(english);
+        }
+        Some(item)
     }
 
     /// The title a row shows: the Settings pages read `Page…`, the other rows their label as the
