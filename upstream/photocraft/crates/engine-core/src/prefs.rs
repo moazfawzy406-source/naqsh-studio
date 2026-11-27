@@ -431,7 +431,7 @@ impl Interface {
 impl Default for Interface {
     fn default() -> Self {
         Self {
-            appearance_mode: AppearanceMode::Dark,
+            appearance_mode: if std::env::var("NAQSH_THEME").as_deref() == Ok("light") { AppearanceMode::Light } else { AppearanceMode::Dark },
             dark_theme: "craft.artcraft".into(),
             light_theme: "craft.pro".into(),
             favorite_themes: Vec::new(),
