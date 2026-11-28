@@ -151,13 +151,14 @@ jobs:
           done
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_SELFTEST=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-selftest.log 2>&1 &
-          for s in $(seq 1 24); do
+          for s in $(seq 1 36); do
             sleep 6
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/selftest$s.png')"
           done
           taskkill //F //IM naqsh-studio.exe || true
-          NAQSH_LANG=ar NAQSH_SELFTEST=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-selftest-ar.log 2>&1 &
-          for s in $(seq 1 24); do
+          mkdir -p ../shots/files && cp "$TEMP"/naqsh-selftest/poster.* ../shots/files/ || true
+                    NAQSH_LANG=ar NAQSH_SELFTEST=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-selftest-ar.log 2>&1 &
+          for s in $(seq 1 36); do
             sleep 6
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/selftestar$s.png')"
           done
@@ -261,3 +262,4 @@ jobs:
 # studio30
 # studio31
 # studio32
+# studio33

@@ -546,6 +546,8 @@ pub mod host_embed {
     /// Naqsh Studio: the Logo Grid Builder script, listed in File > Scripts of the one-window Vector.
     pub const LOGO_GRID_SCRIPT: &str = include_str!("../../../../../studio/scripts/logo-grid-builder.js");
 
+    pub const POSTER_SCRIPT: &str = include_str!("../../../../../studio/scripts/poster-demo.js");
+
     /// Put the script in the Scripts folder (only when it is missing or older), and have File > Scripts list that folder.
     pub fn install_scripts(session: &mut vectorcraft_engine::Session) {
         if let Some(dir) = super::prefs_dir::prefs_dir().map(|d| d.join("Scripts")) {

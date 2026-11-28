@@ -291,6 +291,17 @@ fn st_log(what: &str, r: Result<serde_json::Value, String>) {
 impl Host {
     /// CI functional test (NAQSH_SELFTEST): make a disposable document in each app, switch tabs away and back,
     /// save it to a temp folder, close it, open the saved file again. Every result goes to the log.
+    fn st_script(&mut self, which: u8, name: &str, args: serde_json::Value) {
+        let src = if which == 1 { vectorcraft_app::host_embed::LOGO_GRID_SCRIPT } else { vectorcraft_app::host_embed::POSTER_SCRIPT };
+        st_log(&format!("vector script {name}"), self.vector.run("script.run", serde_json::json!({"source": src, "name": name, "args": args})));
+    }
+
+    fn st_report(&mut self, what: &str) {
+        let r = self.vector.run("ui.inspect", serde_json::json!({}));
+        let rep = r.map(|v| v.get("scriptReport").cloned().unwrap_or(serde_json::Value::Null));
+        st_log(&format!("report {what}"), rep);
+    }
+
     fn selftest_step(&mut self, ctx: &egui::Context) {
         use serde_json::json;
         let wait = |me: &mut Host, secs: u64| me.st_at = Some(std::time::Instant::now() + std::time::Duration::from_secs(secs));
@@ -351,7 +362,6 @@ impl Host {
             }
             9 => {
                                 st_log("vector (after tabs) select.all", self.vector.run("select.all", json!({})));
-                st_log("vector file.saveAs (app, dialog expected)", self.vector.run("file.saveAs", json!({"path": path("v.svg"), "format": "svg"})));
                 st_log("vector file.saveAs (engine)", self.vector.session.execute("file.saveAs", &json!({"path": path("v2.svg"), "format": "svg"})).map_err(|e| e.to_string()));
                 self.active = Persona::Deck;
                 wait(self, 4);
@@ -404,17 +414,34 @@ impl Host {
                 wait(self, 6);
             }
             17 => {
-                // Logo Grid Builder: every mode on the reopened logo, then the golden grid for the screenshot.
+                // Logo Grid Builder, one mode per step (a script runs over several frames).
                 self.active = Persona::Vector;
-                let src = vectorcraft_app::host_embed::LOGO_GRID_SCRIPT;
-                for m in [1, 2, 4, 5, 6] {
-                    let _ = self.vector.run("select.all", json!({}));
-                    st_log(&format!("vector logo-grid mode {m}"), self.vector.session.execute("script.run", &json!({"source": src, "name": "logo-grid", "args": {"mode": m}})).map_err(|e| e.to_string()));
-                }
+                self.st_script(1, "logo-grid", json!({"mode": 1}));
+                wait(self, 6);
+            }
+            18 => { self.st_report("logo-grid mode 1"); self.st_script(1, "logo-grid", json!({"mode": 2})); wait(self, 6); }
+            19 => { self.st_report("logo-grid mode 2"); self.st_script(1, "logo-grid", json!({"mode": 4})); wait(self, 6); }
+            20 => { self.st_report("logo-grid mode 4"); self.st_script(1, "logo-grid", json!({"mode": 5})); wait(self, 6); }
+            21 => { self.st_report("logo-grid mode 5"); self.st_script(1, "logo-grid", json!({"mode": 6})); wait(self, 6); }
+            22 => {
+                self.st_report("logo-grid mode 6");
                 st_log("vector file.open (fresh logo)", self.vector.run("file.open", json!({"path": path("v2.svg")})));
                 let _ = self.vector.run("select.all", json!({}));
-                st_log("vector logo-grid mode 3", self.vector.session.execute("script.run", &json!({"source": src, "name": "logo-grid", "args": {"mode": 3, "div": 8}})).map_err(|e| e.to_string()));
+                self.st_script(1, "logo-grid", json!({"mode": 3, "div": 8}));
                 wait(self, 8);
+            }
+            23 => { self.st_report("logo-grid mode 3"); self.st_script(2, "poster", json!({})); wait(self, 10); }
+            24 => {
+                self.st_report("poster");
+                st_log("poster export png", self.vector.session.execute("document.export", &json!({"format": "png", "path": path("poster.png")})).map_err(|e| e.to_string()));
+                st_log("poster export pdf", self.vector.session.execute("document.export", &json!({"format": "pdf", "path": path("poster.pdf")})).map_err(|e| e.to_string()));
+                st_log("poster export svg", self.vector.session.execute("document.export", &json!({"format": "svg", "path": path("poster.svg")})).map_err(|e| e.to_string()));
+                if let Ok(rd) = std::fs::read_dir(&dir) {
+                    for e in rd.flatten() {
+                        eprintln!("selftest: file {:?} size {:?}", e.file_name(), e.metadata().map(|m| m.len()).ok());
+                    }
+                }
+                wait(self, 4);
             }
             _ => {
                 eprintln!("selftest: DONE");
