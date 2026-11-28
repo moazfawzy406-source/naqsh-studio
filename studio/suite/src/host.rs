@@ -467,7 +467,7 @@ impl Host {
                 }
                 for (r, text, size) in [([56, 550, 556, 650], "\u{0646}\u{0642}\u{0634} \u{0644}\u{0627}\u{064a}\u{0627}\u{0648}\u{062a}", 64), ([56, 670, 556, 720], "\u{0643}\u{0644} \u{0627}\u{0644}\u{062a}\u{0635}\u{0645}\u{064a}\u{0645} \u{0641}\u{064a} \u{0628}\u{0631}\u{0646}\u{0627}\u{0645}\u{062c} \u{0648}\u{0627}\u{062d}\u{062f}", 26)] {
                     st_log("layout text frame", l.run("frame.create", json!({"rect": r, "content": "text", "text": text})));
-                    st_log("layout type.char", l.run("type.char", json!({"attrs": {"size": size, "fill": "Paper"}})));
+                    st_log("layout type.char", l.run("type.char", json!({"attrs": {"size": size, "fill": "[Paper]"}})));
                     st_log("layout type.alignRight", l.run("type.alignRight", json!({})));
                 }
                 wait(self, 6);
