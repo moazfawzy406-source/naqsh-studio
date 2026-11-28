@@ -100,7 +100,7 @@ impl eframe::App for Host {
             _ => {}
         }
         if self.auto {
-            self.active = match (self.start.elapsed().as_secs() / 16) % 5 {
+            self.active = match (self.start.elapsed().as_secs() / 24) % 5 {
                 0 => Persona::Layout,
                 1 => Persona::Deck,
                 2 => Persona::Vector,
