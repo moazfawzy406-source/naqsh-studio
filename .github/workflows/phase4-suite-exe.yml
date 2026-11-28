@@ -131,12 +131,13 @@ jobs:
               u.mouse_event(2,0,0,0,0); time.sleep(0.4); u.mouse_event(4,0,0,0,0); time.sleep(5)
           press(117,328); ImageGrab.grab().save("../shots/studio-click3.png")
           press(117,328); ImageGrab.grab().save("../shots/studio-click4.png")
-          press(219,282); ImageGrab.grab().save("../shots/studio-click5.png")
+          click(247,44); ImageGrab.grab().save("../shots/studio-click6.png")
+          click(288,44); ImageGrab.grab().save("../shots/studio-click7.png")
           PY
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_LANG=ar NAQSH_THEME=dark NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-ar.log 2>&1 &
-          for s in 1 2 3; do
-            sleep 12
+          for s in 1 2 3 4 5 6 7 8 9 10; do
+            sleep 8
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/studio-ardark$s.png')"
           done
           taskkill //F //IM naqsh-studio.exe || true
@@ -225,3 +226,4 @@ jobs:
 # studio10
 # studio11
 # studio12
+# studio13
