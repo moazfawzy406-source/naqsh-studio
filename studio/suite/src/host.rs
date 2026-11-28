@@ -112,7 +112,7 @@ impl eframe::App for Host {
             };
             ui.ctx().request_repaint_after(std::time::Duration::from_millis(500));
         }
-        if !matches!(self.active, Persona::Photo) {
+        if !matches!(self.active, Persona::Vector | Persona::Photo) {
             egui::Panel::top("naqsh_personas").exact_size(30.0).show(ui, |ui| {
                 ui.horizontal_centered(|ui| {
                     tab_row(ui, &mut self.active);
@@ -143,7 +143,21 @@ impl eframe::App for Host {
                         self.vector.naqsh_set(want, self.dark);
                     }
                 }
+                // Vector fills the whole window with its own panels, so the tabs float. Drag them anywhere.
                 let ctx = ui.ctx().clone();
+                let mut next = self.active;
+                let pos = egui::pos2((ctx.content_rect().right() - 400.0).max(300.0), 3.0);
+                egui::Area::new(egui::Id::new("naqsh_personas_float"))
+                    .order(egui::Order::Foreground)
+                    .movable(true)
+                    .default_pos(pos)
+                    .show(&ctx, |ui| {
+                        egui::Frame::popup(ui.style()).show(ui, |ui| ui.horizontal(|ui| {
+                            tab_row(ui, &mut next);
+                            self.apply |= switches(ui, &mut self.ar, &mut self.dark);
+                        }));
+                    });
+                self.active = next;
                 ctx.send_viewport_cmd(egui::ViewportCommand::Title("Naqsh Studio".to_owned()));
             }
             Persona::Photo => {
