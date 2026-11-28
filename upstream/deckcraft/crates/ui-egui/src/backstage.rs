@@ -329,7 +329,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
     let (nav_bg, page_bg) = colours(&t);
     let mut out = Outcome::default();
     let (top, bottom) = entries(has_doc);
-    egui::Panel::left("backstage_nav").exact_size(NAV_W).resizable(false).frame(egui::Frame::NONE.fill(nav_bg)).show(ui, |ui| {
+    (if crate::ar_ui::is_arabic() { egui::Panel::right("backstage_nav") } else { egui::Panel::left("backstage_nav") }).exact_size(NAV_W).resizable(false).frame(egui::Frame::NONE.fill(nav_bg)).show(ui, |ui| {
         ui.spacing_mut().item_spacing.y = 0.0;
         if has_doc {
             let (r, resp) = ui.allocate_exact_size(vec2(NAV_W, BACK_H), Sense::click());
