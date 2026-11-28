@@ -107,6 +107,25 @@ jobs:
           sleep 40
           python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/layout-light.png')"
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-click.log 2>&1 &
+          sleep 35
+          python - <<'PY'
+          import ctypes, time
+          from ctypes import wintypes
+          from PIL import ImageGrab
+          u=ctypes.windll.user32
+          u.SetProcessDPIAware()
+          h=u.FindWindowW(None,"Naqsh Studio")
+          r=wintypes.RECT(); u.GetWindowRect(h,ctypes.byref(r))
+          open("../shots/studio-click.txt","w").write(f"hwnd={h} rect={r.left},{r.top},{r.right},{r.bottom}\n")
+          def click(dx,dy):
+              u.SetCursorPos(r.left+dx,r.top+dy); time.sleep(0.5)
+              u.mouse_event(2,0,0,0,0); time.sleep(0.1); u.mouse_event(4,0,0,0,0); time.sleep(4)
+          ImageGrab.grab().save("../shots/studio-click0.png")
+          click(75,44); ImageGrab.grab().save("../shots/studio-click1.png")
+          click(137,44); ImageGrab.grab().save("../shots/studio-click2.png")
+          PY
+          taskkill //F //IM naqsh-studio.exe || true
           NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio.log 2>&1 &
           for s in 1 2 3 4; do
             sleep 12
@@ -182,3 +201,4 @@ jobs:
 # discover
 # discover2
 # studio2
+# studio3

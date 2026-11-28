@@ -47,20 +47,31 @@ impl eframe::App for Host {
             };
             ui.ctx().request_repaint_after(std::time::Duration::from_millis(500));
         }
-        egui::Panel::top("naqsh_personas").exact_size(30.0).show(ui, |ui| {
-            ui.horizontal_centered(|ui| {
-                ui.selectable_value(&mut self.active, Persona::Layout, "Layout");
-                ui.selectable_value(&mut self.active, Persona::Deck, "Deck");
-                ui.selectable_value(&mut self.active, Persona::Vector, "Vector");
+        if self.active != Persona::Vector {
+            egui::Panel::top("naqsh_personas").exact_size(30.0).show(ui, |ui| {
+                ui.horizontal_centered(|ui| tab_row(ui, &mut self.active));
             });
-        });
+        }
         match self.active {
             Persona::Layout => {
                 self.layout.ui(ui);
                 self.layout.show_file_dialogs(Some(&*frame));
             }
             Persona::Deck => self.deck.ui(ui),
-            Persona::Vector => self.vector.ui(ui),
+            Persona::Vector => {
+                self.vector.ui(ui);
+                // Vector fills the whole window itself, so the tabs float over its top bar.
+                let ctx = ui.ctx().clone();
+                let mut next = self.active;
+                egui::Area::new(egui::Id::new("naqsh_personas_float"))
+                    .order(egui::Order::Foreground)
+                    .anchor(egui::Align2::LEFT_TOP, egui::vec2(48.0, 4.0))
+                    .show(&ctx, |ui| {
+                        egui::Frame::popup(ui.style()).show(ui, |ui| ui.horizontal(|ui| tab_row(ui, &mut next)));
+                    });
+                self.active = next;
+                ctx.send_viewport_cmd(egui::ViewportCommand::Title("Naqsh Studio".to_owned()));
+            }
         }
     }
 }
@@ -84,4 +95,10 @@ pub fn run() -> Result<(), String> {
         }),
     )
     .map_err(|e| e.to_string())
+}
+
+fn tab_row(ui: &mut egui::Ui, active: &mut Persona) {
+    ui.selectable_value(active, Persona::Layout, "Layout");
+    ui.selectable_value(active, Persona::Deck, "Deck");
+    ui.selectable_value(active, Persona::Vector, "Vector");
 }
