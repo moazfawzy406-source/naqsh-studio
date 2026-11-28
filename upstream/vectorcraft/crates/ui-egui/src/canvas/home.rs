@@ -126,6 +126,11 @@ fn suite(ui: &mut Ui) {
 
 /// Starts another app of the suite: the same executable with `NAQSH_APP` set. A failure is only logged.
 fn launch_app(app: &str) {
+    if crate::app::SUITE_HOSTED.load(std::sync::atomic::Ordering::Relaxed) {
+        let n = match app { "deck" => 1, "layout" => 2, _ => 3 };
+        crate::app::SUITE_REQUEST.store(n, std::sync::atomic::Ordering::Relaxed);
+        return;
+    }
     let lang = if crate::i18n::is_rtl() { "ar" } else { "en" };
     match std::env::current_exe().and_then(|exe| std::process::Command::new(exe).env("NAQSH_APP", app).env("NAQSH_LANG", lang).env("NAQSH_THEME", if crate::app::SUITE_DARK.load(std::sync::atomic::Ordering::Relaxed) { "dark" } else { "light" }).spawn()) {
         Ok(_) => {}

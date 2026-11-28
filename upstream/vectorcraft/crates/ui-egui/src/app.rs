@@ -800,4 +800,8 @@ fn tone(level: Level) -> Tone {
 }
 
 /// Whether the window is dark; the hub passes it to the apps it opens as `NAQSH_THEME`.
-pub(crate) static SUITE_DARK: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+pub static SUITE_DARK: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+/// naqsh-studio: set by the one-window host, so the suite buttons ask it to switch tabs instead of starting a process.
+pub static SUITE_HOSTED: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+/// naqsh-studio: tab asked for by a suite button (0 none, 1 deck, 2 layout, 3 photo). The host takes it each frame.
+pub static SUITE_REQUEST: std::sync::atomic::AtomicU8 = std::sync::atomic::AtomicU8::new(0);

@@ -15,7 +15,7 @@ fn report<E: std::fmt::Display>(r: Result<(), E>) -> ExitCode {
 
 fn main() -> ExitCode {
     match std::env::var("NAQSH_APP").unwrap_or_default().as_str() {
-        "studio" => report(host::run()),
+        "" | "studio" => report(host::run()),
         "deck" => report(deckcraft_app::main()),
         "layout" => designcraft_app::main(),
         "photo" => report(photocraft_app::main()),

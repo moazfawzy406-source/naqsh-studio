@@ -124,6 +124,7 @@ jobs:
           ImageGrab.grab().save("../shots/studio-click0.png")
           click(75,44); ImageGrab.grab().save("../shots/studio-click1.png")
           click(137,44); ImageGrab.grab().save("../shots/studio-click2.png")
+          click(117,328); ImageGrab.grab().save("../shots/studio-click3.png")
           PY
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio.log 2>&1 &
@@ -202,3 +203,4 @@ jobs:
 # discover2
 # studio2
 # studio3
+# studio4

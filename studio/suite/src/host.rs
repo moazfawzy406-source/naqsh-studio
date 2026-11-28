@@ -38,6 +38,11 @@ impl eframe::App for Host {
         }
     }
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
+        match vectorcraft_ui_egui::SUITE_REQUEST.swap(0, std::sync::atomic::Ordering::Relaxed) {
+            1 => self.active = Persona::Deck,
+            2 => self.active = Persona::Layout,
+            _ => {}
+        }
         if self.auto {
             self.active = match (self.start.elapsed().as_secs() / 12) % 4 {
                 0 => Persona::Layout,
@@ -77,6 +82,7 @@ impl eframe::App for Host {
 }
 
 pub fn run() -> Result<(), String> {
+    vectorcraft_ui_egui::SUITE_HOSTED.store(true, std::sync::atomic::Ordering::Relaxed);
     let options = eframe::NativeOptions::default();
     eframe::run_native(
         "Naqsh Studio",

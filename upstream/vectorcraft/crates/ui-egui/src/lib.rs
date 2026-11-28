@@ -124,6 +124,7 @@ mod caches;
 mod services;
 
 pub use app::MAX_RECENT_FONTS;
+pub use app::{SUITE_DARK, SUITE_HOSTED, SUITE_REQUEST};
 pub use caches::{CacheKey, CanvasCache, LivePaintGapsCache, Perf, PlacedKey, PrintTilingCache, SliceCache};
 #[cfg(test)]
 pub(crate) use services::browsable_url;
