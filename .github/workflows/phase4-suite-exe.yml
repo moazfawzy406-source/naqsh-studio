@@ -141,8 +141,8 @@ jobs:
           done
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio.log 2>&1 &
-          for s in 1 2 3 4; do
-            sleep 12
+          for s in 1 2 3 4 5 6 7 8 9 10; do
+            sleep 8
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/studio-auto$s.png')"
           done
           taskkill //F //IM naqsh-studio.exe || true
@@ -222,3 +222,4 @@ jobs:
 # studio7
 # studio8
 # studio9
+# studio10
