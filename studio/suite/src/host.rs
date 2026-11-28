@@ -27,6 +27,7 @@ struct Host {
     start: std::time::Instant,
     auto: bool,
     vfont: Option<bool>,
+    vtick: u32,
 }
 
 impl Host {
@@ -129,6 +130,15 @@ impl eframe::App for Host {
                     vectorcraft_ui_egui::ui_fonts().ui_language(if self.ar { "ar" } else { "en" }).install(ui.ctx());
                 }
                 self.vector.ui(ui);
+                self.vtick += 1;
+                if self.vtick % 45 == 0 {
+                    let want = if self.ar { "ar" } else { "en" };
+                    let have = self.vector.ui_language().code().to_string();
+                    eprintln!("naqsh: vector lang have={have} want={want}");
+                    if have != want {
+                        self.vector.naqsh_set(want, self.dark);
+                    }
+                }
                 // Vector fills the whole window itself, so the tabs float over its top bar.
                 let ctx = ui.ctx().clone();
                 let mut next = self.active;
@@ -187,6 +197,7 @@ pub fn run() -> Result<(), String> {
                 start: std::time::Instant::now(),
                 auto: std::env::var_os("NAQSH_AUTOSWITCH").is_some(),
                 vfont: None,
+                vtick: 0,
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },
                 layout: DesignApp::new(DesignSession::new(), DesignServices::default()),
                 deck: SlideApp::new(DeckSession::new(), DeckServices::default()),
