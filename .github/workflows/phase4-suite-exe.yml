@@ -133,6 +133,9 @@ jobs:
           press(117,328); ImageGrab.grab().save("../shots/studio-click4.png")
           click(247,44); ImageGrab.grab().save("../shots/studio-click6.png")
           click(288,44); ImageGrab.grab().save("../shots/studio-click7.png")
+          click(137,44); ImageGrab.grab().save("../shots/studio-click8.png")
+          click(247,44); ImageGrab.grab().save("../shots/studio-click9.png")
+          click(288,44); ImageGrab.grab().save("../shots/studio-click10.png")
           PY
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_LANG=ar NAQSH_THEME=dark NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-ar.log 2>&1 &
@@ -233,3 +236,4 @@ jobs:
 # studio17
 # studio18
 # studio19
+# studio20
