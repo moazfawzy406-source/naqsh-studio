@@ -107,6 +107,14 @@ jobs:
           sleep 40
           python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/layout-light.png')"
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-layout.log 2>&1 &
+          sleep 40
+          python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/studio-layout.png')"
+          taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_START=deck NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-deck.log 2>&1 &
+          sleep 40
+          python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/studio-deck.png')"
+          taskkill //F //IM naqsh-studio.exe || true
           NAQSH_LANG=ar NAQSH_APP=vector ./target/release/naqsh-studio.exe --control 7980 > ../shots/vector2.log 2>&1 &
           sleep 30
           python - <<'PY'
