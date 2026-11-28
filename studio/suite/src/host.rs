@@ -28,6 +28,8 @@ struct Host {
     auto: bool,
     vfont: Option<bool>,
     vtick: u32,
+    toggled: u8,
+    toggle_env: bool,
 }
 
 impl Host {
@@ -101,6 +103,11 @@ impl eframe::App for Host {
             1 => self.active = Persona::Deck,
             2 => self.active = Persona::Layout,
             _ => {}
+        }
+        if self.toggle_env {
+            let s = self.start.elapsed().as_secs();
+            if self.toggled == 0 && s >= 20 { self.toggled = 1; self.ar = !self.ar; self.apply = true; }
+            if self.toggled == 1 && s >= 70 { self.toggled = 2; self.dark = !self.dark; self.apply = true; }
         }
         if self.auto {
             self.active = match (self.start.elapsed().as_secs() / 24) % 5 {
@@ -204,6 +211,8 @@ pub fn run() -> Result<(), String> {
                 auto: std::env::var_os("NAQSH_AUTOSWITCH").is_some(),
                 vfont: None,
                 vtick: 0,
+                toggled: 0,
+                toggle_env: std::env::var_os("NAQSH_TOGGLE").is_some(),
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },
                 layout: DesignApp::new(DesignSession::new(), DesignServices::default()),
                 deck: SlideApp::new(DeckSession::new(), DeckServices::default()),
