@@ -30,6 +30,7 @@ struct Host {
     vtick: u32,
     toggled: u8,
     prev: Persona,
+    vfiles: Option<vectorcraft_app::host_embed::FileHost>,
     st_step: usize,
     st_at: Option<std::time::Instant>,
     selftest: bool,
@@ -162,6 +163,9 @@ impl eframe::App for Host {
                     vectorcraft_ui_egui::ui_fonts().ui_language(if self.ar { "ar" } else { "en" }).install(ui.ctx());
                 }
                 self.vector.ui(ui);
+                if let Some(f) = self.vfiles.as_mut() {
+                    vectorcraft_app::host_embed::pump_files(f, ui.ctx(), frame);
+                }
                 self.vtick += 1;
                 if self.vtick % 45 == 0 {
                     let want = if self.ar { "ar" } else { "en" };
@@ -237,8 +241,9 @@ pub fn run() -> Result<(), String> {
             if let Err(e) = vectorcraft_app::host_embed::install(&cc.egui_ctx) {
                 eprintln!("naqsh: craft install failed: {e}");
             }
-            let mut vector = VectorcraftApp::new(VecSession::new(), VecServices::default());
+            let mut vector = VectorcraftApp::new(VecSession::new(), vectorcraft_app::host_embed::services());
             vector.adopt_context(&cc.egui_ctx);
+            let vfiles = Some(vectorcraft_app::host_embed::install_files(&cc.egui_ctx));
             Ok(Box::new(Host {
                 vector,
                 photo: None,
@@ -251,6 +256,7 @@ pub fn run() -> Result<(), String> {
                 vtick: 0,
                 toggled: 0,
                 prev: Persona::Layout,
+                vfiles,
                 st_step: 0,
                 st_at: None,
                 selftest: std::env::var_os("NAQSH_SELFTEST").is_some(),
@@ -306,8 +312,7 @@ impl Host {
                 st_log("vector file.new", self.vector.run("file.new", json!({"width": 600, "height": 400})));
                 st_log("vector rectangle", self.vector.run("shape.rectangle", json!({"x": 100, "y": 100, "width": 200, "height": 120})));
                 st_log("vector select.all", self.vector.run("select.all", json!({})));
-                st_log("vector file.list", self.vector.run("file.list", json!({})));
-                wait(self, 3);
+                                wait(self, 3);
             }
             2 => {
                 self.active = Persona::Deck;
@@ -343,9 +348,9 @@ impl Host {
                 wait(self, 5);
             }
             9 => {
-                st_log("vector (after tabs) file.list", self.vector.run("file.list", json!({})));
-                st_log("vector (after tabs) select.all", self.vector.run("select.all", json!({})));
-                st_log("vector file.saveAs", self.vector.run("file.saveAs", json!({"path": path("v.svg"), "format": "svg"})));
+                                st_log("vector (after tabs) select.all", self.vector.run("select.all", json!({})));
+                st_log("vector file.saveAs (app, dialog expected)", self.vector.run("file.saveAs", json!({"path": path("v.svg"), "format": "svg"})));
+                st_log("vector file.saveAs (engine)", self.vector.session.execute("file.saveAs", &json!({"path": path("v2.svg"), "format": "svg"})).map_err(|e| e.to_string()));
                 self.active = Persona::Deck;
                 wait(self, 4);
             }
@@ -356,7 +361,7 @@ impl Host {
                 wait(self, 4);
             }
             11 => {
-                st_log("layout file.saveAs", self.layout.run("file.saveAs", json!({"path": path("l.idml")})));
+                st_log("layout file.saveAs", self.layout.run("file.saveAs", json!({"path": path("l.idml.designcraft")})));
                 self.active = Persona::Photo;
                 wait(self, 4);
             }
@@ -366,15 +371,15 @@ impl Host {
                 wait(self, 2);
             }
             13 => {
-                for n in ["v.svg", "d.pptx", "l.idml", "p.psd"] {
-                    let size = std::fs::metadata(dir.join(n)).map(|m| m.len()).ok();
-                    eprintln!("selftest: file {n} size {size:?}");
+                if let Ok(rd) = std::fs::read_dir(&dir) {
+                    for e in rd.flatten() {
+                        eprintln!("selftest: file {:?} size {:?}", e.file_name(), e.metadata().map(|m| m.len()).ok());
+                    }
                 }
                 st_log("vector file.close", self.vector.run("file.close", json!({})));
-                st_log("vector file.open", self.vector.run("file.open", json!({"path": path("v.svg")})));
+                st_log("vector file.open", self.vector.run("file.open", json!({"path": path("v2.svg")})));
                 st_log("vector select.all (reopened)", self.vector.run("select.all", json!({})));
-                st_log("vector file.list (reopened)", self.vector.run("file.list", json!({})));
-                self.active = Persona::Vector;
+                                self.active = Persona::Vector;
                 wait(self, 5);
             }
             14 => {
@@ -385,14 +390,14 @@ impl Host {
             }
             15 => {
                 st_log("layout file.close", self.layout.run("file.close", json!({})));
-                st_log("layout file.open", self.layout.run("file.open", json!({"path": path("l.idml")})));
+                st_log("layout file.open", self.layout.run("file.open", json!({"path": path("l.idml.designcraft")})));
                 self.active = Persona::Layout;
                 wait(self, 5);
             }
             16 => {
                 let p = self.photo_app(ctx);
                 st_log("photo file.close", p.run("file.close", json!({})));
-                st_log("photo file.open", p.run("file.open", json!({"path": path("p.psd")})));
+                st_log("photo file.openAs", p.run("file.openAs", json!({"path": path("p.psd")})));
                 self.active = Persona::Photo;
                 wait(self, 6);
             }

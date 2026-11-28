@@ -542,6 +542,44 @@ pub mod host_embed {
     pub fn before_ui(ctx: &egui::Context, frame: &mut eframe::Frame) {
         embed::before_ui(ctx, frame);
     }
+
+    /// The native file service of the app's own window (read, write, atomic save, reveal, print).
+    pub fn services() -> vectorcraft_ui_egui::Services {
+        super::host_services::services(None)
+    }
+
+    /// The native Open/Save dialogs the one-window host shows for this app.
+    pub struct FileHost {
+        panels: craft::dialogs::service::FilePanels,
+        lang: Option<vectorcraft_ui_egui::i18n::Lang>,
+    }
+
+    pub fn install_files(ctx: &egui::Context) -> FileHost {
+        let wake = {
+            let ctx = ctx.clone();
+            craft::host::Wake::new(move || ctx.request_repaint())
+        };
+        let (files, panels) = super::host_services::file_service(wake, std::collections::HashMap::new());
+        craft::host::Host::builder(craft::host::AppInfo {
+            id: vectorcraft_ui_egui::os_window::SETTINGS_APP_ID,
+            name: vectorcraft_ui_egui::os_window::name(),
+            version: vectorcraft_ui_egui::os_window::version(),
+        })
+        .i18n(vectorcraft_ui_egui::i18n::shared())
+        .files(std::sync::Arc::new(files))
+        .install(ctx);
+        FileHost { panels, lang: None }
+    }
+
+    /// Show the dialogs the app asked for in this frame.
+    pub fn pump_files(files: &mut FileHost, ctx: &egui::Context, frame: &eframe::Frame) {
+        let lang = vectorcraft_ui_egui::i18n::current();
+        if files.lang != Some(lang) {
+            files.lang = Some(lang);
+            files.panels.set_replace_words(vectorcraft_ui_egui::i18n::replace_words());
+        }
+        craft::ui::shell::WindowDialogs::of(ctx, &craft::ui::runtime::env::WindowKey::main()).with(|dialogs| files.panels.pump_with(dialogs, Some(frame)));
+    }
 }
 
 pub fn main() -> std::process::ExitCode {
