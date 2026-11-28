@@ -33,7 +33,7 @@ use thesaurus::thesaurus;
 pub fn show(app: &mut SlideApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
     let Some(pane) = app.ui.pane.clone() else { return };
-    egui::Panel::right("task_pane")
+    (if crate::ar_ui::is_arabic() { egui::Panel::left("task_pane") } else { egui::Panel::right("task_pane") })
         .resizable(true)
         .default_size(app.ui.pane_width)
         .size_range(240.0..=520.0)

@@ -439,7 +439,7 @@ pub fn notes_page(app: &mut SlideApp, ui: &mut Ui) {
 /// Outline view: slide titles and body text as an editable outline.
 pub fn outline_pane(app: &mut SlideApp, ui: &mut Ui) {
     let t = Tokens::get(ui.ctx());
-    egui::Panel::left("outline").resizable(true).default_size(360.0).frame(egui::Frame::NONE.fill(t.card).inner_margin(egui::Margin::same(10))).show(
+    (if crate::ar_ui::is_arabic() { egui::Panel::right("outline") } else { egui::Panel::left("outline") }).resizable(true).default_size(360.0).frame(egui::Frame::NONE.fill(t.card).inner_margin(egui::Margin::same(10))).show(
         ui,
         |ui| {
             let Some(st) = app.session.active() else { return };
