@@ -155,6 +155,9 @@ pub fn run() -> Result<(), String> {
         "Naqsh Studio",
         options,
         Box::new(|cc| {
+            if let Err(e) = vectorcraft_app::host_embed::install(&cc.egui_ctx) {
+                eprintln!("naqsh: craft install failed: {e}");
+            }
             let mut vector = VectorcraftApp::new(VecSession::new(), VecServices::default());
             vector.adopt_context(&cc.egui_ctx);
             Ok(Box::new(Host {

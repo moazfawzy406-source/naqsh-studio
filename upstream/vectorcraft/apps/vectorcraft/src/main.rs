@@ -518,6 +518,21 @@ pub mod host_embed {
     use craft::ui::shell::embed;
     use vectorcraft_ui_egui::VectorcraftApp;
 
+    /// The craft runtime install the app's own window does at start (without it the craft widgets draw but take no input).
+    pub fn install(ctx: &egui::Context) -> Result<(), String> {
+        use craft::host::target::ShellInfo;
+        use craft::ui::InstallSpec;
+        use craft::window::Prefix;
+        use craft::window::policy::{TitleBarPref, decide_for};
+        use craft::window::system::SystemWindows;
+        let shell_info = ShellInfo::current();
+        let decision = decide_for(Prefix::new("VECTORCRAFT"), shell_info.backend, TitleBarPref::System);
+        let spec = InstallSpec::new(shell_info, std::sync::Arc::new(SystemWindows))
+            .app_id(vectorcraft_ui_egui::os_window::app_id())
+            .placement(std::sync::Arc::new(std::sync::Mutex::new(super::placement_store())))
+            .frame(decision);
+        embed::install(ctx, spec, &vectorcraft_ui_egui::ui_fonts()).map_err(|e| e.to_string())
+    }
     pub fn logic(ctx: &egui::Context, app: &mut VectorcraftApp) {
         embed::logic(ctx, || app.close_decision());
     }
