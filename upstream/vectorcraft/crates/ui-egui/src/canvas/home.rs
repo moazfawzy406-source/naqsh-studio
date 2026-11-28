@@ -128,6 +128,7 @@ fn suite(ui: &mut Ui) {
 fn launch_app(app: &str) {
     if crate::app::SUITE_HOSTED.load(std::sync::atomic::Ordering::Relaxed) {
         let n = match app { "deck" => 1, "layout" => 2, _ => 3 };
+        eprintln!("naqsh: suite button {app} pressed in the host");
         crate::app::SUITE_REQUEST.store(n, std::sync::atomic::Ordering::Relaxed);
         return;
     }

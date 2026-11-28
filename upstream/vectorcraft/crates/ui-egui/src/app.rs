@@ -615,8 +615,9 @@ impl VectorcraftApp {
 
     /// naqsh-studio one-window host: set the language ("ar"/"en") and dark or light from outside.
     pub fn naqsh_set(&mut self, lang: &str, dark: bool) {
-        let _ = self.run("app.language", serde_json::json!({ "lang": lang }));
-        let _ = self.run("window.brightness", serde_json::json!({ "brightness": if dark { "dark" } else { "light" } }));
+        let r1 = self.run("app.language", serde_json::json!({ "lang": lang }));
+        let r2 = self.run("window.brightness", serde_json::json!({ "brightness": if dark { "dark" } else { "light" } }));
+        eprintln!("naqsh: vector language {lang} -> {r1:?}; brightness dark={dark} -> {r2:?}");
     }
 
     /// naqsh-studio: always-visible language (AR/EN) and dark/light switches.

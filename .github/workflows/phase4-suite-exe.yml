@@ -131,6 +131,7 @@ jobs:
               u.mouse_event(2,0,0,0,0); time.sleep(0.4); u.mouse_event(4,0,0,0,0); time.sleep(5)
           press(117,328); ImageGrab.grab().save("../shots/studio-click3.png")
           press(117,328); ImageGrab.grab().save("../shots/studio-click4.png")
+          press(219,282); ImageGrab.grab().save("../shots/studio-click5.png")
           PY
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_LANG=ar NAQSH_THEME=dark NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-ar.log 2>&1 &
@@ -220,3 +221,4 @@ jobs:
 # studio6
 # studio7
 # studio8
+# studio9
