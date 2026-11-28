@@ -7,8 +7,17 @@ use std::sync::OnceLock;
 
 /// Is the UI in Arabic? Set by the Naqsh Studio hub through NAQSH_LANG=ar.
 pub fn is_arabic() -> bool {
-    static AR: OnceLock<bool> = OnceLock::new();
-    *AR.get_or_init(|| std::env::var("NAQSH_LANG").map(|v| v == "ar").unwrap_or(false))
+    flag().load(std::sync::atomic::Ordering::Relaxed)
+}
+
+/// Naqsh Studio one-window host: switch the language while running.
+pub fn set_arabic(on: bool) {
+    flag().store(on, std::sync::atomic::Ordering::Relaxed);
+}
+
+fn flag() -> &'static std::sync::atomic::AtomicBool {
+    static AR: OnceLock<std::sync::atomic::AtomicBool> = OnceLock::new();
+    AR.get_or_init(|| std::sync::atomic::AtomicBool::new(std::env::var("NAQSH_LANG").map(|v| v == "ar").unwrap_or(false)))
 }
 
 static TABLE: &[(&str, &str)] = &[

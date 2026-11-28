@@ -18,8 +18,36 @@ struct Host {
     layout: DesignApp,
     deck: SlideApp,
     vector: VectorcraftApp,
+    ar: bool,
+    dark: bool,
+    apply: bool,
     start: std::time::Instant,
     auto: bool,
+}
+
+impl Host {
+    /// One language and one dark/light choice for every persona in the window.
+    fn apply_prefs(&mut self) {
+        deckcraft_ui_egui::ar_ui::set_arabic(self.ar);
+        self.deck.ui.brightness = if self.dark { deckcraft_ui_egui::theme::Brightness::Dark } else { deckcraft_ui_egui::theme::Brightness::Light };
+        self.layout.ui.language = if self.ar { "ar".to_owned() } else { String::new() };
+        self.layout.ui.brightness = if self.dark { designcraft_ui_egui::theme::Brightness::Dark } else { designcraft_ui_egui::theme::Brightness::Light };
+        self.vector.naqsh_set(if self.ar { "ar" } else { "en" }, self.dark);
+    }
+}
+
+fn switches(ui: &mut egui::Ui, ar: &mut bool, dark: &mut bool) -> bool {
+    let mut changed = false;
+    ui.separator();
+    if ui.button(if *ar { "EN" } else { "AR" }).clicked() {
+        *ar = !*ar;
+        changed = true;
+    }
+    if ui.button(if *dark { "Light" } else { "Dark" }).clicked() {
+        *dark = !*dark;
+        changed = true;
+    }
+    changed
 }
 
 impl eframe::App for Host {
@@ -38,6 +66,10 @@ impl eframe::App for Host {
         }
     }
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
+        if self.apply {
+            self.apply = false;
+            self.apply_prefs();
+        }
         match vectorcraft_ui_egui::SUITE_REQUEST.swap(0, std::sync::atomic::Ordering::Relaxed) {
             1 => self.active = Persona::Deck,
             2 => self.active = Persona::Layout,
@@ -54,7 +86,10 @@ impl eframe::App for Host {
         }
         if self.active != Persona::Vector {
             egui::Panel::top("naqsh_personas").exact_size(30.0).show(ui, |ui| {
-                ui.horizontal_centered(|ui| tab_row(ui, &mut self.active));
+                ui.horizontal_centered(|ui| {
+                    tab_row(ui, &mut self.active);
+                    self.apply |= switches(ui, &mut self.ar, &mut self.dark);
+                });
             });
         }
         match self.active {
@@ -72,7 +107,10 @@ impl eframe::App for Host {
                     .order(egui::Order::Foreground)
                     .anchor(egui::Align2::LEFT_TOP, egui::vec2(48.0, 4.0))
                     .show(&ctx, |ui| {
-                        egui::Frame::popup(ui.style()).show(ui, |ui| ui.horizontal(|ui| tab_row(ui, &mut next)));
+                        egui::Frame::popup(ui.style()).show(ui, |ui| ui.horizontal(|ui| {
+                            tab_row(ui, &mut next);
+                            self.apply |= switches(ui, &mut self.ar, &mut self.dark);
+                        }));
                     });
                 self.active = next;
                 ctx.send_viewport_cmd(egui::ViewportCommand::Title("Naqsh Studio".to_owned()));
@@ -92,6 +130,9 @@ pub fn run() -> Result<(), String> {
             vector.adopt_context(&cc.egui_ctx);
             Ok(Box::new(Host {
                 vector,
+                ar: std::env::var("NAQSH_LANG").as_deref() == Ok("ar"),
+                dark: std::env::var("NAQSH_THEME").as_deref() == Ok("dark"),
+                apply: true,
                 start: std::time::Instant::now(),
                 auto: std::env::var_os("NAQSH_AUTOSWITCH").is_some(),
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },

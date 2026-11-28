@@ -613,6 +613,12 @@ impl VectorcraftApp {
         self.poll_input(&ctx);
     }
 
+    /// naqsh-studio one-window host: set the language ("ar"/"en") and dark or light from outside.
+    pub fn naqsh_set(&mut self, lang: &str, dark: bool) {
+        let _ = self.run("app.language", serde_json::json!({ "lang": lang }));
+        let _ = self.run("window.brightness", serde_json::json!({ "brightness": if dark { "dark" } else { "light" } }));
+    }
+
     /// naqsh-studio: always-visible language (AR/EN) and dark/light switches.
     fn naqsh_switches(&mut self, ctx: &egui::Context) {
         let mut lang_to: Option<&'static str> = None;
