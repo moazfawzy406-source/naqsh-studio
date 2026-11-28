@@ -427,10 +427,10 @@ impl Host {
                 self.st_script(1, "logo-grid", json!({"mode": 1}));
                 wait(self, 6);
             }
-            18 => { self.st_report("logo-grid mode 1"); self.st_script(1, "logo-grid", json!({"mode": 2})); wait(self, 6); }
-            19 => { self.st_report("logo-grid mode 2"); self.st_script(1, "logo-grid", json!({"mode": 4})); wait(self, 6); }
-            20 => { self.st_report("logo-grid mode 4"); self.st_script(1, "logo-grid", json!({"mode": 5})); wait(self, 6); }
-            21 => { self.st_report("logo-grid mode 5"); self.st_script(1, "logo-grid", json!({"mode": 6})); wait(self, 6); }
+            18 => { self.st_report("logo-grid mode 1"); let _ = self.vector.run("select.all", json!({})); self.st_script(1, "logo-grid", json!({"mode": 2})); wait(self, 6); }
+            19 => { self.st_report("logo-grid mode 2"); let _ = self.vector.run("select.all", json!({})); self.st_script(1, "logo-grid", json!({"mode": 4})); wait(self, 6); }
+            20 => { self.st_report("logo-grid mode 4"); let _ = self.vector.run("select.all", json!({})); self.st_script(1, "logo-grid", json!({"mode": 5})); wait(self, 6); }
+            21 => { self.st_report("logo-grid mode 5"); let _ = self.vector.run("select.all", json!({})); self.st_script(1, "logo-grid", json!({"mode": 6})); wait(self, 6); }
             22 => {
                 self.st_report("logo-grid mode 6");
                 st_log("vector file.open (fresh logo)", self.vector.run("file.open", json!({"path": path("v2.svg")})));
