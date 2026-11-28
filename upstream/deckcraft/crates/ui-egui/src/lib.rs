@@ -305,7 +305,7 @@ pub struct SlideApp {
     pending_copy: Option<String>,
     /// Bounded screenshot completion slots for the control channel (egui 0.37 callbacks).
     capture: capture::Capture,
-    styled: bool,
+    pub styled: bool,
     pub restyle: bool,
     fonts_ready: bool,
     last_time: f64,

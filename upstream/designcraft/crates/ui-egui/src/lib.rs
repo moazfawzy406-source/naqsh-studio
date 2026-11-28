@@ -240,7 +240,7 @@ pub struct DesignApp {
     logic_frame_ticks: u32,
     #[cfg(test)]
     input_ticks: u32,
-    styled: bool,
+    pub styled: bool,
     /// The interface language the UI fonts were installed for (it orders the CJK fallbacks).
     fonts_lang: String,
     /// The installed CJK faces are among the UI fonts (false while the system fonts are still

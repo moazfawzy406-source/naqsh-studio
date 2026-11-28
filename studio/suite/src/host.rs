@@ -106,8 +106,9 @@ impl eframe::App for Host {
         // Every app paints with the one shared egui style; the app that is shown re-applies its own look.
         if self.active != self.prev {
             self.prev = self.active;
-            self.layout.restyle = true;
-            self.deck.restyle = true;
+            // Fonts too: another tab may have replaced the shared font set.
+            self.layout.styled = false;
+            self.deck.styled = false;
         }
         if self.apply {
             self.apply = false;
