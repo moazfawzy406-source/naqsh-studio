@@ -30,13 +30,20 @@ struct Host {
     vtick: u32,
     toggled: u8,
     prev: Persona,
+    photo_synced: Option<(bool, bool)>,
     toggle_env: bool,
 }
 
 impl Host {
     /// Photo is made the first time its tab opens: it installs its own look on the window's context then.
     fn photo_app(&mut self, ctx: &egui::Context) -> &mut Box<PhotocraftApp> {
+        let (ar, dark) = (self.ar, self.dark);
         self.photo.get_or_insert_with(|| {
+            // Photo reads these two when it starts.
+            unsafe {
+                std::env::set_var("NAQSH_LANG", if ar { "ar" } else { "en" });
+                std::env::set_var("NAQSH_THEME", if dark { "dark" } else { "light" });
+            }
             PhotocraftApp::setup_context(ctx, Default::default());
             PhotocraftApp::with_context(ctx.clone(), photocraft_engine::Session::new(), Default::default())
         })
@@ -176,6 +183,22 @@ impl eframe::App for Host {
             }
             Persona::Photo => {
                 let ctx = ui.ctx().clone();
+                let (ar, dark) = (self.ar, self.dark);
+                let synced = self.photo_synced;
+                self.photo_app(&ctx);
+                if synced.is_none() {
+                    self.photo_synced = Some((ar, dark));
+                } else if synced != Some((ar, dark)) {
+                    unsafe {
+                        std::env::set_var("NAQSH_LANG", if ar { "ar" } else { "en" });
+                        std::env::set_var("NAQSH_THEME", if dark { "dark" } else { "light" });
+                    }
+                    if let Some(p) = self.photo.as_mut() {
+                        let r = p.run("prefs.set", serde_json::json!({"values": {"interface.language": if ar { "ar" } else { "en" }, "interface.appearanceMode": if dark { "dark" } else { "light" }}}));
+                        eprintln!("naqsh: photo prefs.set ar={ar} dark={dark} -> {r:?}");
+                    }
+                    self.photo_synced = Some((ar, dark));
+                }
                 let app = self.photo_app(&ctx);
                 eframe::App::ui(&mut **app, ui, frame);
                 // Photo fills the whole window, so the tabs float at the top right.
@@ -220,6 +243,7 @@ pub fn run() -> Result<(), String> {
                 vtick: 0,
                 toggled: 0,
                 prev: Persona::Layout,
+                photo_synced: None,
                 toggle_env: std::env::var_os("NAQSH_TOGGLE").is_some(),
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },
                 layout: DesignApp::new(DesignSession::new(), DesignServices::default()),
