@@ -26,6 +26,7 @@ struct Host {
     apply: bool,
     start: std::time::Instant,
     auto: bool,
+    vfont: Option<bool>,
 }
 
 impl Host {
@@ -123,13 +124,17 @@ impl eframe::App for Host {
             Persona::Deck => self.deck.ui(ui),
             Persona::Vector => {
                 vectorcraft_app::host_embed::before_ui(ui.ctx(), frame);
+                if self.vfont != Some(self.ar) {
+                    self.vfont = Some(self.ar);
+                    vectorcraft_ui_egui::ui_fonts().ui_language(if self.ar { "ar" } else { "en" }).install(ui.ctx());
+                }
                 self.vector.ui(ui);
                 // Vector fills the whole window itself, so the tabs float over its top bar.
                 let ctx = ui.ctx().clone();
                 let mut next = self.active;
                 egui::Area::new(egui::Id::new("naqsh_personas_float"))
                     .order(egui::Order::Foreground)
-                    .anchor(egui::Align2::LEFT_TOP, egui::vec2(48.0, 4.0))
+                    .anchor(egui::Align2::RIGHT_TOP, egui::vec2(-215.0, 4.0))
                     .show(&ctx, |ui| {
                         egui::Frame::popup(ui.style()).show(ui, |ui| ui.horizontal(|ui| {
                             tab_row(ui, &mut next);
@@ -181,6 +186,7 @@ pub fn run() -> Result<(), String> {
                 apply: true,
                 start: std::time::Instant::now(),
                 auto: std::env::var_os("NAQSH_AUTOSWITCH").is_some(),
+                vfont: None,
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },
                 layout: DesignApp::new(DesignSession::new(), DesignServices::default()),
                 deck: SlideApp::new(DeckSession::new(), DeckServices::default()),
