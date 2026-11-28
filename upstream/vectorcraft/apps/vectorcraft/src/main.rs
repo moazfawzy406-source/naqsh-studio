@@ -512,6 +512,23 @@ fn finish_pending_update(nightly: bool) {
     }
 }
 
+/// naqsh-studio one-window host: the craft shell hooks the app's own window runs each frame, so the
+/// Vector tab's widgets get their input and commands.
+pub mod host_embed {
+    use craft::ui::shell::embed;
+    use vectorcraft_ui_egui::VectorcraftApp;
+
+    pub fn logic(ctx: &egui::Context, app: &mut VectorcraftApp) {
+        embed::logic(ctx, || app.close_decision());
+    }
+    pub fn before_input(ctx: &egui::Context, app: &mut VectorcraftApp) {
+        embed::before_input(ctx, |out| app.frame_input(out));
+    }
+    pub fn before_ui(ctx: &egui::Context, frame: &mut eframe::Frame) {
+        embed::before_ui(ctx, frame);
+    }
+}
+
 pub fn main() -> std::process::ExitCode {
     // The launch profile first: a nightly build without one is refused here, before the update
     // helper, the logger, fonts or any saved state, and `--version` is answered here too.

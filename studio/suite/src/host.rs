@@ -55,14 +55,17 @@ impl eframe::App for Host {
         match self.active {
             Persona::Layout => self.layout.logic(ctx),
             Persona::Deck => self.deck.logic(ctx),
-            Persona::Vector => {}
+            Persona::Vector => vectorcraft_app::host_embed::logic(ctx, &mut self.vector),
         }
     }
     fn raw_input_hook(&mut self, ctx: &egui::Context, raw: &mut egui::RawInput) {
         match self.active {
             Persona::Layout => self.layout.raw_input_hook(ctx, raw),
             Persona::Deck => self.deck.raw_input_hook(ctx, raw),
-            Persona::Vector => self.vector.raw_input(ctx, raw),
+            Persona::Vector => {
+                vectorcraft_app::host_embed::before_input(ctx, &mut self.vector);
+                self.vector.raw_input(ctx, raw);
+            }
         }
     }
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
@@ -99,6 +102,7 @@ impl eframe::App for Host {
             }
             Persona::Deck => self.deck.ui(ui),
             Persona::Vector => {
+                vectorcraft_app::host_embed::before_ui(ui.ctx(), frame);
                 self.vector.ui(ui);
                 // Vector fills the whole window itself, so the tabs float over its top bar.
                 let ctx = ui.ctx().clone();
