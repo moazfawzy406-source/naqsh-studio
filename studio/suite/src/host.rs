@@ -120,8 +120,8 @@ impl eframe::App for Host {
         }
         if self.toggle_env {
             let s = self.start.elapsed().as_secs();
-            if self.toggled == 0 && s >= 20 { self.toggled = 1; self.ar = !self.ar; self.apply = true; }
-            if self.toggled == 1 && s >= 70 { self.toggled = 2; self.dark = !self.dark; self.apply = true; }
+            if self.toggled == 0 && s >= 100 { self.toggled = 1; self.ar = !self.ar; self.apply = true; }
+            if self.toggled == 1 && s >= 105 { self.toggled = 2; self.dark = !self.dark; self.apply = true; }
         }
         if self.auto {
             self.active = match (self.start.elapsed().as_secs() / 24) % 5 {
