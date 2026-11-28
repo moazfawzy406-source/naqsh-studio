@@ -67,7 +67,10 @@ impl eframe::App for Host {
         match self.active {
             Persona::Layout => self.layout.logic(ctx),
             Persona::Deck => self.deck.logic(ctx),
-            Persona::Vector => vectorcraft_app::host_embed::logic(ctx, &mut self.vector),
+            Persona::Vector => {
+                vectorcraft_app::host_embed::logic(ctx, &mut self.vector);
+                self.vector.tick(ctx);
+            }
             Persona::Photo => {
                 let app = self.photo_app(ctx);
                 eframe::App::logic(&mut **app, ctx, frame);
