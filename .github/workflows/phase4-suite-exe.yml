@@ -124,7 +124,13 @@ jobs:
           ImageGrab.grab().save("../shots/studio-click0.png")
           click(75,44); ImageGrab.grab().save("../shots/studio-click1.png")
           click(137,44); ImageGrab.grab().save("../shots/studio-click2.png")
-          click(117,328); ImageGrab.grab().save("../shots/studio-click3.png")
+          def press(dx,dy):
+              for k in range(4):
+                  u.SetCursorPos(r.left+dx-6+k*3,r.top+dy-3); time.sleep(0.4)
+              u.SetCursorPos(r.left+dx,r.top+dy); time.sleep(1.5)
+              u.mouse_event(2,0,0,0,0); time.sleep(0.4); u.mouse_event(4,0,0,0,0); time.sleep(5)
+          press(117,328); ImageGrab.grab().save("../shots/studio-click3.png")
+          press(117,328); ImageGrab.grab().save("../shots/studio-click4.png")
           PY
           taskkill //F //IM naqsh-studio.exe || true
           NAQSH_AUTOSWITCH=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio.log 2>&1 &
@@ -204,3 +210,4 @@ jobs:
 # studio2
 # studio3
 # studio4
+# studio5
