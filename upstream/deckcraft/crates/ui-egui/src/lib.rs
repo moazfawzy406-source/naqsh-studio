@@ -306,7 +306,7 @@ pub struct SlideApp {
     /// Bounded screenshot completion slots for the control channel (egui 0.37 callbacks).
     capture: capture::Capture,
     styled: bool,
-    restyle: bool,
+    pub restyle: bool,
     fonts_ready: bool,
     last_time: f64,
     /// When AutoRecover data was last written (monotonic seconds, not wall time).

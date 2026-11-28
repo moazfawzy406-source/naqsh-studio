@@ -29,6 +29,7 @@ struct Host {
     vfont: Option<bool>,
     vtick: u32,
     toggled: u8,
+    prev: Persona,
     toggle_env: bool,
 }
 
@@ -95,6 +96,12 @@ impl eframe::App for Host {
         }
     }
     fn ui(&mut self, ui: &mut egui::Ui, frame: &mut eframe::Frame) {
+        // Every app paints with the one shared egui style; the app that is shown re-applies its own look.
+        if self.active != self.prev {
+            self.prev = self.active;
+            self.layout.restyle = true;
+            self.deck.restyle = true;
+        }
         if self.apply {
             self.apply = false;
             self.apply_prefs();
@@ -212,6 +219,7 @@ pub fn run() -> Result<(), String> {
                 vfont: None,
                 vtick: 0,
                 toggled: 0,
+                prev: Persona::Layout,
                 toggle_env: std::env::var_os("NAQSH_TOGGLE").is_some(),
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },
                 layout: DesignApp::new(DesignSession::new(), DesignServices::default()),
