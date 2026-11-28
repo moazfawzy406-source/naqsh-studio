@@ -297,9 +297,17 @@ impl Host {
     }
 
     fn st_report(&mut self, what: &str) {
-        let r = self.vector.run("ui.inspect", serde_json::json!({}));
-        let rep = r.map(|v| v.get("scriptReport").cloned().unwrap_or(serde_json::Value::Null));
+        let r = self.vector.session.execute("script.console", &serde_json::json!({})).map_err(|e| e.to_string());
+        let rep = r.map(|v| {
+            let lines = v.get("lines").cloned().unwrap_or(v.clone());
+            let t = lines.to_string();
+            let n = t.chars().count();
+            serde_json::Value::String(t.chars().skip(n.saturating_sub(280)).collect())
+        });
         st_log(&format!("report {what}"), rep);
+        let name = what.replace(' ', "-");
+        let p = std::env::temp_dir().join("naqsh-selftest").join(format!("{name}.png"));
+        st_log(&format!("export {what}"), self.vector.session.execute("document.export", &serde_json::json!({"format": "png", "path": p.to_string_lossy()})).map_err(|e| e.to_string()));
     }
 
     fn selftest_step(&mut self, ctx: &egui::Context) {
