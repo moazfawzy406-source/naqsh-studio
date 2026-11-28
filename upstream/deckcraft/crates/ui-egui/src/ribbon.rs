@@ -138,11 +138,12 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
         let rect = ui.max_rect();
         // Tabs. File comes first and opens the File tab's full-window view (Backstage), as in
         // PowerPoint.
-        let mut x = rect.min.x + 12.0;
+        let rtl = crate::ar_ui::is_arabic();
+        let mut x = if rtl { rect.max.x - 12.0 } else { rect.min.x + 12.0 };
         let y = rect.min.y + 2.0;
         {
             let w = ui.fonts_mut(|f| f.layout_no_wrap(crate::ar_ui::tr("File").into_owned(), theme::font(13.0), t.text).size().x) + 18.0;
-            let r = Rect::from_min_size(pos2(x, y), vec2(w, 24.0));
+            let r = Rect::from_min_size(pos2(if rtl { x - w } else { x }, y), vec2(w, 24.0));
             let resp = ui.interact(r, ui.scope_id().with("tab_file"), Sense::click());
             resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, true, "File"));
             if resp.hovered() {
@@ -152,7 +153,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
             if resp.on_hover_text("File (Alt+F)").clicked() {
                 app.open_backstage(crate::backstage::Page::Home);
             }
-            x += w + 2.0;
+            if rtl { x -= w + 2.0 } else { x += w + 2.0 }
         }
         let all: Vec<(&str, bool)> = TABS.iter().map(|s| (*s, false)).chain(ctx_tabs.iter().map(|s| (*s, true))).collect();
         for (name, contextual) in all {
@@ -160,7 +161,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
             let label = label_owned.as_str();
             let font = theme::font(13.0);
             let w = ui.fonts_mut(|f| f.layout_no_wrap(label.to_string(), font.clone(), t.text).size().x) + 18.0;
-            let r = Rect::from_min_size(pos2(x, y), vec2(w, 24.0));
+            let r = Rect::from_min_size(pos2(if rtl { x - w } else { x }, y), vec2(w, 24.0));
             let resp = ui.interact(r, ui.scope_id().with(("tab", name)), Sense::click());
             resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, true, label));
             let active = app.ui.tab == name;
@@ -185,7 +186,7 @@ pub fn show(app: &mut SlideApp, ui: &mut Ui) {
             if resp.double_clicked() {
                 app.ui.ribbon_collapsed = !app.ui.ribbon_collapsed;
             }
-            x += w + 2.0;
+            if rtl { x -= w + 2.0 } else { x += w + 2.0 }
         }
         if app.ui.ribbon_collapsed {
             return;
