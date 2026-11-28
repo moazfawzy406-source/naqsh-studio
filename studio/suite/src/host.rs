@@ -135,7 +135,7 @@ impl eframe::App for Host {
                     let want = if self.ar { "ar" } else { "en" };
                     use vectorcraft_ui_egui::i18n::LangExt as _;
                     let have = self.vector.ui_language().code().to_string();
-                    eprintln!("naqsh: vector lang have={have} want={want}");
+                    eprintln!("naqsh: vector lang have={have} want={want} drawn={} rtl={} tr={:?}", vectorcraft_ui_egui::i18n::current().code(), vectorcraft_ui_egui::i18n::is_rtl(), vectorcraft_ui_egui::i18n::has(vectorcraft_ui_egui::i18n::current(), "Open"));
                     if have != want {
                         self.vector.naqsh_set(want, self.dark);
                     }
