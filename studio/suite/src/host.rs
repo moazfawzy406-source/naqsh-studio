@@ -241,7 +241,9 @@ pub fn run() -> Result<(), String> {
             if let Err(e) = vectorcraft_app::host_embed::install(&cc.egui_ctx) {
                 eprintln!("naqsh: craft install failed: {e}");
             }
-            let mut vector = VectorcraftApp::new(VecSession::new(), vectorcraft_app::host_embed::services());
+            let mut vec_session = VecSession::new();
+            vectorcraft_app::host_embed::install_scripts(&mut vec_session);
+            let mut vector = VectorcraftApp::new(vec_session, vectorcraft_app::host_embed::services());
             vector.adopt_context(&cc.egui_ctx);
             let vfiles = Some(vectorcraft_app::host_embed::install_files(&cc.egui_ctx));
             Ok(Box::new(Host {
@@ -400,6 +402,19 @@ impl Host {
                 st_log("photo file.openAs", p.run("file.openAs", json!({"path": path("p.psd")})));
                 self.active = Persona::Photo;
                 wait(self, 6);
+            }
+            17 => {
+                // Logo Grid Builder: every mode on the reopened logo, then the golden grid for the screenshot.
+                self.active = Persona::Vector;
+                let src = vectorcraft_app::host_embed::LOGO_GRID_SCRIPT;
+                for m in [1, 2, 4, 5, 6] {
+                    let _ = self.vector.run("select.all", json!({}));
+                    st_log(&format!("vector logo-grid mode {m}"), self.vector.session.execute("script.run", &json!({"source": src, "name": "logo-grid", "args": {"mode": m}})).map_err(|e| e.to_string()));
+                }
+                st_log("vector file.open (fresh logo)", self.vector.run("file.open", json!({"path": path("v2.svg")})));
+                let _ = self.vector.run("select.all", json!({}));
+                st_log("vector logo-grid mode 3", self.vector.session.execute("script.run", &json!({"source": src, "name": "logo-grid", "args": {"mode": 3, "div": 8}})).map_err(|e| e.to_string()));
+                wait(self, 8);
             }
             _ => {
                 eprintln!("selftest: DONE");

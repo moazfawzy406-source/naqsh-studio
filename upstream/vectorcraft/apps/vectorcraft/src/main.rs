@@ -543,6 +543,22 @@ pub mod host_embed {
         embed::before_ui(ctx, frame);
     }
 
+    /// Naqsh Studio: the Logo Grid Builder script, listed in File > Scripts of the one-window Vector.
+    pub const LOGO_GRID_SCRIPT: &str = include_str!("../../../../../studio/scripts/logo-grid-builder.js");
+
+    /// Put the script in the Scripts folder (only when it is missing or older), and have File > Scripts list that folder.
+    pub fn install_scripts(session: &mut vectorcraft_engine::Session) {
+        if let Some(dir) = super::prefs_dir::prefs_dir().map(|d| d.join("Scripts")) {
+            if std::fs::create_dir_all(&dir).is_ok() {
+                let f = dir.join("logo-grid-builder.js");
+                if std::fs::read_to_string(&f).map(|t| t != LOGO_GRID_SCRIPT).unwrap_or(true) {
+                    let _ = std::fs::write(&f, LOGO_GRID_SCRIPT);
+                }
+            }
+        }
+        super::prefs_dir::attach_scripts_dir(session);
+    }
+
     /// The native file service of the app's own window (read, write, atomic save, reveal, print).
     pub fn services() -> vectorcraft_ui_egui::Services {
         super::host_services::services(None)
