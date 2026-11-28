@@ -3,6 +3,7 @@ use deckcraft_engine::Session as DeckSession;
 use deckcraft_ui_egui::{Services as DeckServices, SlideApp};
 use vectorcraft_engine::Session as VecSession;
 use vectorcraft_ui_egui::{Services as VecServices, VectorcraftApp};
+use photocraft_ui_egui::PhotocraftApp;
 use designcraft_engine::Session as DesignSession;
 use designcraft_ui_egui::{DesignApp, Services as DesignServices};
 
@@ -11,6 +12,7 @@ enum Persona {
     Layout,
     Deck,
     Vector,
+    Photo,
 }
 
 struct Host {
@@ -18,6 +20,7 @@ struct Host {
     layout: DesignApp,
     deck: SlideApp,
     vector: VectorcraftApp,
+    photo: Option<Box<PhotocraftApp>>,
     ar: bool,
     dark: bool,
     apply: bool,
@@ -26,6 +29,13 @@ struct Host {
 }
 
 impl Host {
+    /// Photo is made the first time its tab opens: it installs its own look on the window's context then.
+    fn photo_app(&mut self, ctx: &egui::Context) -> &mut Box<PhotocraftApp> {
+        self.photo.get_or_insert_with(|| {
+            PhotocraftApp::setup_context(ctx, Default::default());
+            PhotocraftApp::with_context(ctx.clone(), photocraft_engine::Session::new(), Default::default())
+        })
+    }
     /// One language and one dark/light choice for every persona in the window.
     fn apply_prefs(&mut self) {
         deckcraft_ui_egui::ar_ui::set_arabic(self.ar);
@@ -51,11 +61,15 @@ fn switches(ui: &mut egui::Ui, ar: &mut bool, dark: &mut bool) -> bool {
 }
 
 impl eframe::App for Host {
-    fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+    fn logic(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
         match self.active {
             Persona::Layout => self.layout.logic(ctx),
             Persona::Deck => self.deck.logic(ctx),
             Persona::Vector => vectorcraft_app::host_embed::logic(ctx, &mut self.vector),
+            Persona::Photo => {
+                let app = self.photo_app(ctx);
+                eframe::App::logic(&mut **app, ctx, frame);
+            }
         }
     }
     fn raw_input_hook(&mut self, ctx: &egui::Context, raw: &mut egui::RawInput) {
@@ -65,6 +79,11 @@ impl eframe::App for Host {
             Persona::Vector => {
                 vectorcraft_app::host_embed::before_input(ctx, &mut self.vector);
                 self.vector.raw_input(ctx, raw);
+            }
+            Persona::Photo => {
+                if let Some(app) = self.photo.as_mut() {
+                    eframe::App::raw_input_hook(&mut **app, ctx, raw);
+                }
             }
         }
     }
@@ -79,10 +98,11 @@ impl eframe::App for Host {
             _ => {}
         }
         if self.auto {
-            self.active = match (self.start.elapsed().as_secs() / 12) % 4 {
+            self.active = match (self.start.elapsed().as_secs() / 12) % 5 {
                 0 => Persona::Layout,
                 1 => Persona::Deck,
                 2 => Persona::Vector,
+                3 => Persona::Photo,
                 _ => Persona::Layout,
             };
             ui.ctx().request_repaint_after(std::time::Duration::from_millis(500));
@@ -119,6 +139,11 @@ impl eframe::App for Host {
                 self.active = next;
                 ctx.send_viewport_cmd(egui::ViewportCommand::Title("Naqsh Studio".to_owned()));
             }
+            Persona::Photo => {
+                let ctx = ui.ctx().clone();
+                let app = self.photo_app(&ctx);
+                eframe::App::ui(&mut **app, ui, frame);
+            }
         }
     }
 }
@@ -134,6 +159,7 @@ pub fn run() -> Result<(), String> {
             vector.adopt_context(&cc.egui_ctx);
             Ok(Box::new(Host {
                 vector,
+                photo: None,
                 ar: std::env::var("NAQSH_LANG").as_deref() == Ok("ar"),
                 dark: std::env::var("NAQSH_THEME").as_deref() == Ok("dark"),
                 apply: true,
@@ -152,4 +178,5 @@ fn tab_row(ui: &mut egui::Ui, active: &mut Persona) {
     ui.selectable_value(active, Persona::Layout, "Layout");
     ui.selectable_value(active, Persona::Deck, "Deck");
     ui.selectable_value(active, Persona::Vector, "Vector");
+    ui.selectable_value(active, Persona::Photo, "Photo");
 }

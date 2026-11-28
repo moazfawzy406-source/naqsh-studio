@@ -21,3 +21,5 @@ eframe = { version = "0.37", default-features = false, features = ["default_font
 egui = { version = "0.37", default-features = false }
 vectorcraft-ui-egui = { path = "../../upstream/vectorcraft/crates/ui-egui" }
 vectorcraft-engine = { path = "../../upstream/vectorcraft/crates/engine" }
+photocraft-ui-egui = { path = "../../upstream/photocraft/crates/ui-egui" }
+photocraft-engine = { path = "../../upstream/photocraft/crates/engine" }
