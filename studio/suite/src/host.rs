@@ -133,6 +133,7 @@ impl eframe::App for Host {
                 self.vtick += 1;
                 if self.vtick % 45 == 0 {
                     let want = if self.ar { "ar" } else { "en" };
+                    use vectorcraft_ui_egui::i18n::LangExt as _;
                     let have = self.vector.ui_language().code().to_string();
                     eprintln!("naqsh: vector lang have={have} want={want}");
                     if have != want {
