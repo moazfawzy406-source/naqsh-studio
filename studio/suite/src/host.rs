@@ -451,6 +451,33 @@ impl Host {
                 }
                 wait(self, 4);
             }
+            25 => {
+                // Layout real-use check: a poster with swatches, shapes and Arabic text frames.
+                self.active = Persona::Layout;
+                let l = &mut self.layout;
+                st_log("layout poster file.new", l.run("file.new", json!({})));
+                for (n, c) in [("Sand", "#f4ead5"), ("Night", "#1b1f3b"), ("Gold", "#f5b82e"), ("Rose", "#e63c5a")] {
+                    st_log(&format!("layout swatch {n}"), l.run("swatch.create", json!({"name": n, "color": c})));
+                }
+                for (r, shape, sw) in [([0, 0, 612, 792], "rectangle", "Night"), ([126, 110, 486, 470], "ellipse", "Gold"), ([196, 180, 416, 400], "polygon", "Rose"), ([56, 520, 556, 530], "rectangle", "Gold")] {
+                    let mut p = json!({"rect": r, "shape": shape, "content": "unassigned"});
+                    if shape == "polygon" { p["sides"] = json!(8); p["starInset"] = json!(55); }
+                    st_log(&format!("layout frame {shape}"), l.run("frame.create", p));
+                    st_log(&format!("layout fill {sw}"), l.run("object.fill", json!({"swatch": sw})));
+                }
+                for (r, text, size) in [([56, 550, 556, 650], "\u{0646}\u{0642}\u{0634} \u{0644}\u{0627}\u{064a}\u{0627}\u{0648}\u{062a}", 64), ([56, 670, 556, 720], "\u{0643}\u{0644} \u{0627}\u{0644}\u{062a}\u{0635}\u{0645}\u{064a}\u{0645} \u{0641}\u{064a} \u{0628}\u{0631}\u{0646}\u{0627}\u{0645}\u{062c} \u{0648}\u{0627}\u{062d}\u{062f}", 26)] {
+                    st_log("layout text frame", l.run("frame.create", json!({"rect": r, "content": "text", "text": text})));
+                    st_log("layout type.char", l.run("type.char", json!({"attrs": {"size": size, "fill": "Paper"}})));
+                    st_log("layout type.alignRight", l.run("type.alignRight", json!({})));
+                }
+                wait(self, 6);
+            }
+            26 => {
+                let l = &mut self.layout;
+                let p = std::env::temp_dir().join("naqsh-selftest").join("poster-layout.pdf");
+                st_log("layout export pdf", l.run("file.exportPdf", json!({"path": p.to_string_lossy()})));
+                wait(self, 6);
+            }
             _ => {
                 eprintln!("selftest: DONE");
                 self.selftest = false;
