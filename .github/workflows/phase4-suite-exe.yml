@@ -150,6 +150,12 @@ jobs:
             python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/studio-auto$s.png')"
           done
           taskkill //F //IM naqsh-studio.exe || true
+          NAQSH_SELFTEST=1 NAQSH_APP=studio ./target/release/naqsh-studio.exe > ../shots/studio-selftest.log 2>&1 &
+          for s in $(seq 1 16); do
+            sleep 6
+            python -c "from PIL import ImageGrab; ImageGrab.grab().save('../shots/selftest$s.png')"
+          done
+          taskkill //F //IM naqsh-studio.exe || true
           NAQSH_LANG=ar NAQSH_APP=vector ./target/release/naqsh-studio.exe --control 7980 > ../shots/vector2.log 2>&1 &
           sleep 30
           python - <<'PY'
@@ -243,3 +249,4 @@ jobs:
 # studio24
 # studio25
 # studio26
+# studio27

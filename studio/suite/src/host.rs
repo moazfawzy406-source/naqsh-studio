@@ -30,6 +30,9 @@ struct Host {
     vtick: u32,
     toggled: u8,
     prev: Persona,
+    st_step: usize,
+    st_at: Option<std::time::Instant>,
+    selftest: bool,
     photo_synced: Option<(bool, bool)>,
     toggle_env: bool,
 }
@@ -118,6 +121,10 @@ impl eframe::App for Host {
             1 => self.active = Persona::Deck,
             2 => self.active = Persona::Layout,
             _ => {}
+        }
+        if self.selftest {
+            self.selftest_step(&ui.ctx().clone());
+            ui.ctx().request_repaint_after(std::time::Duration::from_millis(300));
         }
         if self.toggle_env {
             let s = self.start.elapsed().as_secs();
@@ -244,6 +251,9 @@ pub fn run() -> Result<(), String> {
                 vtick: 0,
                 toggled: 0,
                 prev: Persona::Layout,
+                st_step: 0,
+                st_at: None,
+                selftest: std::env::var_os("NAQSH_SELFTEST").is_some(),
                 photo_synced: None,
                 toggle_env: std::env::var_os("NAQSH_TOGGLE").is_some(),
                 active: if std::env::var("NAQSH_START").as_deref() == Ok("deck") { Persona::Deck } else { Persona::Layout },
@@ -260,4 +270,136 @@ fn tab_row(ui: &mut egui::Ui, active: &mut Persona) {
     ui.selectable_value(active, Persona::Deck, "Deck");
     ui.selectable_value(active, Persona::Vector, "Vector");
     ui.selectable_value(active, Persona::Photo, "Photo");
+}
+
+fn st_log(what: &str, r: Result<serde_json::Value, String>) {
+    let s = match r {
+        Ok(v) => format!("OK {}", v.to_string().chars().take(300).collect::<String>()),
+        Err(e) => format!("ERR {}", e.chars().take(300).collect::<String>()),
+    };
+    eprintln!("selftest: {what} -> {s}");
+}
+
+impl Host {
+    /// CI functional test (NAQSH_SELFTEST): make a disposable document in each app, switch tabs away and back,
+    /// save it to a temp folder, close it, open the saved file again. Every result goes to the log.
+    fn selftest_step(&mut self, ctx: &egui::Context) {
+        use serde_json::json;
+        let wait = |me: &mut Host, secs: u64| me.st_at = Some(std::time::Instant::now() + std::time::Duration::from_secs(secs));
+        if let Some(at) = self.st_at {
+            if std::time::Instant::now() < at {
+                return;
+            }
+        }
+        let dir = std::env::temp_dir().join("naqsh-selftest");
+        let path = |n: &str| dir.join(n).to_string_lossy().to_string();
+        let step = self.st_step;
+        self.st_step += 1;
+        eprintln!("selftest: step {step}");
+        match step {
+            0 => {
+                let _ = std::fs::create_dir_all(&dir);
+                self.active = Persona::Vector;
+                wait(self, 6);
+            }
+            1 => {
+                st_log("vector file.new", self.vector.run("file.new", json!({"width": 600, "height": 400})));
+                st_log("vector rectangle", self.vector.run("shape.rectangle", json!({"x": 100, "y": 100, "width": 200, "height": 120})));
+                st_log("vector select.all", self.vector.run("select.all", json!({})));
+                st_log("vector file.list", self.vector.run("file.list", json!({})));
+                wait(self, 3);
+            }
+            2 => {
+                self.active = Persona::Deck;
+                wait(self, 5);
+            }
+            3 => {
+                st_log("deck file.new", self.deck.run("file.new", json!({})));
+                st_log("deck slide.new", self.deck.run("slide.new", json!({})));
+                wait(self, 3);
+            }
+            4 => {
+                self.active = Persona::Layout;
+                wait(self, 5);
+            }
+            5 => {
+                st_log("layout file.new", self.layout.run("file.new", json!({})));
+                st_log("layout frame.create", self.layout.run("frame.create", json!({"rect": [36, 36, 200, 200], "content": "text", "text": "naqsh test"})));
+                wait(self, 3);
+            }
+            6 => {
+                self.active = Persona::Photo;
+                wait(self, 6);
+            }
+            7 => {
+                let p = self.photo_app(ctx);
+                st_log("photo file.new", p.run("file.new", json!({"width": 200, "height": 150})));
+                st_log("photo paint.stroke", p.run("paint.stroke", json!({"points": [[20, 20], [100, 80]], "size": 9, "hardness": 1.0})));
+                wait(self, 3);
+            }
+            8 => {
+                // Back to Vector: is the document still there?
+                self.active = Persona::Vector;
+                wait(self, 5);
+            }
+            9 => {
+                st_log("vector (after tabs) file.list", self.vector.run("file.list", json!({})));
+                st_log("vector (after tabs) select.all", self.vector.run("select.all", json!({})));
+                st_log("vector file.saveAs", self.vector.run("file.saveAs", json!({"path": path("v.svg"), "format": "svg"})));
+                self.active = Persona::Deck;
+                wait(self, 4);
+            }
+            10 => {
+                st_log("deck (after tabs) slide.new again", self.deck.run("slide.new", json!({})));
+                st_log("deck file.saveAs", self.deck.run("file.saveAs", json!({"path": path("d.pptx")})));
+                self.active = Persona::Layout;
+                wait(self, 4);
+            }
+            11 => {
+                st_log("layout file.saveAs", self.layout.run("file.saveAs", json!({"path": path("l.idml")})));
+                self.active = Persona::Photo;
+                wait(self, 4);
+            }
+            12 => {
+                let p = self.photo_app(ctx);
+                st_log("photo file.saveACopy", p.run("file.saveACopy", json!({"path": path("p.psd")})));
+                wait(self, 2);
+            }
+            13 => {
+                for n in ["v.svg", "d.pptx", "l.idml", "p.psd"] {
+                    let size = std::fs::metadata(dir.join(n)).map(|m| m.len()).ok();
+                    eprintln!("selftest: file {n} size {size:?}");
+                }
+                st_log("vector file.close", self.vector.run("file.close", json!({})));
+                st_log("vector file.open", self.vector.run("file.open", json!({"path": path("v.svg")})));
+                st_log("vector select.all (reopened)", self.vector.run("select.all", json!({})));
+                st_log("vector file.list (reopened)", self.vector.run("file.list", json!({})));
+                self.active = Persona::Vector;
+                wait(self, 5);
+            }
+            14 => {
+                st_log("deck file.close", self.deck.run("file.close", json!({})));
+                st_log("deck file.open", self.deck.run("file.open", json!({"path": path("d.pptx")})));
+                self.active = Persona::Deck;
+                wait(self, 5);
+            }
+            15 => {
+                st_log("layout file.close", self.layout.run("file.close", json!({})));
+                st_log("layout file.open", self.layout.run("file.open", json!({"path": path("l.idml")})));
+                self.active = Persona::Layout;
+                wait(self, 5);
+            }
+            16 => {
+                let p = self.photo_app(ctx);
+                st_log("photo file.close", p.run("file.close", json!({})));
+                st_log("photo file.open", p.run("file.open", json!({"path": path("p.psd")})));
+                self.active = Persona::Photo;
+                wait(self, 6);
+            }
+            _ => {
+                eprintln!("selftest: DONE");
+                self.selftest = false;
+            }
+        }
+    }
 }
