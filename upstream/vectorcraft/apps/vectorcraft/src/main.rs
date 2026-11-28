@@ -531,7 +531,7 @@ pub mod host_embed {
             .app_id(vectorcraft_ui_egui::os_window::app_id())
             .placement(std::sync::Arc::new(std::sync::Mutex::new(super::placement_store())))
             .frame(decision);
-        embed::install(ctx, spec, &vectorcraft_ui_egui::ui_fonts()).map_err(|e| e.to_string())
+        embed::install(ctx, spec, &vectorcraft_ui_egui::ui_fonts()).map(|_| ()).map_err(|e| e.to_string())
     }
     pub fn logic(ctx: &egui::Context, app: &mut VectorcraftApp) {
         embed::logic(ctx, || app.close_decision());
